@@ -105,22 +105,23 @@ Everything is an object! (60')
 ------------------------------
 
 Detour: what are objects? / Motivation for OOP
-  - the CS/IT motivation: code reuse:
-    - monolithic programs: bunch of functions and global variables, can only re-use code by copy+edit it
-    - modular programs: module level visibility of variables and functions, but modules are singletons!
-    - OO: an object is variables + functions; can have _multiple_ objects of the same kind in the same program
-  - the "biology" analogy:
-    - species ⇒ `class`
-      - e.g., _Felis catus_ ⇒ `class Cat`
-    - individual ⇒ instance (syn. with object)
-      - e.g., _my cat Romeo_ ⇒ `a_cat = Cat()`
-    - inheritance: compare _Felis catus_ with _Felis mangul_: both can `meow` (common to all `Felis` species) but only Felis catus will `purr`.
-  - the "mathematics" analogy:
-    - structure definition ⇒ `class`
-      - e.g., _Vector space_ ⇒ `class Vector` (defines the operations/functions that can be applied to vectors)
-    - elements in a structure ⇒ instances 
-      - e.g., _vector (1,2,3)_ ⇒ `a_vector = Vector(1,2,3)`
-    - inheritance: Vector spaces and rings both define a commutative sum, but only vector spaces define scalar multiplication.
+
+- the CS/IT motivation: code reuse:
+  - monolithic programs: bunch of functions and global variables, can only re-use code by copy+edit it
+  - modular programs: module level visibility of variables and functions, but modules are singletons!
+  - OO: an object is variables + functions; can have _multiple_ objects of the same kind in the same program
+- the "biology" analogy:
+  - species ⇒ `class`
+    - e.g., _Felis catus_ ⇒ `class Cat`
+  - individual ⇒ instance (syn. with object)
+    - e.g., _my cat Romeo_ ⇒ `a_cat = Cat()`
+  - inheritance: compare _Felis catus_ with _Felis mangul_: both can `meow` (common to all `Felis` species) but only Felis catus will `purr`.
+- the "mathematics" analogy:
+  - structure definition ⇒ `class`
+    - e.g., _Vector space_ ⇒ `class Vector` (defines the operations/functions that can be applied to vectors)
+  - elements in a structure ⇒ instances 
+    - e.g., _vector (1,2,3)_ ⇒ `a_vector = Vector(1,2,3)`
+  - inheritance: Vector spaces and rings both define a commutative sum, but only vector spaces define scalar multiplication.
 
 > _RM:_ Is the above really needed? I guess most of it will sound incomprehensible for people that have no previous OOP experience!
 
@@ -161,7 +162,8 @@ More OOP: inheritance (45')
   - introduce the "template method" pattern in the discussion
   - mention multiple-inheritance
 
-> _RM: _ Alternative introduction to Template method:
+> _RM:_ Alternative introduction to Template method:
+>
 > - explain the "template method" pattern
 > - example using MatPlotLib: 
 >   - use generic class to plot 2D data, 
