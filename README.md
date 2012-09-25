@@ -8,19 +8,21 @@ object-orientation.
 
 [[!toc startlevel=2]]
 
-Ice-breaking (10')
+Introduction (10')
 ------------------
 
-What's everyone's programming background? Experiences in other
-programming languages?
+[[slides (PDF)|part0.pdf]]
 
-- Typographical convention of the slides
 - Where to find the material used in the course
+- Prerequisites: What's everyone's programming background? Experiences in other programming languages?
+- Typographical convention of the slides
 - Python 2 vs Python 3
 
 
 Workstation setup (20')
 -----------------------
+
+[[slides (PDF)|part1.pdf]]
 
 Ensure everyone has a working:
   - Python interpreter (at least version 2.6)
@@ -31,7 +33,8 @@ Ensure everyone has a working:
 > programmed Python before. Use `gedit`? (Default in GNOME/Ubuntu)
 
 In particular:
-  - Everyone can has a running REPL in front of them
+
+- Everyone can has a running REPL in front of them
   - Everyone can download the sample [[welcome.py]] and execute it:
   
         >>> import welcome
@@ -40,6 +43,8 @@ In particular:
 
 The basics (30')
 ----------------
+
+[[slides (PDF)|part2.pdf]]
 
 - manipulating basic objects via the REPL (2x)
   - basic data types

@@ -1,0 +1,72 @@
+References and further reading on Python
+========================================
+
+## Tutorials and introductions
+
+* [The Python tutorial](http://docs.python.org/tutorial/)
+  The "official" tutorial for the Python 2.7 language.  Originally
+  from [Guido van Rossum](http://python.org/~guido) (Python's creator)
+  and enhanced with contributions from several people in the Python
+  community, it is written in a clear and terse style that makes it an
+  excellent reading and introduction to Python.
+  
+  Covers syntax, built-in types and data structures,
+  object-orientation in Python and introduces the basic functionality
+  available in the
+  [Python standard library](http://docs.python.org/library/index.html).
+
+
+* [Google's Python Class](http://code.google.com/edu/languages/google-python-class/index.html)
+  Introduction to Python by Google's engineer Nick Parlante.
+  Includes written material and videos of the lectures.
+
+
+* [Python for Java Programmers](http://python4java.necaiseweb.org/Main/TableOfContents)
+  A tutorial introduction to Python: assuming you already know Java,
+  it presents the equivalent Python code for a number of examples and
+  explains the differences.
+  
+
+* [An introduction to the Zen of Python](http://www.slideshare.net/doughellmann/an-introduction-to-the-zen-of-python)
+  Slides by Doug Hellmann, illustrating Python by examples.
+
+* [Introduction to Python](http://www.slideshare.net/amiable_indian/introduction-to-python)
+  [Part 2](http://www.slideshare.net/amiable_indian/introduction-to-python-part-two), 
+  [Part 3](http://www.slideshare.net/amiable_indian/introduction-to-python-part-three)
+  A set of slides covering the almost the same topics as these
+  lectures, but with a slightly different angle and more attention to
+  detail :-)
+
+
+## Further reading and advanced courses
+
+* [Idiomatic Python](http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html)
+  A presentation of Python programming idioms for writing better
+  (simpler, cleaner and often faster) code, by
+  [David Goodger](http://python.net/~goodger/).
+  
+  Especially useful if you are already versed in programming with
+  other languages, as Python has some distinctively unique features
+  that can make a difference in the way you write code.
+
+
+* [The Zen of Python in 3 days](http://pixelmonkey.org/pub/python-training/)
+  Great set of slides from a 3-day course, covering topics from the
+  very basics of Python programming to advanced real-world topics like
+  SQL ORM usage and web programming.
+
+
+* [Python training for Java Programmers](www.python.org/doc/essays/ppt/hp-training/HP-Python-Training.PPT)
+  Slides by Guido van Rossum; also interesting content about program
+  organisation and structure.  (Maybe some details are outdated now.)
+
+
+
+## Specific topics
+
+* [Differences between Python 2 and Python 3](http://wiki.python.org/moin/Python2orPython3)
+
+
+* [The Python 2.3 Method Resolution Order](http://www.python.org/download/releases/2.3/mro/)
+  A detailed still very readable explanation of how Python searches
+  for methods in multiple-inheritance hierarchies.

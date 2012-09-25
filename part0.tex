@@ -1,0 +1,146 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usepackage{gc3}
+
+\title[Introduction]{%
+  Introduction to the Python programming language
+}
+\author[R. Murri]{%
+  \textbf{Riccardo Murri} \\
+  Grid Computing Competence Center, \\
+  Organisch-Chemisches Institut, \\
+  University of Zurich
+}
+\date{Sep.~28, 2012}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+\begin{frame}
+  \begin{center}
+    {\Huge Welcome!}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Prerequisites}
+  This course assumes a basic experience with computer programming.
+
+  \+ 
+  Any language should do, as long as you are already familiar with
+  the concepts of variables and functions.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Where to find the course material}
+
+  These slides and all the example files can be downloaded from the
+  course web page at: 
+  {\small\url{http://www.gc3.uzh.ch/python.html}}
+
+  \+
+  Better keep a browser tab open on that page.
+
+  \+ 
+  (After the course is over, please rate it and the material using
+  the feedback form on \href{http://www.gc3.uzh.ch/python.html}{that
+    same page})
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Further reading} 
+
+  \begin{itemize}
+    \item \textbf{The Python tutorial},
+      {\small \url{http://docs.python.org/tutorial/}}
+    \item {The Zen of Python in 3 days},
+      {\small \url{http://pixelmonkey.org/pub/python-training/}}
+    \item {Python for Java programmers}, 
+      {\small \url{http://python4java.necaiseweb.org/Main/TableOfContents}}
+  \end{itemize}
+
+  \+
+  See {\small\url{http://www.gc3.uzh.ch/refs.html}}
+  for an extensive and commented list.
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Typographical conventions, I}
+
+  The orange color is used for
+  \href{http://www.gc3.uzh.ch/python.html}{clickable
+    links}; this should make it easy to download sample files, etc.
+
+  \+ 
+  Other \hl{colors} and \HL{backgrounds} are used for highlighting
+  text in slides.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Typographical conventions, II}
+
+    \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+# This is how Python source code
+# looks like in the slides.
+
+def hello(name):
+  print ("Hello, " + name)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft Commentary text appears on the right.
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Python 2 \emph{vs} Python 3}
+
+  There are currently two major versions of Python available, with
+  slightly different syntax and features.
+
+  \+
+  Python 2.7 is the last release in the 2.x series. 
+
+  \+
+  Python 3.x has a more polished syntax, removing inconsistencies and
+  some historical baggage.
+
+  \+ 
+  But Python 2.x is still the default on most Linux distributions
+  and some major Python packages have not yet been ported to Py3, so
+  \textbf{we shall focus on Py2 syntax}.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Next steps}
+
+  The course will be structured as a mixture of slides and hands-on
+  sessions for practicing Python programming.  The GC3 folks are here
+  to help: ask them questions!
+
+  \+ 
+  So, the very next step is to set up your workstation so that you
+  can edit files and run Python code.
+\end{frame}
+
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
