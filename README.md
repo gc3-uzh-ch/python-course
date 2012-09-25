@@ -221,4 +221,4 @@ to provide pointers:
 Feedback form
 -------------
 
-<iframe src="https://docs.google.com/spreadsheet/embeddedform?formkey=dFByQVZpMms5eTVhT0MteEZadlZacEE6MQ" width="640" height="2239" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+<iframe src="https://docs.google.com/spreadsheet/embeddedform?formkey=dFByQVZpMms5eTVhT0MteEZadlZacEE6MQ" width="640" height="2560" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
