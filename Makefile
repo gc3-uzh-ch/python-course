@@ -1,11 +1,11 @@
 
 default:
-	echo "Type 'make ACTION', where ACTION is one of the following:"
-	echo
-	echo "clean -- Remove all temporary LaTeX files"
-	echo
-	echo "all -- Recompile all LaTeX files"
-	echo
+	@echo "Type 'make ACTION', where ACTION is one of the following:"
+	@echo
+	@echo "clean -- Remove all temporary LaTeX files"
+	@echo
+	@echo "all -- Recompile all LaTeX files"
+	@echo
 
 
 # clean up temporary LaTeX files
@@ -18,7 +18,7 @@ all: $(patsubst %.tex,%.pdf,$(wildcard *.tex))
 
 
 # the default wildcard rule for generating PDFs from `.tex` files
-%.pdf: %.tex lsci.sty
+%.pdf: %.tex gc3.sty
 	pdflatex $<
 	pdflatex $<
 

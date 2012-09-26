@@ -1,0 +1,530 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usepackage{gc3}
+
+\title[OOP]{%
+  Object-oriented Python, I
+}
+\author[R. Murri]{%
+  \textbf{Riccardo Murri} \\
+  GC3: Grid Computing Competence Center, \\
+  University of Zurich
+}
+\date{Sep.~28, 2012}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+
+\begin{frame}
+  \frametitle{What's an \emph{object}?}
+  A Python \emph{object} is a bundle of variables and functions.
+
+  \+ 
+  What variable names and functions comprise an object is defined
+  by an object \emph{class}.
+
+  \+ 
+  From one class specification, many objects can be
+  \emph{instanciated}.  Different instances can assign different
+  values to the object variables.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Objects \emph{vs} modules}
+
+  Modules are also namespaces of variables and functions.
+
+  \+ 
+  But each module has \emph{one and only one} instance in a Python
+  program.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, I}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> @\HL{from datetime import date}@
+>>> dt1 = date(2012, 9, 28)
+>>> dt2 = date(2012, 10, 1)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \raggedleft 
+      Import the \texttt{date} class from the standard
+      library module \texttt{datetimea}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, II}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> from datetime import date
+>>> @\HL{dt1 = date(2012, 9, 28)}@
+>>> dt2 = date(2012, 10, 1)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      To instanciate an object, call the class name like a
+      function.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, III}
+\begin{lstlisting}
+>>> dir(dt1)
+['__add__', '__class__', @\ldots@, 'ctime', 'day', 
+'fromordinal', 'fromtimestamp', 'isocalendar', 
+'isoformat', 'isoweekday', 'max', 'min', 'month', 
+'replace', 'resolution', 'strftime', 'timetuple', 
+'today', 'toordinal', 'weekday', 'year']
+\end{lstlisting}
+
+  \+
+  The \texttt{dir} function can list all objects attributes.
+  (Note there is no distinction between variables and functions!)
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, IV}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> dt1.day
+28
+>>> dt1.month
+9
+>>> dt1.year
+2012
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      Access to object attributes is done by suffixing the
+      instance name with the attribute name, separated by a dot
+      ``\texttt{.}''.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, V}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> dt1.day
+28
+>>> dt2.day
+1
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      The same attribute can have different 
+      values in different instances!
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile,fragile]
+  \frametitle{Equality, identity}
+  The \texttt{is} operator returns \texttt{True} if two names refer to
+  the same instance:
+\begin{lstlisting}
+>>> dt1 is dt2
+False
+>>> dt3 = dt1
+>>> dt3 is dt1
+True
+\end{lstlisting}
+
+  \+ 
+  Note that two instances may be equal in any respect yet be
+  different instances: \emph{equality is not identity!}
+\begin{lstlisting}
+>>> dt4 = date(2012, 9, 28)
+>>> dt4 == dt3
+True
+>>> dt4 is dt3
+False
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Instance methods, I}
+\begin{lstlisting}
+>>> dt1.strftime
+@\HL{<built-in method strftime of datetime.date object ...>}@
+\end{lstlisting}
+
+  \+ 
+  Instance attributes can be functions as well!
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Instance methods, II}
+\begin{lstlisting}
+>>> dt1.strftime('%a %d %b')
+'Fri 28 Sep'
+\end{lstlisting}
+
+  \+ 
+  Invoke an instance method just like any other function.
+\end{frame}
+
+
+
+
+\begin{frame}[fragile]
+  \frametitle{User-defined classes, I}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+@\HL{\textbf{class} Features(object):}@
+
+  def __init__(self, seq=[]):
+    self.min = min(*seq)
+    self.max = max(*seq)
+
+  def send(self, val):
+    if (self.min is None) or (val < self.min):
+        self.min = val
+    if (self.max is None) or (val > self.max):
+        self.max = val
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      A class definition starts with the keyword \texttt{class}.
+
+      The class definition is indented relative to the \texttt{class}
+      statement.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{User-defined classes, II}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Features@\HL{(object)}@:
+
+  def __init__(self, seq=[]):
+    self.min = min(*seq)
+    self.max = max(*seq)
+
+  def send(self, val):
+    if (self.min is None) or (val < self.min):
+        self.min = val
+    if (self.max is None) or (val > self.max):
+        self.max = val
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      This identifies user-defined classes.
+
+      (Do not leave it out or you'll get an ``old-style'' class, which
+      is deprecated behavior.)
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{User-defined classes, III}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Features(object):
+
+  @\HL{def \_\_init\_\_(self, seq=[]):}@
+    self.min = min(*seq)
+    self.max = max(*seq)
+
+  def send(self, val):
+    if (self.min is None) or (val < self.min):
+        self.min = val
+    if (self.max is None) or (val > self.max):
+        self.max = val
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      The \texttt{def} keyword introduces a method definition.
+      Every method \emph{must} have at least one argument,
+      named \textbf{self}.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The \texttt{self} argument}
+
+  \textbf{Every method of a Python object always has \texttt{self}
+    as first argument.}
+
+  \+
+  However, you do not specify it when calling a method: it's
+  automatically inserted by Python:
+\begin{lstlisting}
+>>> class ShowSelf(object):
+...   def show(self):
+...     print(self)
+... 
+>>> x = ShowSelf() # construct instance
+>>> x.show() # `self' automatically inserted!
+<__main__.ShowSelf object at 0x299e150>
+\end{lstlisting}
+
+  \+ 
+  The \texttt{self} name is a reference to the object instance
+  itself.  You \emph{need to} use \texttt{self} when accessing methods
+  or attributes of this instance.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules}
+  \small
+
+  Within a function body, names are resolved according to \href{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}{the LEGB rule}:
+  \begin{description}
+  \item[L] Local scope: any names defined in the current function;
+  \item[E] Enclosing function scope: names defined in enclosing
+    functions (outermost last);
+  \item[G] global scope: names defined in the toplevel of the current module;
+  \item[B] Built-in names (i.e., Python's \texttt{\_\_builtins\_\_} module).
+  \end{description}
+
+  \+
+  \textbf{Any name that is not in one of the above scopes \emph{must}
+    be qualified.}
+
+  \+
+  So you have to write \texttt{self.min} to reference an attribute in
+  this instance, \texttt{datetime.date} to mean a class defined in module
+  \texttt{date}, etc.
+
+  % \begin{references}
+  %   \url{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}}
+  % \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Object initialization}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Features(object):
+
+  @\HL{\textbf{def} \_\_init\_\_(\textbf{self}, seq=[]):}@
+    self.min = min(*seq)
+    self.max = max(*seq)
+
+  def send(self, val):
+    if (self.min is None) or (val < self.min):
+        self.min = val
+    if (self.max is None) or (val > self.max):
+        self.max = val
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      The \lstinline|__init__| method has a special
+      meaning: it is called when an instance is created.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+  \frametitle{Constructors}
+
+  The \lstinline|__init__| method is the object constructor.
+  It should \emph{never} return any value (other than \texttt{None}).
+
+  \+ 
+  You never call \lstinline|__init__| directly, it is invoked by
+  Python when a new object is created from the class:
+\begin{lstlisting}
+# make `f' an instance of `WordIterator'
+w = WordIterator("some text")
+\end{lstlisting}
+
+  \+
+  (Again, note that the \texttt{self} part is automatically inserted
+  by Python.)
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{No overloading}
+
+  \textbf{Python does not allow overloading of functions.}
+
+  \+
+  Any function.
+
+  \+
+  Hence, no overloading of constructors.
+
+  \+
+  So: \textbf{a class can have one and only one constructor.}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Object attributes}
+
+  A Python object is (in particular) a key-value mapping: attributes
+  (keys) are valid identifiers, values can be any Python object.
+
+  \+
+  Any object has attributes, which you can access (create, read,
+  overwrite) using the dot notation:
+\begin{lstlisting}
+# create or overwrite the `name' attribute of `w'
+w.name = "Joe"
+
+# get the value of `w.name' and print it
+print (w.name)
+\end{lstlisting}
+
+  \+ 
+  So, in the constructor you create the required \emph{instance}
+  attributes using \lstinline|self.var = ...|
+
+  \+
+  \emph{Note:} also methods are attributes!
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{No access control}
+  There are no ``public''/``private''/etc. qualifiers for object
+  attributes.
+
+  \+
+  \textbf{\emph{Any} code can create/read/overwrite/delete \emph{any} attribute on
+    \emph{any} object.}
+
+  \+
+  There are \emph{conventions}, though:
+  \begin{itemize}
+  \item ``protected'' attributes: \texttt{\_name}
+  \item ``private'' attributes: \texttt{\_\_name}
+  \end{itemize}
+  (But again, note that this is not \emph{enforced} by the system in
+  any way.)
+
+\end{frame}
+
+
+\begin{frame}
+  \begin{exercise}
+    Augment the \texttt{Features} class so that it computes the
+    average of the numbers given to it via the \texttt{send} method.
+    Store this average in the \texttt{.average} instance attribute.
+  \end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The Iterator Protocol}
+
+  An \emph{iterator} is an object that can be used in the
+  \texttt{in}-clause of a \texttt{for \ldots in \ldots} statement.
+
+  \+
+  An object can function as an iterator iff it implements a
+  \texttt{next()} method, that:
+  \begin{description}
+  \item[\emph{either}] returns the next value in the iteration,
+  \item[\emph{or}] use \lstinline|raise StopIteration| to signal the
+    end of the iteration.
+  \end{description}
+
+  \+
+  An object can be iterated over with \lstinline|for| if it implements a
+  \lstinline|__iter__()| method that returns an iterator.
+
+  \begin{references}
+    \url{http://www.python.org/dev/peps/pep-0234/}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class WordIterator(object):
+
+  def __init__(self, text):
+    self._words = text.split()
+
+  def next(self):
+      if len(self._words) > 0:
+          return self._words.pop(0)
+      else:
+          raise StopIteration
+
+  def __iter__(self):
+      return self
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      Iterate over the words in the given text: split the text at
+      white spaces, and return the parts one~by~one.
+    \end{column}
+  \end{columns}
+
+  \+
+  {\scriptsize Source code available at:
+    \url{http://www.gc3.uzh.ch/worditerator.py}}
+\end{frame}
+
+
+\begin{frame}
+  \begin{exercise}
+    Write a \texttt{GrepExactly} class that:
+    \begin{itemize}
+    \item is constructed by passing a file name and a string: 
+      \lstinline|ge = GrepExactly(filename, pattern)|
+    \item implements the iterator protocol
+    \item each call to its \texttt{next()} method returns the next line
+      in the file that contains the pattern string.
+    \end{itemize}
+
+  \end{exercise}
+\end{frame}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
