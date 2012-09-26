@@ -65,6 +65,118 @@ for more information.
 \end{frame}
 
 
+\begin{frame}
+  \frametitle{Basic types}
+  Basic object types in Python:
+  \begin{description}
+  \item[bool] The class of the two boolean constants \texttt{True}, \texttt{False}.
+  \item[int] Integer numbers: \texttt{1}, \texttt{-2}, \ldots
+  %   up to \texttt{9223372036854775807} (on a 64-bit machine)
+  % \item[long] Integer numbers of arbitrary size; Python switches
+  %   automatically from \texttt{int} to \texttt{long} when needed.
+  \item[float] Double precision floating-point numbers, e.g.:
+    \texttt{3.1415}, \texttt{-1e-3}.
+  \item[str] Strings of byte-size characters.
+  \item[unicode] Strings of UNICODE characters.
+  \end{description}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{String literals, I}
+  There are several ways to express string literals in Python.
+
+  \+
+  Single and double quotes can be used interchangeably:
+\begin{semiverbatim}
+>>> "a string" == 'a string'
+True
+\end{semiverbatim}
+
+  \+
+  You can use the single quotes inside double-quoted strings, and viceversa:
+\begin{semiverbatim}
+>>> a = "Isn't it ok?"
+>>> b = '"Yes", he said.'
+\end{semiverbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{String literals, II}
+  Multi-line strings are delimited by three quote characters.
+\begin{lstlisting}
+>>> a = """This is a string,
+... that extends over more
+... than one line.
+... """
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Operators}
+  All the usual unary and binary arithmetic and logical operators are
+  defined in Python: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/},
+  \texttt{**}~(exponentiation), \texttt{<<}, \texttt{>>}, etc.
+
+  \+
+  The comma operator (\texttt{,}) has a different meaning than in C/Java/etc.:
+\begin{lstlisting}
+>>> 1,2,3
+(1, 2, 3)
+\end{lstlisting}
+  (It is the \texttt{tuple} constructor --- more on it later.)
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Operators, II}
+  Some operators are defined for non-numeric types:
+\begin{lstlisting}
+>>> "U" + 'ZH'
+'UZH'
+\end{lstlisting}
+
+  \+ 
+  Some support operands of mixed type:
+\begin{lstlisting}
+>>> "a" * 2
+'aa'
+>>> 2 * "a"
+'aa'
+\end{lstlisting}
+
+  \+
+  Some do not:
+\begin{lstlisting}[basicstyle=\footnotesize\ttfamily]
+>>> "aaa" / 3
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Operators, III}
+  The ``\texttt{\%}'' operator computes the remainder of integer division.
+
+  \+ 
+  But it is also used for \emph{string formatting}:
+\begin{lstlisting}[showstringspaces=false]
+>>> "This is slide %d of %d" % (13, 32)
+'This is slide 13 of 32.'
+>>> "We are %.1f%% done." % (100.0 * 13/32)
+'We are 40.6% done.'
+>>> "Today is %s %d, %d" % ('October', 28, 2012)
+'Today is October 28, 2012'
+\end{lstlisting}
+
+  \begin{references}
+    \url{http://docs.python.org/library/stdtypes.html#string-formatting-operations}
+  \end{references}
+\end{frame}
+
+
 \begin{frame}[fragile]
   \frametitle{Expressions}
 
@@ -172,98 +284,44 @@ a string
 
   The multiple assignments are effected \emph{left-to-right, one after
   the other}.
-
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Basic types}
-  Basic object types in Python:
-  \begin{description}
-  \item[int] Integer numbers: \texttt{1}, \texttt{-2}, \ldots
-  %   up to \texttt{9223372036854775807} (on a 64-bit machine)
-  % \item[long] Integer numbers of arbitrary size; Python switches
-  %   automatically from \texttt{int} to \texttt{long} when needed.
-  \item[bool] The class of the two boolean constants \texttt{True}, \texttt{False}.
-  \item[float] Double precision floating-point numbers, e.g.:
-    \texttt{3.1415}, \texttt{-1e-3}.
-  \item[str] Strings of byte-size characters.
-  \item[unicode] Strings of UNICODE characters.
-  \end{description}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{String literals, I}
-  There are several ways to express string literals in Python.
-
-  \+
-  Single and double quotes can be used interchangeably:
-\begin{semiverbatim}
->>> "a string" == 'a string'
-True
-\end{semiverbatim}
-
-  \+
-  You can use the single quotes inside double-quoted strings, and viceversa:
-\begin{semiverbatim}
->>> a = "Isn't it ok?"
->>> b = '"Yes", he said.'
-\end{semiverbatim}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{String literals, II}
-  Multi-line strings are delimited by three quote characters.
-\begin{lstlisting}
->>> a = """This is a string,
-... that extends over more
-... than one line.
-... """
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Operators}
-  All the usual unary and binary arithmetic and logical operators are
-  defined in Python: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/},
-  \texttt{**}~(exponentiation), \texttt{<<}, \texttt{>>}, etc.
-
-  \+
-  The comma operator (\texttt{,}) has a different meaning than in C/Java/etc.:
-\begin{lstlisting}
->>> 1,2,3
-(1, 2, 3)
-\end{lstlisting}
-  (It is the \texttt{tuple} constructor --- more on it later.)
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Operators, II}
-  Some operators are defined for non-numeric types:
-\begin{lstlisting}
->>> "U" + 'ZH'
-'UZH'
-\end{lstlisting}
+  \frametitle{Assignment, III}
+  The usual updating assignment operators \texttt{+=},
+  \texttt{-=}, etc. are supported as a shortcut notation.
 
   \+ 
-  Some support operands of mixed type:
+  \textbf{Always think of} 
+  \emph{var}~\texttt{+=}~\emph{expr}, \emph{var}~\texttt{-=}~\emph{expr}, etc.
+  \textbf{as an abbreviation for}
+  \emph{var}~\texttt{=}~\emph{var}\texttt{+}\emph{expr},
+  \emph{var}~\texttt{=}~\emph{var}\texttt{-}\emph{expr},
+  etc.
+  (The reason will be clear in a moment.)
+\end{frame}
+
+
+\begin{frame}[fragile,fragile]
+  \frametitle{Assignment, IV}
+
+  \textbf{Python variables are just ``names'' given to values.}
+  This allows you to \emph{reference} the string \texttt{'Python'}
+  by the \emph{name} \texttt{py}:
 \begin{lstlisting}
->>> "a" * 2
-'aa'
->>> 2 * "a"
-'aa'
+>>> py = 'Python'
 \end{lstlisting}
 
-  \+
-  Some do not:
-\begin{lstlisting}[basicstyle=\footnotesize\ttfamily]
->>> "aaa" / 3
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: unsupported operand type(s) for /: 'str' and 'int'
+  \+ The same object can have many names! The \texttt{is} operator
+  allows you to test whether two names refer to the same object:
+\begin{lstlisting}
+>>> a = 1
+>>> b = 1
+>>> a is b
+True
 \end{lstlisting}
+
 \end{frame}
 
 
@@ -508,11 +566,26 @@ hello("world")
 
 
 \begin{frame}[fragile]
-  \frametitle{Modules}
-  The \texttt{import} statement reads a \texttt{.py} file and makes
-  its contents available to the current program.
+  \frametitle{Modules, I}
+  The \texttt{import} statement reads a \texttt{.py} file, executes
+  it, and makes its contents available to the current program.
 \begin{lstlisting}
 >>> import hello
+Hello, world!
+\end{lstlisting}
+
+  \+
+  \textbf{Modules are only read once}, no matter how many times an
+  \texttt{import} statement is issued.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Modules, II}
+  Modules are \emph{namespaces:} functions and variables defined in
+  a module must be prefixed with the module name when used in other
+  modules:
+\begin{lstlisting}
 >>> hello.hello("Bob")
 Hello, Bob!
 \end{lstlisting}
@@ -523,11 +596,8 @@ Hello, Bob!
 \begin{lstlisting}
 >>> from fractions import Fraction
 \end{lstlisting}
-
-  \+
-  \textbf{Modules are only read once}, no matter how many times an
-  \texttt{import} statement is issued.
 \end{frame}
+
 
 \begin{frame}[fragile]
   Conditional execution uses the \texttt{if} statement:
@@ -573,6 +643,13 @@ else:
   \texttt{else} clause is \emph{not} executed.
 \end{frame}
 
+
+\begin{frame}
+  \begin{exercise}
+    Modify the \texttt{hello()} function to print ``Welcome back!'' if
+    the argument \texttt{name} is your name.
+  \end{exercise}
+\end{frame}
 
 \end{document}
 

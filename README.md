@@ -41,8 +41,8 @@ In particular:
         Welcome to Python!
 
 
-The basics (30')
-----------------
+Basics: data types, operators, assignment, functions (45')
+----------------------------------------------------------
 
 [[slides (PDF)|part2.pdf]]
 
@@ -68,9 +68,17 @@ The basics (30')
 - _Exercise:_ modify the `hello` function to print a `"Welcome back, " + name` iff `name == (own name)`
 
 
-Sequences and iteration (20')
------------------------------
+1st break (15')
+---------------
+
+Coffee, etc.
+
+
+Basics 2: sequences and iteration (45')
+---------------------------------------
   
+[[slides (PDF)|part3.pdf]]
+
 - `for ... in range(...)`
 - sequences (8x)
 - the `in` operator
@@ -81,16 +89,15 @@ Sequences and iteration (20')
     > _RM:_ Too difficult?
     
   - _Exercise:_ Invert a mapping (swap values and keys).
-
-
-1st break (15')
----------------
-
-Coffee, etc.
+- variadic positional arguments; keyword arguments
+  - _Exercise:_ the `maxarg` function: return name of argument with max value
 
 
 String manipulation, file I/O (45')
 -----------------------------------
+
+[[slides (PDF)|part4.pdf]]
+
 - file operations:
   - opening a file
   - reading a file:
@@ -104,6 +111,12 @@ String manipulation, file I/O (45')
   - _Exercise:_ Build a `rate[][]` 2D array that stores the convertion rate of two currencies given the name, e.g., `rate['ITL']['DEM']` gives the conversion rate of Italian Liras to Deutsche Marks.
 - more filesystem operations (2x)
   - _Take-home exercise:_ write a `rename.py EXT1 EXT2 DIR` command that renames all files in DIR that end in EXT1 to an EXT2 ending.
+
+
+Lunch break (45')
+-----------------
+
+Choices: ETH mensa, Polysnack (it's just in front of the room), nearby place that makes good Thai currys.
 
 
 Everything is an object! (60')
@@ -141,12 +154,6 @@ Detour: what are objects? / Motivation for OOP
       - topics to explain: `self`, constructor
     - there's a `send` method that takes a single number and updates `.max` and `.min`
       - topics to explain access to instance variables
-
-
-Lunch break (45')
------------------
-
-Choices: ETH mensa, Polysnack (it's just in front of the room), nearby place that makes good Thai currys.
 
 
 More OOP: inheritance (45')
