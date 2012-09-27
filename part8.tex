@@ -16,6 +16,33 @@
 % title frame
 \maketitle
 
+
+\begin{frame}
+  \frametitle{An easy exercise}
+  A \emph{dotfile} is a file whose name starts with a dot character
+  ``\texttt{.}''.
+
+  \+
+  How can you list all dotfiles in a given directory?
+
+  \+
+  (Recall that the Python library call for listing the entries in a
+  directory is \texttt{os.listdir()})
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{A very basic solution}
+  Use a \lstinline|for| loop to accumulate the results into a list:
+  \begin{python}
+dotfiles = [ ]
+for entry in os.listdir(path):
+  if entry.startswith('.'):
+    dotfiles.append(entry)
+  \end{python}
+\end{frame}
+
+
 \begin{frame}[fragile]
   \frametitle{List comprehensions, I}
   Python has a better and more compact syntax for \emph{filtering} elements
@@ -36,7 +63,7 @@ dotfiles = [ entry for entry in dotfiles
   
   The general syntax of a list comprehension is:
   \begin{python}
-    !\bf[! !\e expr! for !\e var! in !\e iterable! if !\e condition! !\bf]!
+    @\bf[@ @\e expr@ for @\e var@ in @\e iterable@ if @\e condition@ @\bf]@
   \end{python}
   where:
   \begin{description}
@@ -59,7 +86,7 @@ dotfiles = [ entry for entry in dotfiles
 
   List comprehensions are a special case of \emph{generator expressions}:
   \begin{python}
-    ( !\e expr! for !\e var! in !\e iterable! if !\e condition! )
+    ( @\e expr@ for @\e var@ in @\e iterable@ if @\e condition@ )
   \end{python}
 
   \+
