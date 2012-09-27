@@ -26,7 +26,8 @@ Programme / Timetable
   nearby place that makes good Thai currys.
 
 * [[OOP: everything is an object!|part5.pdf]]
-  - Downloads: [[minmax.py]], 
+  - Downloads: [[minmax.py]]
+  - Solutions to exercises: [[ex5a.py]], [[ex5b.py]]
 * [[OOP: inheritance|part6.pdf]]
   - Downloads: [[test_minmax.py]], [[grep.py]]
   - Solutions to exercises: [[ex6a.py]], [[ex6b.py]], [[ex6c.py]]
