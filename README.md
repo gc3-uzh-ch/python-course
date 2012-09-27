@@ -32,6 +32,7 @@ Programme / Timetable
   - Downloads: [[test_minmax.py]], [[grep.py]]
   - Solutions to exercises: [[ex6a.py]], [[ex6b.py]], [[ex6c.py]]
 * [[Exceptions and error handling|part7.pdf]]
+  - Solutions to exercises: [[ex7a.py]]
 * [[List comprehensions and generators|part8.pdf]]
 <!-- * Class attributes -->
 
