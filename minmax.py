@@ -1,11 +1,11 @@
 #! /usr/bin/python
 
-class Features(object):
+class MinMax(object):
     """Compute the min and max of a streaming sequence."""
 
     def __init__(self, seq=[]):
-        self.min = min(*seq)
-        self.max = max(*seq)
+        self.min = None
+        self.max = None
 
     def send(self, val):
         if (self.min is None) or (val < self.min):
@@ -15,7 +15,7 @@ class Features(object):
 
 # usage examples
 if __name__ == '__main__':
-    f = Features()
+    f = MinMax()
     f.send(0)
     assert f.min == 0
     assert f.max == 0
