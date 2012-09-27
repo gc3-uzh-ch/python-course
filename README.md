@@ -27,9 +27,9 @@ Programme / Timetable
 * [[OOP: inheritance|part6.pdf]]
   - Downloads: [[test_minmax.py]], [[grep.py]]
   - Solutions to exercises: [[ex6a.py]], [[ex6b.py]], [[ex6c.py]]
-* Exceptions and error handling
-* Class attributes
-* List comprehensions and generators
+* [[Exceptions and error handling|part7.pdf]]
+* [[List comprehensions and generators|part8.pdf]]
+<!-- * Class attributes -->
 
 
 Feedback form
