@@ -14,6 +14,7 @@ Programme / Timetable
 * [[Introduction|part0.pdf]]
 * [[Workstation setup|part1.pdf]]
 * [[Basics: data types, operators, assignment, functions|part2.pdf]]
+   - Downloads: [[hello.py]]
 * _Coffee break_
 * [[Basics 2: sequences and iteration|part3.pdf]]
 * [[String manipulation, file I/O|part4.pdf]]
