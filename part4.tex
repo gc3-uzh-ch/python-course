@@ -17,7 +17,7 @@
 \maketitle
 
 \begin{frame}[fragile]
-  \frametitle{File I/O}
+  \frametitle{File I/O, I}
 
   \begin{describe}{\ttfamily stream = open(path,mode)}
     Return a Python \texttt{file} object for reading or writing the
@@ -42,17 +42,8 @@
 
 
 \begin{frame}[fragile]
-  \frametitle{Strings to streams and back}
+  \frametitle{File I/O, II}
 
-  The \texttt{StringIO} module creates a file-like object from a
-  string:
-\begin{lstlisting}
->>> from StringIO import StringIO
->>> # create a file-like object
->>> stream = StringIO("python")
-\end{lstlisting}
-
-  \+
   The \lstinline|read(n)| method can be used to read \emph{at most}
   \lstinline|n| bytes from a file-like object:
 \begin{lstlisting}
@@ -63,18 +54,18 @@ True
   If \lstinline|n| is omitted, \texttt{read()} reads until end-of-file.
 
   \begin{references}
-    \url{http://docs.python.org/library/stringio.html}
+    \url{http://docs.python.org/library/stdtypes.html#file-objects}
   \end{references}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \begin{exercise}
-    Implement a function \lstinline|count_lines(stream)|, that returns
-    the number of lines in \lstinline|stream| (a file-like object).
-  \end{exercise}
+  % \begin{exercise}
+  %   Implement a function \lstinline|count_lines(stream)|, that returns
+  %   the number of lines in \lstinline|stream| (a file-like object).
+  % \end{exercise}
 
-  \+
+  % \+
   \begin{exercise}
     Write a function \lstinline|load_data(filename)| that reads a file
     containing one integer number per line, and return a list of the
@@ -215,7 +206,7 @@ True
 
 
 \begin{frame}[fragile]
-  \begin{exercise}
+  \begin{exercise}\emph{(Homework)}
     Write a Python program \texttt{rename.py} with the following
     command-line:
 \begin{lstlisting}[language=sh]
