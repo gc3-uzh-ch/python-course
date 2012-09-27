@@ -4,8 +4,7 @@
 \title[OOP2]{%
   Object-oriented Python, II
 }
-\author[R. Murri]{%
-  \textbf{Riccardo Murri} \\
+\author[GC3]{%
   GC3: Grid Computing Competence Center, \\
   University of Zurich
 }
@@ -177,7 +176,7 @@ class TestMinMax(ut.TestCase):
   defined in an ancestor class?
 
   \+
-  \only<2>{\em
+  \pause{\em
     The method in the descendant class \emph{overrides} the
     method in the ancestor class.
   }
@@ -188,7 +187,7 @@ class TestMinMax(ut.TestCase):
   What happens if a descendant class defines a \lstinline|__init__|
   method?
 
-  \+ \only<2>{\em 
+  \+ \pause{\em 
     The \lstinline|__init__| in the descendant class
     \emph{overrides} the method in the ancestor class.  So
     \lstinline|__init__| of the parent class(es) will not be called.
