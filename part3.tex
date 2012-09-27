@@ -27,7 +27,7 @@
   \item[str] \emph{immutable}, only holds characters
   \end{description}
   An additional class is provided by the
-  \href{http://numpy.scipy.org}{NumPy} package, and in common use in
+  \href{http://numpy.scipy.org}{NumPy} package, and is commonly used in
   scientific Python codes:
   \begin{description}
   \item[array] \emph{mutable}, homogeneous
@@ -43,15 +43,15 @@
   Lists are created and initialized by enclosing values into
   `\texttt{[}' and `\texttt{]}':
 \begin{lstlisting}
->>> L = [ 'U', 'Z' ]
+>>> L = [ 'G', 'C' ]
 \end{lstlisting}
 
   \+
   You can append and remove items from a list:
 \begin{lstlisting}
->>> L.append('H')
+>>> L.append('3')
 >>> print (L)
-['U', 'Z', 'H']
+['G', 'C', '3']
 \end{lstlisting}
 
   \+
@@ -69,9 +69,12 @@
   \+
   Sequence indices start at 0.
 \begin{lstlisting}
->>> L = ['U', 'Z', 'H']
+>>> L = ['G', 'C', '3']
 >>> print L[0], L[1], L[2]
-'U' 'Z' 'H'
+'G' 'C' '3'
+>>> S = 'GC3'
+>>> print S[0], S[1], S[2]
+'G' 'C' '3'
 \end{lstlisting}
 
   \+
@@ -90,8 +93,8 @@
   of sequence (the items at positions $n$, $n+1$, \ldots, $m-1$).
 \begin{lstlisting}
 >>> # list numbers from 0 to 9
->>> L = range(0,10)
->>> L[1:4]
+>>> R = range(0,10)
+>>> R[1:4]
 [1, 2, 3]
 \end{lstlisting}
 
@@ -106,22 +109,22 @@
   You can replace items in a \emph{mutable} sequence by assigning them
   a new value:
 \begin{lstlisting}
->>> L[2] = 'h'
+>>> L[2] = 'Z'
 >>> print L
-['U', 'Z', 'h']
+['G', 'C', 'Z']
 \end{lstlisting}
 
   You can also replace an entire slice of a mutable sequence:
 \begin{lstlisting}
->>> L[01:3] = 'UU'
+>>> L[1:3] = 'GG'
 >>> print L
-['U', 'U', 'U']
+['G', 'G', 'G']
 \end{lstlisting}
   The new slice does not need to have the same length:
 \begin{lstlisting}
 >>> L[1:] = 'Zurich'
 >>> print L
-['U', 'Z', 'u', 'r', 'i', 'c', 'h']
+['G', 'Z', 'u', 'r', 'i', 'c', 'h']
 \end{lstlisting}
 \end{frame}
 
@@ -183,6 +186,16 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'tuple' object does not support item assignment
 \end{lstlisting}
+
+\+
+\begin{lstlisting}
+>>> S = 'GC3'
+>>> S[2] = '2'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+\end{lstlisting}
+
   
   \+
   \texttt{list}, \texttt{dict}, \texttt{set} and user-defined objects
@@ -267,32 +280,30 @@ TypeError: 'tuple' object does not support item assignment
   \begin{question}
     How can you explain this?  
 
-    \only<2> The \texttt{b += 1} operator could be replaced by
-    \texttt{b = b + 1}, and the \texttt{b+1} expression yields a
-    \emph{new} value.
+    \only<2>{The \texttt{b += 1} operator could be replaced by
+      \texttt{b = b + 1}, and the \texttt{b+1} expression yields a
+      \emph{new} value.}
   \end{question}
 \end{frame}
 
 
 \begin{frame}[fragile]
+  \frametitle{\texttt{for}-loops}
     With the  \texttt{for} statement, you can loop over the values in
     a list:
 \begin{lstlisting}
 for i in range(0, 4):
   # loop block
   print (i*i)
-else:
-  # executed at the natural end of the loop
-  print "loop ended naturally"
 \end{lstlisting}
 
   \+
   To break out of a \texttt{for} loop, use the \texttt{break}
   statement. 
 
-  \+
-  If a loop is exited via a \texttt{break} statement, the
-  \texttt{else} clause is \emph{not} executed.
+  \+ 
+  To jump to the next iteration of a \texttt{for} loop, use the
+  \texttt{continue} statement.
 \end{frame}
 
 
@@ -419,7 +430,21 @@ else:
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
+  \frametitle{Default values}
+  
+  Function arguments can have default values.
+\begin{lstlisting}
+>>> def hello(name='world'):
+...   print ("Hello, " + name)
+... 
+>>> hello()
+'Hello, world'
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
   \frametitle{Variadic functions, I}
   Functions like \texttt{sum}, \texttt{max}, \texttt{min} take a variable number of arguments.
 
@@ -448,6 +473,22 @@ else:
 ...   print rest
 >>> varfn1(1,2,3)
 (3,)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Variadic functions, III}
+  You can call a function with an argument list that is only
+  determined at run time.
+
+  \+ 
+  The unary \texttt{*} operator takes any sequence and makes it
+  into a function argument list:
+\begin{lstlisting}
+>>> L = [1, 2, 3]
+>>> max(*L)
+3
 \end{lstlisting}
 \end{frame}
 
@@ -492,7 +533,7 @@ Fraction(1, 2)
   \frametitle{Keyword arguments, II}
   Keyword argument can be combined with positional arguments:
 \begin{lstlisting}
->>> def kwfn2(x, y, **kwargs):
+>>> def kwfn1(x, y, **kwargs):
 ...   print "x=%s y=%s kwargs=%s" % (x, y, kwargs)
 >>> kwfn1(0, 42, a=1, b=2)
 x=0 y=42 kwargs={'a':1, 'b':2}
@@ -504,10 +545,26 @@ x=0 y=42 kwargs={'a':1, 'b':2}
 >>> def kwfn2(x, *rest, **kwargs):
 ...   print ("x=%s rest=%s kwargs=%s" 
 ...          % (x, rest, kwargs))
->>> kwfn1(0, 1, 2, 3, a=1, b=2)
+>>> kwfn2(0, 1, 2, 3, a=1, b=2)
 x=0 rest=(1, 2, 3) kwargs={'a':1, 'b':2}
 \end{lstlisting}
 \end{frame}
+
+
+\begin{frame}[fragile,fragile]
+  \frametitle{Keyword arguments, III}
+  You can pass to a function a set of keyword arguments that is
+  determined only at run time.
+
+  The \texttt{**} operator takes any \emph{dictionary} and turns it
+  into the bundle of keyword arguments for a function:
+\begin{lstlisting}
+>>> D = { 'c':4, 'd':2 }
+>>> kwfn2(x=1, **D)
+x=1 rest=() kwargs={ 'c':4, 'd':2 }
+\end{lstlisting}
+\end{frame}
+
 
 \begin{frame}[fragile]
   \begin{exercise}
@@ -519,7 +576,7 @@ x=0 rest=(1, 2, 3) kwargs={'a':1, 'b':2}
     Example:
 \begin{lstlisting}
 >>> maxarg(a=1, b=2)
-'a'
+'b'
 \end{lstlisting}
   \end{exercise}
 \end{frame}
