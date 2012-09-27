@@ -19,16 +19,21 @@
 
 \begin{frame}
   \frametitle{What's an \emph{object}?}
-  A Python \emph{object} is a bundle of variables and functions.
+  A Python object is a bundle of variables and functions.
 
   \+ 
   What variable names and functions comprise an object is defined
-  by an object \emph{class}.
+  by the object's \emph{class}.
 
   \+ 
   From one class specification, many objects can be
   \emph{instanciated}.  Different instances can assign different
   values to the object variables.
+  
+  \+ 
+  Variables and functions in an instance are collectively called
+  \emph{instance attributes}; functions are also termed \emph{instance
+    methods}.
 \end{frame}
 
 
@@ -95,8 +100,9 @@
   \+
   The \texttt{dir} function can list all objects attributes.
 
-  \+
-  Note there is no distinction between variables and functions!
+  \+ 
+  Note there is no distinction between instance variables and
+  methods!
 \end{frame}
 
 
@@ -143,32 +149,6 @@
 \end{frame}
 
 
-\begin{frame}[fragile]
-  \frametitle{Object attributes}
-
-  A Python object is (in particular) a key-value mapping: attributes
-  (keys) are valid identifiers, values can be any Python object.
-
-  \+
-  Any object has attributes, which you can access (create, read,
-  overwrite) using the dot notation:
-\begin{lstlisting}
-# create or overwrite the `name' attribute of `w'
-w.name = "Joe"
-
-# get the value of `w.name' and print it
-print (w.name)
-\end{lstlisting}
-
-  \+ 
-  So, in the constructor you create the required \emph{instance}
-  attributes using \lstinline|self.var = ...|
-
-  \+
-  \emph{Note:} also methods are attributes!
-\end{frame}
-
-
 \begin{frame}
   \frametitle{No access control}
   There are no ``public''/``private''/etc. qualifiers for object
@@ -193,41 +173,26 @@ print (w.name)
 \begin{frame}[fragile,fragile]
   \frametitle{Equality, identity}
   The \texttt{is} operator returns \texttt{True} if two names refer to
-  the same instance:
-\begin{lstlisting}
->>> dt1 is dt2
-False
->>> dt3 = dt1
->>> dt3 is dt1
-True
-\end{lstlisting}
+  the same instance; the \texttt{==} operator compares the
+  \emph{values} of two objects.\footnote{A class can define how
+    exactly the \texttt{==} operator should carry out the comparison.}
 
-  \+ 
+  \+
   Note that two instances may be equal in any respect yet be
   different instances: \emph{equality is not identity!}
 \begin{lstlisting}
->>> dt4 = date(2012, 9, 28)
->>> dt4 == dt3
+>>> dt4 = date(2012,9,28)
+>>> dt5 = date(2012,9,28)
+>>> dt4 == dt5
 True
->>> dt4 is dt3
+>>> dt4 is dt5
 False
 \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Instance methods, I}
-\begin{lstlisting}
->>> dt1.strftime
-@\HL{<built-in method strftime of datetime.date object ...>}@
-\end{lstlisting}
-
-  \+ 
-  Instance attributes can be functions as well!
-\end{frame}
-
 
 \begin{frame}[fragile]
-  \frametitle{Instance methods, II}
+  \frametitle{Instance methods}
 \begin{lstlisting}[showstringspaces=false]
 >>> dt1.strftime('%a %d %b')
 'Fri 28 Sep'
@@ -295,6 +260,7 @@ class MinMax@\HL{(object)}@:
       \raggedleft 
       This identifies user-defined~classes.
 
+      \+
       (Do not leave it out or you'll get an ``old-style'' class, which
       is deprecated behavior.)
     \end{column}
