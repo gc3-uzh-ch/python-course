@@ -20,6 +20,7 @@ Programme / Timetable
 * [[Basics 2: sequences and iteration|part3.pdf]]
    - Solutions to exercises: [[ex3a.py]], [[ex3b.py]], [[ex3c.py]]
 * [[String manipulation, file I/O|part4.pdf]]
+   - Solutions to exercises: [[ex4a.py]], [[ex4b.py]], [[ex4c.py]]
 * _Lunch break_
 
   Choices: ETH mensa, Polysnack (it's just in front of the room),
