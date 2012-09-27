@@ -88,8 +88,8 @@
     \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-# This is how Python source code
-# looks like in the slides.
+# This is how Python
+# code looks like
 
 def hello(name):
   print ("Hello, " + name)
@@ -99,7 +99,72 @@ def hello(name):
       \raggedleft Commentary text appears on the right.
     \end{column}
   \end{columns}
+\end{frame}
 
+
+\begin{frame}[fragile]
+  \frametitle{Typographical conventions, III}
+
+    \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> @\HL{print 2}@
+2
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      This is an example of using the Python interactive shell.
+
+      \+ 
+      You should only type the highlighted part; the rest is
+      provided by the Python interpreter.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Typographical conventions, IV}
+
+    \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> print 2
+@\HL{2}@
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      This is an example of using the Python interactive shell.
+
+      \+ 
+      The highlighted part is what the Python intepreter should
+      reply to your command.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Typographical conventions, V}
+
+    \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> print """A very
+... @\HL{long message."""}@
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      This is an example of using the Python interactive shell.
+
+      \+ 
+      The triple dots signal continuation lines, 
+      for when a Python command extends over multiple lines.
+    \end{column}
+  \end{columns}
 \end{frame}
 
 

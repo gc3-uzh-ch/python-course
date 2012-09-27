@@ -17,6 +17,7 @@
 % title frame
 \maketitle
 
+
 \begin{frame}[fragile]
   \frametitle{Exceptions}
 
@@ -97,6 +98,22 @@ except ItDidntWork:
 \end{lstlisting}
 \end{frame}
 
+
+\begin{frame}
+  \begin{exercise}
+    The \texttt{os.mkdir()} function raises a \texttt{OSError}
+    exception if asked to create a directory that already exists.
+
+    \+ 
+    Write a \texttt{mkdir_p(path)} function that creates a
+    directory at \texttt{path}, but does nothing if the directory
+    already exists.  Return \texttt{True} if the directory has been
+    actually created, and \texttt{False} if nothing was changed on the
+    file system.
+  \end{exercise}
+\end{frame}
+
+
 \begin{frame}[fragile]
   \frametitle{Exception handling example}
 
@@ -120,6 +137,7 @@ finally:
   csv_file.close()
 \end{lstlisting}
 \end{frame}
+
 
 \end{document}
 

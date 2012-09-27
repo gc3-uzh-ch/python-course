@@ -18,17 +18,17 @@
 
 
 \begin{frame}[fragile]
-  \frametitle{The REPL, I}
+  \frametitle{The Python shell, I}
   Python is an \emph{interpreted} language.
 
-  \+
-  It also features an interactive ``shell''
-  (\href{http://en.wikipedia.org/wiki/REPL}{REPL}) for evaluating
+  \+ 
+  It also features an interactive
+  \href{http://en.wikipedia.org/wiki/REPL}{``shell''} for evaluating
   expressions and statements immediately.
 
   \+
-  The REPL is started by invoking the command \texttt{python} in a
-  terminal window.
+  The Python shell is started by invoking the command 
+  \texttt{python} in a terminal window.
 \begin{semiverbatim}\small
 \$ \textbf{python}
 Python 2.7.1+ (r271:86832, Apr 11 2011, 18:13:53) 
@@ -40,8 +40,8 @@ for more information.
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{The REPL, II}
-  Expressions can be entered at the REPL prompt \texttt{>>>}; they are
+  \frametitle{The Python shell, II}
+  Expressions can be entered at the Python shell prompt \texttt{>>>}; they are
   evaluated and the result is printed:
 \begin{semiverbatim}
 >>> 2+2
@@ -76,8 +76,14 @@ for more information.
   \item[float] Double precision floating-point numbers, e.g.:
     \texttt{3.1415}, \texttt{-1e-3}.
   \item[str] Strings of byte-size characters.
-  \item[unicode] Strings of UNICODE characters.
+  %\item[unicode] Strings of UNICODE characters.
+  \item[list] Mutable list of Python objects
+  \item[dict] Key/value mapping
   \end{description}
+
+  \+ 
+  The \texttt{list} and \texttt{dict} types are essential data
+  structures, so we are covering them extensively afterwards.
 \end{frame}
 
 \begin{frame}[fragile]
@@ -109,22 +115,37 @@ True
 ... than one line.
 ... """
 \end{lstlisting}
+
+\+
+(In other words, you need not use the \texttt{\textbackslash}'s at the end of the lines.)
 \end{frame}
 
 
 \begin{frame}[fragile]
   \frametitle{Operators}
-  All the usual unary and binary arithmetic and logical operators are
+  All the usual unary and binary arithmetic operators are
   defined in Python: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/},
   \texttt{**}~(exponentiation), \texttt{<<}, \texttt{>>}, etc.
 
+  \+ 
+  Logical operators are expressed using plain English words:
+  \texttt{and}, \texttt{or}, \texttt{not}.
+
+  \+ 
+  Numerical and string comparison also follows the usual notation:
+  \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{==}, \texttt{!=},
+  \ldots
+
   \+
-  The comma operator (\texttt{,}) has a different meaning than in C/Java/etc.:
-\begin{lstlisting}
->>> 1,2,3
-(1, 2, 3)
-\end{lstlisting}
-  (It is the \texttt{tuple} constructor --- more on it later.)
+  \begin{references}
+    \tiny
+    \begin{itemize}
+    \item
+      \url{http://docs.python.org/library/stdtypes.html#boolean-operations-and-or-not}
+    \item
+      \url{http://docs.python.org/library/stdtypes.html#comparisons}
+    \end{itemize}
+  \end{references}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -180,7 +201,7 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   \frametitle{Expressions}
 
   Expressions are combinations of operations that manipulate values
-  and yield some other values.  (Function calls are operations, too.)
+  and return some other values.  (Function calls are operations, too.)
 
   \+ 
   For instance, \texttt{2+2} is an expression, as are
@@ -188,61 +209,18 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   \texttt{1 + (1.0/2) + 2**(-2)}
 
   \+ 
-  When you type an expression at the Python prompt,
-  it is evaluated and the resulting value is printed:
-\begin{semiverbatim}
->>> abs(-2)
-2
-\end{semiverbatim}
-
-  \+\scriptsize
-  In formal terms, expressions are defined recursively:
-  \begin{itemize}
-  \item Every value is an expression;
-  \item If $F$ is a $n$-ary operator and $E_1$, \ldots, $E_n$ are
-    expressions, then $F(E_1, \ldots, E_n)$ is an expression.
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Statements}
-  Statements are commands that do not return a value.
-\begin{semiverbatim}
->>> pass
-{\small\it (No output)}
-\end{semiverbatim}
-
-  \+
-  \textbf{The assignment operator is a statement:}
+  Not all Python constructs return value. 
+  \emph{Assignment, for example, does not:}
 \begin{semiverbatim}
 >>> a = 1
 \end{semiverbatim}
   Similarly for the update operators \texttt{+=}, \texttt{-=}, etc.
-
-  \+
-  Other Python statements include definitions and
-  control-flow constructs.  Everything else is an expression. 
 
   \+\scriptsize
   References:
   \url{http://lambda-the-ultimate.org/node/1044#comment-10878}
   \url{http://docs.python.org/reference/expressions.html}
   
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Statements, II}
-  Well, almost: \texttt{print} is a \emph{statement} in Python 2:
-\begin{semiverbatim}
->>> print 'a string'
-a string
->>> print (2+2)
-4
-\end{semiverbatim}
-  However, \texttt{print} is a \emph{function} in Python 3.
-
 \end{frame}
 
 
@@ -254,66 +232,38 @@ a string
 >>> print a
 1
 \end{semiverbatim}
-  \emph{Remember:} Assignement is a statement in Python, so no value is
-  returned!
 
   \+
-  \begin{question}
-    Do you think the following will work?  If yes, what values are
-    assigned to \texttt{a}, \texttt{b}, \texttt{c}?
-    \begin{semiverbatim}
-      >>> a = b = c = 1
-    \end{semiverbatim}
-    \only<2>{Yes, it works. It's a special exception in Python
-      syntax. (Recall that Python strives for readability.)}
-  \end{question}
+  There are a few shortcut notations:
+  \begin{itemize}
+  \item[] \texttt{\emph{a} += \emph{b}} short for \texttt{\emph{a} = \emph{a} + \emph{b}},
+  \item[] \texttt{\emph{a} -= \emph{b}} short for \texttt{\emph{a} = \emph{a} - \emph{b}},
+  \item[] \texttt{\emph{a} *= \emph{b}} short for \texttt{\emph{a} = \emph{a} * \emph{b}},
+  \item[]   etc. --- one for every legal operator.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile,fragile,fragile]
+  \frametitle{Assignment, II}
+
+  \textbf{Python variables are just ``names'' given to values.}
+  This allows you to \emph{reference} the string \texttt{'Python'}
+  by the \emph{name} \texttt{a}:
+
+  \+
+  \includegraphics[height=0.35\textheight]{python_assignment01}
+
+  \+
+  The same object can be given many names!
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Assignment, II}
-  Multiple assignments can be performed in one statement:
-\begin{semiverbatim}
->>> a, b, c = 1, 2, 3
->>> print a
-1
->>> print b, c
-2 3
-\end{semiverbatim}
+  \frametitle{The \texttt{is} operator}
 
-  The multiple assignments are effected \emph{left-to-right, one after
-  the other}.
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Assignment, III}
-  The usual updating assignment operators \texttt{+=},
-  \texttt{-=}, etc. are supported as a shortcut notation.
-
-  \+ 
-  \textbf{Always think of} 
-  \emph{var}~\texttt{+=}~\emph{expr}, \emph{var}~\texttt{-=}~\emph{expr}, etc.
-  \textbf{as an abbreviation for}
-  \emph{var}~\texttt{=}~\emph{var}\texttt{+}\emph{expr},
-  \emph{var}~\texttt{=}~\emph{var}\texttt{-}\emph{expr},
-  etc.
-  (The reason will be clear in a moment.)
-\end{frame}
-
-
-\begin{frame}[fragile,fragile]
-  \frametitle{Assignment, IV}
-
-  \textbf{Python variables are just ``names'' given to values.}
-  This allows you to \emph{reference} the string \texttt{'Python'}
-  by the \emph{name} \texttt{py}:
-\begin{lstlisting}
->>> py = 'Python'
-\end{lstlisting}
-
-  \+ The same object can have many names! The \texttt{is} operator
-  allows you to test whether two names refer to the same object:
+  The \texttt{is} operator allows you to test whether two names refer
+  to the same object:
 \begin{lstlisting}
 >>> a = 1
 >>> b = 1
@@ -324,43 +274,26 @@ True
 \end{frame}
 
 
-\begin{frame}[fragile]
-  \frametitle{Function calls}
+\begin{frame}[fragile,label=func1]
+  \frametitle{Functions, I}
   Functions are called by postfixing the function name with a
   parenthesized argument list.
 
   \+
 \begin{lstlisting}
->>> abs(-4)
+>>> int("42")
+42
+>>> int(4.2)
 4
+>>> float(42)
+42.0
+>>> str(42)
+'42'
+>>> str()
+''
 \end{lstlisting}
 
-  \+
-  In other words, \textbf{the \emph{postfix} \texttt{()} is the function call operator}.
-\end{frame}
-
-
-\begin{frame}[fragile,fragile]
-  \frametitle{Functions, I}
-
-  Type conversion is done via function calls:
-  \begin{description}
-  \item[str($x$)] Converts the argument $x$ to a string; for numbers,
-    the base 10 representation is used.
-  \item[int($x$)] Converts its argument $x$ (a number or a string) to an integer;
-    decimal digits are truncated.
-  \item[float($x$)] Converts its argument $x$ (a number or a string) to a
-    floating-point number.
-  \end{description}
-
-  \+ 
-  Example:
-\begin{semiverbatim}
->>> str(2)
-'2'
->>> float(2)
-2.0
-\end{semiverbatim}
+  \hyperlink{typeconv}{\beamergotobutton{More on int, float, str}}
 \end{frame}
 
 
@@ -393,14 +326,10 @@ True
   \+
   \begin{question}
     What happens if you type these at the prompt?
-    \begin{columns}
-      \begin{column}{0.45\textwidth}
-        \texttt{>>> help(abs)}
-      \end{column}
-      \begin{column}{0.45\textwidth}
-        \texttt{>>> help(int)}
-      \end{column}
-    \end{columns}
+    \begin{itemize}
+    \item \texttt{>>> help(abs)}
+    \item \texttt{>>> help(max)}
+    \end{itemize}
   \end{question}
 \end{frame}
 
@@ -599,6 +528,7 @@ Hello, Bob!
 
 
 \begin{frame}[fragile]
+  \frametitle{Conditionals}
   Conditional execution uses the \texttt{if} statement:
 \begin{lstlisting}
 if @\it expr@:
@@ -625,6 +555,7 @@ else:
 
 
 \begin{frame}[fragile]
+  \frametitle{Looping}
   Conditional looping uses the \texttt{while} statement:
 \begin{lstlisting}
 while @\it expr@:
@@ -649,6 +580,22 @@ else:
     the argument \texttt{name} is your name.
   \end{exercise}
 \end{frame}
+
+
+\begin{frame}[fragile,label=typeconv]
+  \frametitle{Type conversions}
+  \begin{description}
+  \item[str($x$)] Converts the argument $x$ to a string; for numbers,
+    the base 10 representation is used.
+  \item[int($x$)] Converts its argument $x$ (a number or a string) to an integer;
+    if $x$ is a a floating-point literal, decimal digits are truncated.
+  \item[float($x$)] Converts its argument $x$ (a number or a string) to a
+    floating-point number.
+  \end{description}
+
+  \hyperlink{func1}{\beamergotobutton{Back to Functions, I}}
+\end{frame}
+
 
 \end{document}
 
