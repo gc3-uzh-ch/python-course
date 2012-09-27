@@ -18,6 +18,7 @@ Programme / Timetable
    - Solutions to exercises: [[ex2c.py]]
 * _Coffee break_
 * [[Basics 2: sequences and iteration|part3.pdf]]
+   - Solutions to exercises: [[ex3a.py]], [[ex3b.py]]
 * [[String manipulation, file I/O|part4.pdf]]
 * _Lunch break_
 
