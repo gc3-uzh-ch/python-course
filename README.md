@@ -14,12 +14,13 @@ Programme / Timetable
 * [[Introduction|part0.pdf]]
 * [[Workstation setup|part1.pdf]]
 * [[Basics: data types, operators, assignment, functions|part2.pdf]]
-   - Downloads: [[hello.py]] [[welcome.py]]
+   - Downloads: [[hello.py]], [[welcome.py]]
    - Solutions to exercises: [[ex2c.py]]
 * _Coffee break_
 * [[Basics 2: sequences and iteration|part3.pdf]]
    - Solutions to exercises: [[ex3a.py]], [[ex3b.py]], [[ex3c.py]]
 * [[String manipulation, file I/O|part4.pdf]]
+   - Downloads: [[values.dat]], [[euro.csv]]
    - Solutions to exercises: [[ex4a.py]], [[ex4b.py]], [[ex4c.py]]
 * _Lunch break_
 
