@@ -10,7 +10,7 @@ class MinMax (object):
     def __init__(self):
         self.min = None
         self.max = None
-        self.averate = None
+        self.average = None
         self.__values = []
 
     def send(self, val):
