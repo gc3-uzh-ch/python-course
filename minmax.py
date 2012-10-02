@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#! /usr/bin/env python
 
 class MinMax(object):
     """Compute the min and max of a streaming sequence."""

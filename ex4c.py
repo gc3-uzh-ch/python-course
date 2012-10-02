@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 """
 Building upon the previous exercise, create a rates[][] 2D array that

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 def load_data(filename):
     """
     Write a function load_data(filename) that reads a file containing
