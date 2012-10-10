@@ -7,11 +7,11 @@ def maxarg(**kw):
     are all numbers), and returns the name of the
     argument with the largest value.
     """
-    maxval = max(kw.values())
-    for key in kw:
-        if kw[key] == maxval:
-            return key
+    D = invert(kw)
+    m = max(D.keys())
+    return D[m]
 
 
 if __name__ == "__main__":
     assert maxarg(a=1, b=2, c=-1) == 'b'
+    # { 'a':1, 'b':2, 'c':-1 }

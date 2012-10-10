@@ -65,20 +65,6 @@ True
   % \end{exercise}
 
   % \+
-  \begin{exercise}
-    Write a function \lstinline|load_data(filename)| that reads a file
-    containing one integer number per line, and return a list of the
-    integer values.
-
-    \+ 
-    Test it with the
-    \href{http://www.gc3.uzh.ch/values.dat}{values.dat}
-    file: 
-\begin{lstlisting}
->>> load_data('values.dat')
-[299850, 299740, 299900, 300070, 299930]
-\end{lstlisting}
-  \end{exercise}
 \end{frame}
 
 
@@ -132,15 +118,23 @@ True
 
 \begin{frame}[fragile]
   \begin{exercise}
-    Write a program that reads the \href{http://www.gc3.uzh.ch/euro.csv}{euro.csv} file, and populates a dictionary from it: currency names (first column) are the dictionary keys, conversion rates (second column) are the dictionary values.
+    Write a function \lstinline|load_data(filename)| that reads a file
+    containing one integer number per line, and return a list of the
+    integer values.
+
+    \+ 
+    Test it with the
+    \href{http://www.gc3.uzh.ch/values.dat}{values.dat}
+    file: 
+\begin{lstlisting}
+>>> load_data('values.dat')
+[299850, 299740, 299900, 300070, 299930]
+\end{lstlisting}
   \end{exercise}
 
   \+
-\begin{exercise}
-  Building upon the previous exercise, create a \lstinline|rates[][]|
-  2D array that stores the convertion rate of two currencies given the
-  name, e.g., \lstinline|rate['ITL']['DEM']| gives the conversion rate
-  of Italian Liras to Deutsche Marks.
+  \begin{exercise}
+    Write a program that reads the \href{http://www.gc3.uzh.ch/euro.csv}{euro.csv} file, and populates a dictionary from it: currency names (first column) are the dictionary keys, conversion rates (second column) are the dictionary values.
   \end{exercise}
 \end{frame}
 

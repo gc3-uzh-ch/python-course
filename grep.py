@@ -8,9 +8,6 @@ class Grep(object):
         self._file = open(filename, 'r')
         self._pattern = pattern
 
-    def __iter__(self):
-        return self
-
     def match(self, line):
         return re.search(self._pattern, line)
 

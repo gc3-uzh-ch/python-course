@@ -5,4 +5,4 @@ def hello(name):
     print ("Hello, " + name + "!")
 
 # the customary greeting
-hello("world")
+hello("universe")
