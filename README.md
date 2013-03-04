@@ -6,7 +6,7 @@ basic computer programming concepts like variables, functions,
 programs. Python syntax will be recapped and then we proceed on to
 object-orientation.
 
-[[Registration|#anchor]] is open until __Friday 8th March 2013__.
+[[Registration|https://ocikbapps.uzh.ch/gc3wiki/#index8h2]] is open until __Friday 8th March 2013__.
 
 
 [[!toc startlevel=2]]
