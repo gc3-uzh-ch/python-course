@@ -6,7 +6,7 @@ basic computer programming concepts like variables, functions,
 programs. Python syntax will be recapped and then we proceed on to
 object-orientation.
 
-[[Registration|http://ocikbapps.uzh.ch/gc3wiki/teaching/2013/python-12-03/#index8h2]] is open until __Friday 8th March 2013__.
+[[Registration|#anchor]] is open until __Friday 8th March 2013__.
 
 
 [[!toc startlevel=2]]
@@ -70,6 +70,7 @@ costs between 7 and 12 CHF.
 
 For further information, please write to: <info@gc3.lists.uzh.ch>
  
+<a name="anchor"></a>
 ## Registration
 
 <iframe
