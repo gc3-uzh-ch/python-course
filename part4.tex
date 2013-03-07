@@ -1,0 +1,228 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usepackage{gc3}
+
+\title[Part 4]{%
+  String manipulation and file I/O
+}
+\author[GC3]{%
+  GC3: Grid Computing Competence Center, \\
+  University of Zurich
+}
+\date{Sep.~28, 2012}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+\begin{frame}[fragile]
+  \frametitle{File I/O, I}
+
+  \begin{describe}{\ttfamily stream = open(path,mode)}
+    Return a Python \texttt{file} object for reading or writing the
+    file located at \texttt{path}.  Mode is one of '\texttt{r}',
+    '\texttt{w}' or '\texttt{a}' for reading, writing (truncates on open), appending.
+    You can add a `\texttt{+}' character to enable read+write (other
+    effects being the same).
+  \end{describe}
+
+  \begin{describe}{\ttfamily \emph{stream}.close()}
+    Close an open file.
+  \end{describe}
+  
+  \begin{describe}{\ttfamily \textbf{for} line \textbf{in} stream:}
+    Loop over lines in the file one by one.
+  \end{describe}
+
+  \begin{references}
+    \url{http://docs.python.org/library/stdtypes.html#file-objects}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{File I/O, II}
+
+  The \lstinline|read(n)| method can be used to read \emph{at most}
+  \lstinline|n| bytes from a file-like object:
+\begin{lstlisting}
+>>> s = stream.read(2)
+>>> s == 'py'
+True
+\end{lstlisting}
+  If \lstinline|n| is omitted, \texttt{read()} reads until end-of-file.
+
+  \begin{references}
+    \url{http://docs.python.org/library/stdtypes.html#file-objects}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  % \begin{exercise}
+  %   Implement a function \lstinline|count_lines(stream)|, that returns
+  %   the number of lines in \lstinline|stream| (a file-like object).
+  % \end{exercise}
+
+  % \+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Operations on strings, I}
+  \begin{describe}{%
+      \lstinline|s.capitalize()|,
+      \lstinline|s.lower()|, 
+      \lstinline|s.upper()|}
+    Return a \emph{copy} of the string capitalized / turned all lowercase /
+    turned all uppercase.
+  \end{describe}
+  
+  \begin{describe}{\lstinline|s.split(t)|}
+    Split \texttt{s} at every occurrence of \texttt{t} and return a list
+    of parts.  If \texttt{t} is omitted, split on whitespace.
+  \end{describe}
+  
+  \begin{describe}{\lstinline|s.startswith(t)|, 
+      \lstinline|s.endswith(t)|}
+    Return \texttt{True} if \texttt{t} is the initial/final substring
+    of \texttt{s}.
+  \end{describe}
+  
+  \begin{references}
+    \url{http://docs.python.org/library/stdtypes.html#string-methods}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Operations on strings, II}
+  \begin{describe}{\lstinline|S.replace(old, new)|}
+    Return a \emph{copy} of string \texttt{S} with all occurrences of
+    substring \texttt{old} replaced by \texttt{new}.
+  \end{describe}
+  
+  \begin{describe}{%
+      \lstinline|s.lstrip()|,
+      \lstinline|s.rstrip()|, 
+      \lstinline|s.strip()|}
+    Return a \emph{copy} of the string with the leading / trailing /
+    leading \emph{and} trailing whitespace removed.
+  \end{describe}
+  
+  \begin{references}
+    \url{http://docs.python.org/library/stdtypes.html#string-methods}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{exercise}
+    Write a function \lstinline|load_data(filename)| that reads a file
+    containing one integer number per line, and return a list of the
+    integer values.
+
+    \+ 
+    Test it with the
+    \href{http://www.gc3.uzh.ch/teaching/gc3pie2012/python/values.dat}{values.dat}
+    file: 
+\begin{lstlisting}
+>>> load_data('values.dat')
+[299850, 299740, 299900, 300070, 299930]
+\end{lstlisting}
+  \end{exercise}
+
+  \+
+  \begin{exercise}
+    Write a program that reads the \href{http://www.gc3.uzh.ch/teaching/gc3pie2012/python/euro.csv}{euro.csv} file, and populates a dictionary from it: currency names (first column) are the dictionary keys, conversion rates (second column) are the dictionary values.
+  \end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Filesystem operations, I}
+  \small
+  These functions are available from the \texttt{os} module.
+
+  \begin{describe}{\lstinline|os.getcwd()|, \lstinline|os.chdir(path)|}
+    Return the path to the current working directory / 
+    Change the current working directory to \texttt{path}.
+  \end{describe}
+    
+  \begin{describe}{\lstinline|os.listdir(dir)|}
+    Return list of entries in directory \texttt{dir} (omitting
+    `\texttt{.}' and `\texttt{..}')
+  \end{describe}
+  
+  \begin{describe}{\lstinline|os.mkdir(path)|}
+    Create a directory; fails if the directory already exists.
+    Assumes that all parent directories exist already.
+  \end{describe}
+  
+  \begin{describe}{\lstinline|os.makedirs(path)|}
+    Create a directory; no-op if the directory already exists.
+    Creates all the intermediate-level directories needed to contain
+    the leaf.
+  \end{describe}
+  
+  \begin{references}
+    \url{http://docs.python.org/library/os.html}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Filesystem operations, II}
+  These functions are available from the \texttt{os.path} module.
+
+  \begin{describe}{\lstinline|os.path.exists(path)|, 
+      \lstinline|os.path.isdir(path)|}
+    Return \texttt{True} if \texttt{path} exists / is a directory / is
+    a regular file.
+  \end{describe}
+  
+  \begin{describe}{\lstinline|os.path.basename(path)|, 
+      \lstinline|os.path.dirname(path)|}
+    Return the base name (the part after the last `\texttt{/}'
+    character) or the directory name (the part before the last
+    \texttt{/} character).
+  \end{describe}
+  
+  \begin{describe}{\lstinline|os.path.abspath(path)|}
+    Make \texttt{path} absolute (i.e., start with a \texttt{/}).
+  \end{describe}
+  
+  \begin{references}
+    \url{http://docs.python.org/library/os.path.html}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{exercise}\emph{(Homework)}
+    Write a Python program \texttt{rename.py} with the following
+    command-line:
+\begin{lstlisting}[language=sh]
+python rename.py EXT1 EXT2 DIR [DIR ...]
+\end{lstlisting}
+    where:
+    \begin{description}
+    \item[ext1,ext2] Are file name extensions (without the leading
+      dot), e.g., \texttt{jpg} and \texttt{jpeg}.
+    \item[dir] Is directory path; possibly, many directories names can
+      be given on the command-line.
+    \end{description}
+
+    The \texttt{rename.py} command should rename all files in
+    directory DIR, that end with extension \texttt{ext1} to end with
+    extension \texttt{ext2} instead.
+  \end{exercise}
+\end{frame}
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

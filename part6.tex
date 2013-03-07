@@ -1,0 +1,391 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usepackage{gc3}
+
+\title[OOP2]{%
+  Object-oriented Python, II
+}
+\author[GC3]{%
+  GC3: Grid Computing Competence Center, \\
+  University of Zurich
+}
+\date{Sep.~28, 2012}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+
+\begin{frame}[fragile]
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+import unittest as ut
+from minmax import MinMax
+
+class TestMinMax(ut.TestCase):
+
+    def test_init(self):
+        m = MinMax()
+        self.assertEqual(m.min, None)
+        self.assertEqual(m.max, None)
+
+    def test_send42(self):
+        m = MinMax()
+        m.send(0)
+        m.send(42)
+        self.assertEqual(m.min, 0)
+        self.assertEqual(m.max, 42)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      This is called a ``test case''.
+
+      \+ 
+      Do you see anything unusual in this class definition?
+    \end{column}
+  \end{columns}
+  
+  {\small Source code available at:
+    \url{http://www.gc3.uzh.ch/teaching/gc3pie2012/python/test_minmax.py}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+import unittest as ut
+from minmax import MinMax
+
+class TestMinMax@\HL{(ut.TestCase)}@:
+
+    def test_init(self):
+        m = MinMax()
+        self.assertEqual(m.min, None)
+        self.assertEqual(m.max, None)
+
+    def test_send42(self):
+        m = MinMax()
+        m.send(0)
+        m.send(42)
+        self.assertEqual(m.min, 0)
+        self.assertEqual(m.max, 42)
+
+if __name__ == "__main__":
+  ut.main()
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      This is \emph{not} ``\texttt{(object)}''!
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+import unittest as ut
+from minmax import MinMax
+
+class TestMinMax(ut.TestCase):
+
+    def test_init(self):
+        m = MinMax()
+        @\HL{self.assertEqual}@(m.min, None)
+        @\HL{self.assertEqual}@(m.max, None)
+
+    def test_send42(self):
+        m = MinMax()
+        m.send(0)
+        m.send(42)
+        @\HL{self.assertEqual}@(m.min, 0)
+        @\HL{self.assertEqual}@(m.max, 42)
+
+if __name__ == "__main__":
+  ut.main()
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      \emph{Where have these functions been defined?}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  Still the program runs fine!
+
+  \+
+\begin{lstlisting}[language=sh]
+$ python test_minmax.py --verbose
+test_init (__main__.TestMinMax) ... ok
+test_send0 (__main__.TestMinMax) ... ok
+test_send42 (__main__.TestMinMax) ... ok
+
+----------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  This class is defined as a \emph{descendant} of
+  the \texttt{unittest.TestCase} class.
+  
+  \+ 
+\begin{lstlisting}
+class TestMinMax@\HL{(ut.TestCase)}@:
+
+    def test_init(self):
+        m = MinMax()
+        self.assertEqual(m.min, None)
+        self.assertEqual(m.max, None)
+\end{lstlisting}
+
+  \+
+  This means that it \emph{inherits} all the attributes defined
+  in the \emph{ancestor} class.
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+class TestMinMax(ut.TestCase):
+
+    def test_init(self):
+        m = MinMax()
+        @\HL{self.assertEqual}@(m.min, None)
+        @\HL{self.assertEqual}@(m.max, None)
+\end{lstlisting}
+
+  \+ 
+  In particular, the \texttt{assertEqual} method is defined in the
+  parent class \texttt{unittest.TestCase}.
+\end{frame}
+
+
+\begin{frame}
+  What happens if a descendant class redefines a method already
+  defined in an ancestor class?
+
+  \+
+  \pause{\em
+    The method in the descendant class \emph{overrides} the
+    method in the ancestor class.
+  }
+\end{frame}
+
+
+\begin{frame}
+  What happens if a descendant class defines a \lstinline|__init__|
+  method?
+
+  \+ \pause{\em 
+    The \lstinline|__init__| in the descendant class
+    \emph{overrides} the method in the ancestor class.  So
+    \lstinline|__init__| of the parent class(es) will not be called.
+  }
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Constructor chaining}
+  % \begin{flushright}
+  %   \footnotesize%
+  %   {\em ``Explicit is better than implicit''}
+  %   --- T.~Peters, \href{http://www.python.org/dev/peps/pep-0020/}{The
+  %     Zen of Python}
+  % \end{flushright}
+
+    When a class is instanciated, Python only calls the first
+    constructor it can find in the
+    \href{http://www.python.org/download/releases/2.3/mro/}{class inheritance call-chain}.
+
+    \+ \textbf{If you need to call a superclass' constructor, you need
+      to do it \emph{explicitly}:}
+    \begin{python}
+class Application(Task):
+  def __init__(self, ...):
+    # do Application-specific stuff here
+    Task.__init__(self, ...)
+    # some more Application-specific stuff
+    \end{python}
+
+    \+
+    Calling a superclass constructor is optional, and
+    it can happen anywhere in the \lstinline|__init__| method body.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Multiple-inheritance}
+  Python allows multiple inheritance.
+
+  \+
+  Just list all the parent classes:
+  \begin{python}
+class C(A,B):
+  # class definition
+  \end{python}
+  
+  \+
+  With multiple inheritance, it is your responsibility to call all the
+  needed superclass constructors.
+
+  \+ 
+  Python uses the
+  \href{http://www.python.org/download/releases/2.3/mro/}{C3
+    algorithm} to determine the call precedence in an inheritance
+  chain.
+
+  \+
+  You can always query a class for its ``method resolution order'',
+  via the \lstinline|__mro__| attribute:
+  \begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+>>> C.__mro__
+(<class 'ex.C'>, <class 'ex.A'>, <class 'ex.B'>, <type 'object'>)
+  \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Detour: Regular Expression objects}
+  The \texttt{re} module in the standard library provides
+  \emph{regular expression searching}, allowing you to match a string
+  against a pattern.
+
+  \+
+  \begin{describe}{re.search(pattern, string)}
+    If \texttt{pattern} is matched anywhere in \texttt{string}, return
+    a \emph{match object}.  Otherwise, return \texttt{None}.
+  \end{describe}
+
+  \+
+  \begin{describe}{\emph{match}.group(0)}
+    The entire string matched by \texttt{pattern} in a search operation.
+  \end{describe}
+
+  \+
+  \begin{references}
+    \url{http://docs.python.org/library/re.html}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{exercise}
+    Define a \texttt{Grep} class:
+    \begin{itemize}
+    \item a \texttt{Grep} instance is constructed by giving a file name and a regular expression pattern, e.g., \lstinline|g = Grep(filename, pattern)|
+    \item Each call to the \texttt{next()} method returns the next line in the file that matches the regular expression \texttt{pattern}.
+    \end{itemize}
+
+    Use the \texttt{.readline()} method of file objects!
+  \end{exercise}
+
+  \+
+  \begin{exercise}
+    Define a \texttt{GrepOnlyMatching} class, similar to \texttt{Grep}
+    except that its \texttt{next()} method returns only the part of
+    the line that matched the \texttt{pattern} expression.
+  \end{exercise}
+
+  \+
+  \begin{exercise}
+    Define a \texttt{GrepExactly} class, similar to \texttt{Grep}
+    except that \texttt{pattern} is now a fixed string, and the
+    \texttt{next()} method returns lines that \emph{contain} it.
+  \end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The ``Template method'' pattern}
+\begin{lstlisting}
+class Grep(object):
+
+    def __init__(self, filename, pattern):
+        self._file = open(filename, 'r')
+        self._pattern = pattern
+
+    def match(self, line):
+        return re.search(self._pattern, line)
+
+    def result(self, match, line):
+        return line
+
+    def next(self):
+        line = self._file.next()
+        match = self.match(line)
+        while not match:
+            line = self._file.next()
+            match = self.match(line)
+        return self.result(match, line)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The ``Template method'' pattern, I}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Grep(object):
+  
+  # parts omitted
+
+  def next(self):
+    line = self._file.next()
+    match = @\HL{self.match}@(line)
+    while not match:
+        line = self._file.next()
+        match = @\HL{self.match}@(line)
+    return @\HL{self.result}@(match, line)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      These calls delegate the actual matching and
+      extraction of the result from the line to instance methods.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The ``Template method'' pattern, II}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+
+class GrepOnlyMatching(Grep):
+  @\HL{\textbf{def} result}@(self, match, line):
+    return match.group(0)
+
+class GrepExactly(Grep):
+  @\HL{\textbf{def} match}@(self, line):
+    return (self._pattern in line)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft 
+      So we need only re-define those methods in derived
+      classes to implement a variant behavior.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

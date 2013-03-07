@@ -1,0 +1,140 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+ \usepackage{gc3}
+%\usepackage{lsci}
+
+\title[Part 7]{%
+  List comprehensions and generators
+}
+\author[GC3]{%
+  GC3: Grid Computing Competence Center, \\
+  University of Zurich
+}
+\date{Sep.~28, 2012}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+
+\begin{frame}
+  \frametitle{An easy exercise}
+  A \emph{dotfile} is a file whose name starts with a dot character
+  ``\texttt{.}''.
+
+  \+
+  How can you list all dotfiles in a given directory?
+
+  \+
+  (Recall that the Python library call for listing the entries in a
+  directory is \texttt{os.listdir()})
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{A very basic solution}
+  Use a \lstinline|for| loop to accumulate the results into a list:
+  \begin{python}
+dotfiles = [ ]
+for entry in os.listdir(path):
+  if entry.startswith('.'):
+    dotfiles.append(entry)
+  \end{python}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{List comprehensions, I}
+  Python has a better and more compact syntax for \emph{filtering} elements
+  of a list and/or \emph{applying} a function to them:
+  \begin{python}
+dotfiles = [ entry for entry in dotfiles 
+             if entry.startswith('.') ]
+  \end{python}
+  
+  \+ 
+  This is called a \emph{list comprehension}.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{List comprehensions, II}
+  \def\e{\ttfamily\itshape}
+  
+  The general syntax of a list comprehension is:
+  \begin{python}
+    @\bf[@ @\e expr@ for @\e var@ in @\e iterable@ if @\e condition@ @\bf]@
+  \end{python}
+  where:
+  \begin{description}
+  \item[\e expr] is any Python expression;
+  \item[\e iterable] is a (generalized) sequence;
+  \item[\e condition] is a boolean expression, depending on
+    {\e var};
+  \item[\e var] is a variable that will be bound in turn to each item
+    in {\e iterable} which satisfies {\e condition}.
+  \end{description}
+
+  \+
+  The `{\lstinline|if| \e condition}' part is optional.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Generator expressions}
+  \def\e{\ttfamily\itshape}
+
+  List comprehensions are a special case of \emph{generator expressions}:
+  \begin{python}
+    ( @\e expr@ for @\e var@ in @\e iterable@ if @\e condition@ )
+  \end{python}
+
+  \+
+  A generator expression is a valid iterable and can be used to
+  initialize tuples, sets, dicts, etc.:
+  \begin{python}
+    # the set of square numbers < 100
+    squares = set(n*n for n in range(10))
+  \end{python}
+
+  \+
+  Generator expressions are valid \emph{expression}, so they can be nested:
+  \begin{python}
+    # cartesian product of sets A and B
+    C = set( (a,b) for a in A for b in B )
+  \end{python}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Generators}
+  Generator expressions are a special case of \emph{generators}.
+
+  \+ A generator is like a function, except it uses \lstinline|yield|
+  instead of \lstinline|return|:
+  \begin{python}
+    def squares():
+      n = 0
+      while True:
+        yield n*n
+        n += 1
+  \end{python}
+
+  \+
+  At each iteration, execution resumes with the statement logically
+  following \lstinline|yield| in the generator's execution flow.
+
+  \+
+  There can be multiple \lstinline|yield| statements in a generator.
+
+  \begin{references}
+    \url{http://wiki.python.org/moin/Generators}
+  \end{references}
+\end{frame}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

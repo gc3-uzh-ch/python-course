@@ -1,0 +1,146 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+ \usepackage{gc3}
+%\usepackage{lsci}
+
+\title[Part 7]{%
+  Exceptions
+}
+\author[GC3]{%
+  GC3: Grid Computing Competence Center, \\
+  University of Zurich
+}
+\date{Sep.~28, 2012}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+
+\begin{frame}[fragile]
+  \frametitle{Exceptions}
+
+  Exceptions are objects that inherit from the built-in
+  \lstinline|Exception| class.
+
+  \+
+  To create a new exception just make a new class:
+\begin{lstlisting}
+class NewKindOfError(Exception):
+  """
+  Do use the docstring to document 
+  what this error is about.
+  """
+  pass
+\end{lstlisting}
+
+  \+
+  Exceptions are handled by class name, so they usually do not need
+  any new methods (although you are free to define some if needed).
+
+  \begin{seealso}
+    \url{http://docs.python.org/library/exceptions.html}
+  \end{seealso}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+try:
+  # code that might raise an exception
+except SomeException:
+  # handle some exception
+except AnotherException, ex:
+  # the actual Exception instance
+  # is available as variable `ex'
+else:
+  # performed on normal exit from `try'
+finally:
+  # performed on exit in any case
+\end{lstlisting}
+
+  \+
+  The optional \lstinline|else| clause is executed if and when control flows off the
+  \emph{end} of the \lstinline|try| clause.
+
+  \+
+  The optional \lstinline|finally| clause is executed on exit from the
+  \lstinline|try| or \lstinline|except| block in \emph{any} case.
+
+  \begin{references}
+    \scriptsize
+    \url{http://docs.python.org/reference/compound_stmts.html#try}
+\end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Raising exceptions}
+  
+  Use the \lstinline|raise| statement with an \texttt{Exception}
+  instance:
+\begin{lstlisting}
+if an_error_occurred:
+  raise AnError("Spider sense is tingling.")
+\end{lstlisting}
+
+  \+
+  Within an \lstinline|except| clause, you can use \lstinline|raise|
+  with no arguments to re-raise the current exception:
+\begin{lstlisting}
+try:
+  something()
+except ItDidntWork:
+  do_cleanup()
+  # re-raise exception to caller
+  raise
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+  \begin{exercise}
+    The \texttt{os.mkdir()} function raises a \texttt{OSError}
+    exception if asked to create a directory that already exists.
+
+    \+ 
+    Write a \texttt{mkdir\_p(path)} function that creates a
+    directory at \texttt{path}, but does nothing if the directory
+    already exists.  Return \texttt{True} if the directory has been
+    actually created, and \texttt{False} if nothing was changed on the
+    file system.
+  \end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Exception handling example}
+
+Read lines from a CSV file, ignoring those that do not have the
+required number of fields.  If other errors occur, abort. 
+Close the file when done.
+\begin{lstlisting}
+job_state = { } # empty dict
+try:
+  csv_file = open('jobs.csv', 'r')
+  for line in csv_file:
+    line = line.strip() # remove trailing newline
+    try:
+      name, jobid, state = line.split(",")
+    except ValueError:
+      continue # ignore line
+    job_state[jobid] = state
+except IOError:
+  raise # up to caller
+finally:
+  csv_file.close()
+\end{lstlisting}
+\end{frame}
+
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
