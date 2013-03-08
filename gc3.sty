@@ -10,7 +10,7 @@
 \usepackage{fixltx2e}
 
 \usepackage{relsize}
-\usepackage[normalem]{ulem}
+%\usepackage[normalem]{ulem}
 
 %% symbol families
 \usepackage{marvosym}
@@ -19,7 +19,7 @@
 \usepackage{amssymb}
 
 %% graphics and color
-\usepackage{color}
+\usepackage{xcolor}
   % for the color names, see: http://en.wikibooks.org/wiki/LaTeX/Colors#Predefined_colors
   % Apricot     Aquamarine      Bittersweet     Black
   % Blue        BlueGreen       BlueViolet      BrickRed
@@ -108,7 +108,7 @@
 
 %% keep this last, as it loads some packages (which we cannot reload
 %% later with different options)
-\usetheme{uzhneu-en-informal}
+\usetheme[informal]{gc3}
 
 %% Make completely invisible stuff which comes after \pause when it
 %% should not be visible.
@@ -124,7 +124,7 @@
 \newcommand{\HL}{\colorbox{RedViolet!35}}
 
 %% use `\hl` for highlighting items in listings, etc.
-\newcommand{\hl}[1]{{\bfseries\color{uzh@blue} #1}} 
+\newcommand{\hl}[1]{{\bfseries\color{uzh@blue} #1}}
 
 %% for questions interspersed in the text
 \newenvironment{question}{\+ \em \textbf{Question:}\bgroup}{\egroup}
