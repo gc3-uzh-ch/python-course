@@ -87,8 +87,9 @@ _Day 2: Object-oriented Python_ (13.03.2013)
 ## Other info
 
 There's no organized catering for lunches and coffee breaks;
-participants can use the UZH Mensa facilities.  A typical meal
-costs between 7 and 12 CHF.
+participants can use the
+[UZH Irchel mensa](http://www.mensa.uzh.ch/menueplaene/mensa-uzh-irchel.html)
+facilities.  A typical meal costs between 7 and 12 CHF.
 
 For further information, please write to: <info@gc3.lists.uzh.ch>
 
