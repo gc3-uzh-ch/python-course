@@ -52,6 +52,39 @@ On Wednesday 13th March, the training takes place in room
 [y21]: http://www.plaene.unizh.ch/Y21?z=6&lon=951683.9186948&lat=6007215.8016207&f=showAll&w=618&h=453&m=marker_building_Y21
 
 
+## Needed equipment
+
+In order to attend the course, you will need to have your own laptop
+with wireless LAN connectivity.  In addition, the following software
+is needed:
+
+- Python, at least version 2.6
+- a terminal application
+- a text editor (e.g., [Emacs][1], [`vi`][2], or [gedit][3])
+
+[1]: http://www.gnu.org/software/emacs/
+[2]: http://www.vim.org/
+[3]: http://projects.gnome.org/gedit/
+
+MacOSX and [recent versions of GNU/Linux][^1] all come with these programs preinstalled.
+
+[^1]: Ubuntu 12.04, Debian "squeeze", and CentOS6 are all fine choices in this respect.
+
+If your computer does not run Linux or MacOSX, you might consider
+running a Linux Virtual Machine in your usual operating system.
+[VirtualBox](http://www.virtualbox.org/) is a freely-available
+virtualization software that runs on MacOSX and Windows:
+
+- You can download VirtualBox for your computer from <https://www.virtualbox.org/wiki/Downloads>
+
+- You can download a Ubuntu 12.04 virtual machine with all software needed for the course from the following links:
+
+  * for 32-bit computers: <http://www.gc3.uzh.ch/teaching/gc3pie/GC3PieX32.ova>
+  * for 64-bit computers: <http://www.gc3.uzh.ch/teaching/gc3pie/GC3PieX64.ova>
+
+  These virtual machine files will run under the VirtualBox or VMware emulators.
+
+
 ## Programme / Timetable
 
 _Day 1: Python basics_ (12.03.2013)
