@@ -20,28 +20,28 @@
   \frametitle{The Python shell, I}
   Python is an \emph{interpreted} language.
 
-  \+ 
+  \+
   It also features an interactive
   \href{http://en.wikipedia.org/wiki/REPL}{``shell''} for evaluating
   expressions and statements immediately.
 
   \+
-  The Python shell is started by invoking the command 
+  The Python shell is started by invoking the command
   \texttt{python} in a terminal window.
 \begin{semiverbatim}\small
 \$ \textbf{python}
-Python 2.7.1+ (r271:86832, Apr 11 2011, 18:13:53) 
+Python 2.7.1+ (r271:86832, Apr 11 2011, 18:13:53)
 [GCC 4.5.2] on linux2
-Type "help", "copyright", "credits" or "license" 
+Type "help", "copyright", "credits" or "license"
 for more information.
->>> 
+>>>
 \end{semiverbatim}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{The Python shell, II}
-  Expressions can be entered at the Python shell prompt \texttt{>>>}; they are
-  evaluated and the result is printed:
+  \frametitle{The Python shell, II} Expressions can be entered at the
+  Python shell prompt (the `\texttt{>>>}' at the start of a line);
+  they are evaluated and the result is printed:
 \begin{semiverbatim}
 >>> 2+2
 4
@@ -49,7 +49,7 @@ for more information.
 
   \+
   A line can be continued onto the next by ending it with the
-  character `\texttt{\textbackslash}'
+  character `\texttt{\textbackslash}'; for example:
 \begin{semiverbatim}
 >>> "hello" + \textbackslash
 ... " world!"
@@ -80,7 +80,7 @@ for more information.
   \item[dict] Key/value mapping
   \end{description}
 
-  \+ 
+  \+
   The \texttt{list} and \texttt{dict} types are essential data
   structures, so we are covering them extensively afterwards.
 \end{frame}
@@ -126,11 +126,11 @@ True
   defined in Python: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/},
   \texttt{**}~(exponentiation), \texttt{<<}, \texttt{>>}, etc.
 
-  \+ 
+  \+
   Logical operators are expressed using plain English words:
   \texttt{and}, \texttt{or}, \texttt{not}.
 
-  \+ 
+  \+
   Numerical and string comparison also follows the usual notation:
   \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{==}, \texttt{!=},
   \ldots
@@ -155,7 +155,7 @@ True
 'UZH'
 \end{lstlisting}
 
-  \+ 
+  \+
   Some support operands of mixed type:
 \begin{lstlisting}
 >>> "a" * 2
@@ -178,8 +178,12 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
 \begin{frame}[fragile]
   \frametitle{Operators, III}
   The ``\texttt{\%}'' operator computes the remainder of integer division.
+  \begin{lstlisting}
+    >>> 9 % 2
+    1
+  \end{lstlisting}
 
-  \+ 
+  \+
   But it is also used for \emph{string formatting}:
 \begin{lstlisting}[showstringspaces=false]
 >>> "This is slide %d of %d" % (13, 32)
@@ -202,13 +206,13 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   Expressions are combinations of operations that manipulate values
   and return some other values.  (Function calls are operations, too.)
 
-  \+ 
+  \+
   For instance, \texttt{2+2} is an expression, as are
   \texttt{abs(-2)}, \texttt{os.path.exists('/tmp')},
   \texttt{1 + (1.0/2) + 2**(-2)}
 
-  \+ 
-  Not all Python constructs return value. 
+  \+
+  Not all Python constructs return a value.
   \emph{Assignment, for example, does not:}
 \begin{semiverbatim}
 >>> a = 1
@@ -219,7 +223,7 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   References:
   \url{http://lambda-the-ultimate.org/node/1044#comment-10878}
   \url{http://docs.python.org/reference/expressions.html}
-  
+
 \end{frame}
 
 
@@ -251,7 +255,7 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   by the \emph{name} \texttt{a}:
 
   \+
-  \includegraphics[height=0.35\textheight]{python_assignment01}
+  \includegraphics[width=1.2\linewidth,viewport=150 650 650 750,clip]{fig/a_is_b}
 
   \+
   The same object can be given many names!
@@ -305,7 +309,7 @@ True
     \item[min($x_0$, \ldots, $x_n$)] Return the minimum of the set $\{ x_0, \ldots, x_n \}$
   \end{description}
 
-  \+ 
+  \+
   Examples:
 \begin{semiverbatim}
 >>> min(1,2,3)
@@ -321,13 +325,13 @@ True
   \begin{description}
   \item[help(\texttt{fn})] Display help on the function named \texttt{fn}
   \end{description}
-  
+
   \+
   \begin{question}
     What happens if you type these at the prompt?
     \begin{itemize}
-    \item \texttt{>>> help(abs)}
-    \item \texttt{>>> help(max)}
+    \item \texttt{help(abs)}
+    \item \texttt{help(max)}
     \end{itemize}
   \end{question}
 \end{frame}
@@ -356,13 +360,13 @@ To get a list of available modules, keywords, or topics, type "modules",
 of what it does; to list the modules whose summaries contain a given word
 such as "spam", type "modules spam".
 
-help> 
+help>
 \end{semiverbatim}
 
   \+
   To return to the normal prompt, type \texttt{quit}
 
-  \+ 
+  \+
   \hl{help(\texttt{'topic'})} has the same effect as typing
   \texttt{topic} at the interactive help prompt.
 \end{frame}
@@ -383,7 +387,7 @@ hello("world")
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       The \textbf{def} statement starts a function definition.
     \end{column}
   \end{columns}
@@ -404,7 +408,7 @@ hello("world")
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       \textbf{Indentation is significant in Python}: it is used to delimit
       blocks of code, like `\texttt{\{}' and `\texttt{\}}' in Java and C.
     \end{column}
@@ -426,7 +430,7 @@ hello("world")
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       (This is a comment. It is ignored by Python, just like blank lines.)
     \end{column}
   \end{columns}
@@ -447,7 +451,7 @@ def hello(name):
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       This calls the function just defined.
     \end{column}
   \end{columns}
@@ -468,7 +472,7 @@ hello("world")
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       What is this? The answer in the next exercise!
     \end{column}
   \end{columns}
@@ -478,8 +482,9 @@ hello("world")
   \begin{exercise}
     Type and run the code on the previous page at the interactive
     prompt. (Type indentation spaces, too!)
-    
-    What does \texttt{help(hello)} print?  
+
+    What does \texttt{help(hello)} print?
+
     What's the result of evaluating the function \texttt{hello("world")}?
   \end{exercise}
 
@@ -488,14 +493,14 @@ hello("world")
     Type the same code in a file named \texttt{hello.py}, then type
     \texttt{import hello} at the interactive prompt.
     What happens?
-  \end{exercise}  
+  \end{exercise}
 \end{frame}
 
 
 \begin{frame}[fragile]
   \frametitle{Modules, I}
-  The \texttt{import} statement reads a \texttt{.py} file, executes
-  it, and makes its contents available to the current program.
+  The \texttt{import} statement reads a \texttt{.py} file, \emph{executes
+  it}, and makes its contents available to the current program.
 \begin{lstlisting}
 >>> import hello
 Hello, world!
@@ -541,7 +546,7 @@ else:
   \+ The \texttt{elif} can be repeated, with different conditions, or
   left out entirely.
 
-  \+ 
+  \+
   Also the \texttt{else} clause is optional.
 
   \+
@@ -565,11 +570,14 @@ else:
 
   \+
   To break out of a \texttt{while} loop, use the \texttt{break}
-  statement. 
+  statement.
 
   \+
   If a loop is exited via a \texttt{break} statement, the
   \texttt{else} clause is \emph{not} executed.
+
+  \+
+  The \texttt{else} clause is optional.
 \end{frame}
 
 
@@ -599,7 +607,7 @@ else:
 \end{document}
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:
