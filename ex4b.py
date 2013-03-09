@@ -1,22 +1,20 @@
 #!/usr/bin/env python
-
-"""
-Write a program that reads the euro.csv file, and populates a
-dictionary from it: currency names (first column) are the dictionary
-keys, conversion rates (second column) are the dictionary values.
-"""
-
-def read_rates_from_file(filename):
-    currencies = {}
+def load_data(filename):
+    """
+    Write a function load_data(filename) that reads a file containing
+    one integer number per line, and return a list of the integer values.
+    """
     fd = open(filename)
-    for line in fd:
-        (name, rate) = line.split(',', 1)
-        rate = float(rate)
-        currencies[name] = rate
+    data = fd.read()
     fd.close()
-    return currencies
 
+    values = []
+    for num in data.split():
+        values.append(int(num))
+
+    return values
 
 if __name__ == "__main__":
-    currencies = read_rates_from_file('euro.csv')
-    assert currencies['ITL'] == 1936.27
+    data = load_data('values.dat')
+    assert data == [299850, 299740, 299900, 300070, 299930]
+

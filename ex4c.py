@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 
 """
-Building upon the previous exercise, create a rates[][] 2D array that
-stores the convertion rate of two currencies given the name, e.g.,
-rate[’ITL’][’DEM’] gives the conversion rate of Italian Liras to
-Deutsche Marks.
+Write a program that reads the euro.csv file, and populates a
+dictionary from it: currency names (first column) are the dictionary
+keys, conversion rates (second column) are the dictionary values.
 """
-
 
 def read_rates_from_file(filename):
     currencies = {}
@@ -21,10 +19,4 @@ def read_rates_from_file(filename):
 
 if __name__ == "__main__":
     currencies = read_rates_from_file('euro.csv')
-
-    rates = {}
-    for key1 in currencies:
-        rates[key1] = {}
-        for key2 in currencies:
-            rates[key1][key2] = currencies[key2]/currencies[key1]
-    
+    assert currencies['ITL'] == 1936.27

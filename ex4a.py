@@ -1,20 +1,20 @@
 #!/usr/bin/env python
-def load_data(filename):
+
+def cat(filename):
     """
-    Write a function load_data(filename) that reads a file containing
-    one integer number per line, and return a list of the integer values.
+    A function that prints the whole contents of a file.
     """
     fd = open(filename)
     data = fd.read()
     fd.close()
+    print (data)
 
-    values = []
-    for num in data.split():
-        values.append(int(num))
-
-    return values
-
-if __name__ == "__main__":
-    data = load_data('values.dat')
-    assert data == [299850, 299740, 299900, 300070, 299930]
-
+# alternatively, one can print the file line by line
+def cat(filename):
+    """
+    A function that prints the whole contents of a file.
+    """
+    fd = open(filename)
+    for line in fd:
+        print(line)
+    fd.close()

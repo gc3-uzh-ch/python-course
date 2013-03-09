@@ -98,7 +98,7 @@ _Day 1: Python basics_ (12.03.2013)
   <!-- - Solutions to exercises: [[ex3a.py]], [[ex3b.py]], [[ex3c.py]] -->
 * [String manipulation, file I/O][placeholder]<!--(part4.pdf)-->
   <!-- - Downloads: [[values.dat]], [[euro.csv]] -->
-  <!-- - Solutions to exercises: [[ex4a.py]], [[ex4b.py]], [[ex4c.py]] -->
+  <!-- - Solutions to exercises: [[ex4a.py]], [[ex4b.py]], [[ex4c.py]], [[ex4d.py]] -->
 
 
 _Day 2: Object-oriented Python_ (13.03.2013)
