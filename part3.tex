@@ -18,7 +18,7 @@
 
 \begin{frame}
   \frametitle{Sequences}
-  
+
   Python provides a few built-in \emph{sequence} classes:
   \begin{description}
   \item[list] \emph{mutable}, possibly inhomogeneous
@@ -38,7 +38,7 @@
   \frametitle{Lists}
   Lists are by far the most common and used sequence type in Python.
 
-  \+ 
+  \+
   Lists are created and initialized by enclosing values into
   `\texttt{[}' and `\texttt{]}':
 \begin{lstlisting}
@@ -139,9 +139,9 @@
 {'a': 1, 2: 'b'}
 \end{lstlisting}
 
-  \+ 
-  Equivalently, dictionaries can be created and initialized using two
-  different syntaxes:
+  \+
+  Dictionaries can be created and initialized using two
+  different but equivalent syntaxes:
 \begin{lstlisting}
 >>> D1 = { 'a':1, 'b':2 }
 >>> D2 = dict(a=1, b=2)
@@ -177,7 +177,7 @@ True
 \begin{frame}[fragile]
   \frametitle{Mutable vs Immutable}
   Some objects (e.g., \texttt{tuple}, \texttt{int}, \texttt{str})
-  cannot be modified.
+  are \emph{immutable} and cannot be modified.
 \begin{lstlisting}[basicstyle=\footnotesize\ttfamily]
 >>> T = ('U', 'Z', 'H')
 >>> T[2] = 'h'
@@ -195,16 +195,16 @@ Traceback (most recent call last):
 TypeError: 'str' object does not support item assignment
 \end{lstlisting}
 
-  
+
   \+
   \texttt{list}, \texttt{dict}, \texttt{set} and user-defined objects
-  are mutable and can be modified in-place.
+  are \emph{mutable} and can be modified in-place.
 \end{frame}
 
 
 \begin{frame}[fragile]
   \frametitle{The `{\ttfamily\bfseries in}' operator}
-  
+
   Use the \lstinline|in| operator to test for presence of an item in a
   collection.
 
@@ -212,17 +212,17 @@ TypeError: 'str' object does not support item assignment
     Evaluates to \texttt{True} if \lstinline|x| is equal to a \emph{value}
     contained in the \lstinline|S| sequence (list, tuple, set).
   \end{describe}
-  
+
   \begin{describe}{\lstinline|x in D|}
     Evaluates to \texttt{True} if \lstinline|x| is equal to a \emph{key}
     in the \lstinline|D| dictionary.
   \end{describe}
-  
+
   \begin{describe}{\lstinline|x in T|}
     Evaluates to \texttt{True} if \lstinline|x| is a substring of
     string \lstinline|T|.
   \end{describe}
-  
+
 \end{frame}
 
 
@@ -254,13 +254,20 @@ TypeError: 'str' object does not support item assignment
 >>> a = [1,2,3]
 >>> b = a
 >>> b.remove(2)
->>> a
+>>> print(a)
 [1, 3]
 \end{lstlisting}
 
-  \+
-  This applies particularly for variables that capture the arguments
-  to a function call!
+   \+
+   \href{http://tinyurl.com/cq3tcab}{Run this example} in the
+   \href{http://pythontutor.com/}{Online Python Tutor} to better
+   understand what's going on.
+
+   \+
+   {\small \em
+     This applies particularly for variables that capture the arguments
+     to a function call!}
+
 \end{frame}
 
 
@@ -277,7 +284,7 @@ TypeError: 'str' object does not support item assignment
 2
 \end{lstlisting}
   \begin{question}
-    How can you explain this?  
+    How can you explain this?
 
     \pause{The \texttt{b += 1} operator could be replaced by
       \texttt{b = b + 1}, and the \texttt{b+1} expression yields a
@@ -298,9 +305,9 @@ for i in range(0, 4):
 
   \+
   To break out of a \texttt{for} loop, use the \texttt{break}
-  statement. 
+  statement.
 
-  \+ 
+  \+
   To jump to the next iteration of a \texttt{for} loop, use the
   \texttt{continue} statement.
 \end{frame}
@@ -321,7 +328,7 @@ for i in range(0, 4):
 \end{lstlisting}
     \end{column}
     \begin{column}{0.4\textwidth}
-      \raggedleft 
+      \raggedleft
       Loop over tuples
     \end{column}
   \end{columns}
@@ -342,7 +349,7 @@ for i in range(0, 4):
 \end{lstlisting}
     \end{column}
     \begin{column}{0.4\textwidth}
-      \raggedleft 
+      \raggedleft
       Loop over strings
     \end{column}
   \end{columns}
@@ -363,7 +370,7 @@ for i in range(0, 4):
 \end{lstlisting}
     \end{column}
     \begin{column}{0.4\textwidth}
-      \raggedleft 
+      \raggedleft
       Loop over dictionary~\emph{keys}.
 
       \emph{The \texttt{.keys()} part can be omitted, as it's the
@@ -388,7 +395,7 @@ for i in range(0, 4):
 \end{lstlisting}
     \end{column}
     \begin{column}{0.4\textwidth}
-      \raggedleft 
+      \raggedleft
       Loop over dictionary~\emph{values}
 
       \emph{The \texttt{.values()} cannot be omitted!}
@@ -402,7 +409,7 @@ for i in range(0, 4):
 \begin{lstlisting}
 >>> L = [(1,'a'), (2,'b'), (3, 'c')]
 >>> for num, char in L:
-...     print ("num is " + str(num) 
+...     print ("num is " + str(num)
 ...            + ' and char is ' + char)
 \end{lstlisting}
 
@@ -431,12 +438,12 @@ for i in range(0, 4):
 
 \begin{frame}[fragile]
   \frametitle{Default values}
-  
+
   Function arguments can have default values.
 \begin{lstlisting}
 >>> def hello(name='world'):
 ...   print ("Hello, " + name)
-... 
+...
 >>> hello()
 'Hello, world'
 \end{lstlisting}
@@ -450,7 +457,7 @@ for i in range(0, 4):
   \+
   That is possible with user-defined functions too.
 
-  \+ 
+  \+
   If the last argument is prefixed with a \texttt{*} character,
   Python will make that argument into a \emph{tuple} of arguments
   passed to the function. (Except for the ones that have already been
@@ -481,7 +488,7 @@ for i in range(0, 4):
   You can call a function with an argument list that is only
   determined at run time.
 
-  \+ 
+  \+
   The unary \texttt{*} operator takes any sequence and makes it
   into a function argument list:
 \begin{lstlisting}
@@ -513,7 +520,7 @@ Fraction(1, 2)
   \frametitle{Keyword arguments, I}
   Python lets you catch arbitrary named arguments.
 
-  \+ 
+  \+
   Prefix the very last argument name with \texttt{**}, and Python
   will make it into a dictionary: keys are actual argument names and
   dictionary values are actual argument values.
@@ -542,7 +549,7 @@ x=0 y=42 kwargs={'a':1, 'b':2}
   \ldots and also with variadic arguments:
 \begin{lstlisting}
 >>> def kwfn2(x, *rest, **kwargs):
-...   print ("x=%s rest=%s kwargs=%s" 
+...   print ("x=%s rest=%s kwargs=%s"
 ...          % (x, rest, kwargs))
 >>> kwfn2(0, 1, 2, 3, a=1, b=2)
 x=0 rest=(1, 2, 3) kwargs={'a':1, 'b':2}
@@ -555,6 +562,7 @@ x=0 rest=(1, 2, 3) kwargs={'a':1, 'b':2}
   You can pass to a function a set of keyword arguments that is
   determined only at run time.
 
+  \+
   The \texttt{**} operator takes any \emph{dictionary} and turns it
   into the bundle of keyword arguments for a function:
 \begin{lstlisting}
@@ -583,7 +591,7 @@ x=1 rest=() kwargs={ 'c':4, 'd':2 }
 \end{document}
 
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:
