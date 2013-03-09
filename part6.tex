@@ -39,16 +39,16 @@ class TestMinMax(ut.TestCase):
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       This is called a ``test case''.
 
-      \+ 
+      \+
       Do you see anything unusual in this class definition?
     \end{column}
   \end{columns}
-  
+
   {\small Source code available at:
-    \url{http://www.gc3.uzh.ch/teaching/gc3pie2012/python/test_minmax.py}}
+    \url{http://www.gc3.uzh.ch/test_minmax.py}}
 \end{frame}
 
 
@@ -78,7 +78,7 @@ if __name__ == "__main__":
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       This is \emph{not} ``\texttt{(object)}''!
     \end{column}
   \end{columns}
@@ -111,7 +111,7 @@ if __name__ == "__main__":
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       \emph{Where have these functions been defined?}
     \end{column}
   \end{columns}
@@ -138,8 +138,8 @@ OK
 \begin{frame}[fragile]
   This class is defined as a \emph{descendant} of
   the \texttt{unittest.TestCase} class.
-  
-  \+ 
+
+  \+
 \begin{lstlisting}
 class TestMinMax@\HL{(ut.TestCase)}@:
 
@@ -165,7 +165,7 @@ class TestMinMax(ut.TestCase):
         @\HL{self.assertEqual}@(m.max, None)
 \end{lstlisting}
 
-  \+ 
+  \+
   In particular, the \texttt{assertEqual} method is defined in the
   parent class \texttt{unittest.TestCase}.
 \end{frame}
@@ -187,7 +187,7 @@ class TestMinMax(ut.TestCase):
   What happens if a descendant class defines a \lstinline|__init__|
   method?
 
-  \+ \pause{\em 
+  \+ \pause{\em
     The \lstinline|__init__| in the descendant class
     \emph{overrides} the method in the ancestor class.  So
     \lstinline|__init__| of the parent class(es) will not be called.
@@ -234,12 +234,12 @@ class Application(Task):
 class C(A,B):
   # class definition
   \end{python}
-  
+
   \+
   With multiple inheritance, it is your responsibility to call all the
   needed superclass constructors.
 
-  \+ 
+  \+
   Python uses the
   \href{http://www.python.org/download/releases/2.3/mro/}{C3
     algorithm} to determine the call precedence in an inheritance
@@ -338,7 +338,7 @@ class Grep(object):
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
 class Grep(object):
-  
+
   # parts omitted
 
   def next(self):
@@ -351,7 +351,7 @@ class Grep(object):
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       These calls delegate the actual matching and
       extraction of the result from the line to instance methods.
     \end{column}
@@ -375,7 +375,7 @@ class GrepExactly(Grep):
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
-      \raggedleft 
+      \raggedleft
       So we need only re-define those methods in derived
       classes to implement a variant behavior.
     \end{column}
@@ -385,7 +385,7 @@ class GrepExactly(Grep):
 
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:

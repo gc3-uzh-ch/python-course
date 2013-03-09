@@ -29,7 +29,7 @@
   \begin{describe}{\ttfamily \emph{stream}.close()}
     Close an open file.
   \end{describe}
-  
+
   \begin{describe}{\ttfamily \textbf{for} line \textbf{in} stream:}
     Loop over lines in the file one by one.
   \end{describe}
@@ -72,23 +72,23 @@ True
   \frametitle{Operations on strings, I}
   \begin{describe}{%
       \lstinline|s.capitalize()|,
-      \lstinline|s.lower()|, 
+      \lstinline|s.lower()|,
       \lstinline|s.upper()|}
     Return a \emph{copy} of the string capitalized / turned all lowercase /
     turned all uppercase.
   \end{describe}
-  
+
   \begin{describe}{\lstinline|s.split(t)|}
     Split \texttt{s} at every occurrence of \texttt{t} and return a list
     of parts.  If \texttt{t} is omitted, split on whitespace.
   \end{describe}
-  
-  \begin{describe}{\lstinline|s.startswith(t)|, 
+
+  \begin{describe}{\lstinline|s.startswith(t)|,
       \lstinline|s.endswith(t)|}
     Return \texttt{True} if \texttt{t} is the initial/final substring
     of \texttt{s}.
   \end{describe}
-  
+
   \begin{references}
     \url{http://docs.python.org/library/stdtypes.html#string-methods}
   \end{references}
@@ -101,15 +101,15 @@ True
     Return a \emph{copy} of string \texttt{S} with all occurrences of
     substring \texttt{old} replaced by \texttt{new}.
   \end{describe}
-  
+
   \begin{describe}{%
       \lstinline|s.lstrip()|,
-      \lstinline|s.rstrip()|, 
+      \lstinline|s.rstrip()|,
       \lstinline|s.strip()|}
     Return a \emph{copy} of the string with the leading / trailing /
     leading \emph{and} trailing whitespace removed.
   \end{describe}
-  
+
   \begin{references}
     \url{http://docs.python.org/library/stdtypes.html#string-methods}
   \end{references}
@@ -122,10 +122,10 @@ True
     containing one integer number per line, and return a list of the
     integer values.
 
-    \+ 
+    \+
     Test it with the
-    \href{http://www.gc3.uzh.ch/teaching/gc3pie2012/python/values.dat}{values.dat}
-    file: 
+    \href{http://www.gc3.uzh.ch/values.dat}{values.dat}
+    file:
 \begin{lstlisting}
 >>> load_data('values.dat')
 [299850, 299740, 299900, 300070, 299930]
@@ -134,7 +134,7 @@ True
 
   \+
   \begin{exercise}
-    Write a program that reads the \href{http://www.gc3.uzh.ch/teaching/gc3pie2012/python/euro.csv}{euro.csv} file, and populates a dictionary from it: currency names (first column) are the dictionary keys, conversion rates (second column) are the dictionary values.
+    Write a program that reads the \href{http://www.gc3.uzh.ch/euro.csv}{euro.csv} file, and populates a dictionary from it: currency names (first column) are the dictionary keys, conversion rates (second column) are the dictionary values.
   \end{exercise}
 \end{frame}
 
@@ -145,26 +145,26 @@ True
   These functions are available from the \texttt{os} module.
 
   \begin{describe}{\lstinline|os.getcwd()|, \lstinline|os.chdir(path)|}
-    Return the path to the current working directory / 
+    Return the path to the current working directory /
     Change the current working directory to \texttt{path}.
   \end{describe}
-    
+
   \begin{describe}{\lstinline|os.listdir(dir)|}
     Return list of entries in directory \texttt{dir} (omitting
     `\texttt{.}' and `\texttt{..}')
   \end{describe}
-  
+
   \begin{describe}{\lstinline|os.mkdir(path)|}
     Create a directory; fails if the directory already exists.
     Assumes that all parent directories exist already.
   \end{describe}
-  
+
   \begin{describe}{\lstinline|os.makedirs(path)|}
     Create a directory; no-op if the directory already exists.
     Creates all the intermediate-level directories needed to contain
     the leaf.
   \end{describe}
-  
+
   \begin{references}
     \url{http://docs.python.org/library/os.html}
   \end{references}
@@ -175,23 +175,23 @@ True
   \frametitle{Filesystem operations, II}
   These functions are available from the \texttt{os.path} module.
 
-  \begin{describe}{\lstinline|os.path.exists(path)|, 
+  \begin{describe}{\lstinline|os.path.exists(path)|,
       \lstinline|os.path.isdir(path)|}
     Return \texttt{True} if \texttt{path} exists / is a directory / is
     a regular file.
   \end{describe}
-  
-  \begin{describe}{\lstinline|os.path.basename(path)|, 
+
+  \begin{describe}{\lstinline|os.path.basename(path)|,
       \lstinline|os.path.dirname(path)|}
     Return the base name (the part after the last `\texttt{/}'
     character) or the directory name (the part before the last
     \texttt{/} character).
   \end{describe}
-  
+
   \begin{describe}{\lstinline|os.path.abspath(path)|}
     Make \texttt{path} absolute (i.e., start with a \texttt{/}).
   \end{describe}
-  
+
   \begin{references}
     \url{http://docs.python.org/library/os.path.html}
   \end{references}
@@ -222,7 +222,7 @@ python rename.py EXT1 EXT2 DIR [DIR ...]
 
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:
