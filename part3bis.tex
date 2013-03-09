@@ -1,0 +1,390 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usepackage{gc3}
+
+\title[OOP]{%
+  Object-oriented Python, I
+}
+\author[GC3]{%
+  GC3: Grid Computing Competence Center, \\
+  University of Zurich
+}
+\date{Mar.~12--13, 2013}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+
+\begin{frame}
+  \frametitle{What's an \emph{object}?}
+  \textbf{A Python object is a bundle of variables and functions.}
+
+  \+
+  What variable names and functions comprise an object is defined
+  by the object's \emph{class}.
+
+  \+
+  From one class specification, many objects can be
+  \emph{instanciated}.  Different instances can assign different
+  values to the object variables.
+
+  \+
+  Variables and functions in an instance are collectively called
+  \emph{instance attributes}; functions are also termed \emph{instance
+    methods}.
+\end{frame}
+
+
+%% XXX: remove? seems not essential...
+\begin{frame}
+  \frametitle{Objects \emph{vs} modules}
+
+  Modules are also namespaces of variables and functions.
+
+  \+
+  But each module has \emph{one and only one} instance in a Python
+  program.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, I}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> @\HL{from datetime import date}@
+>>> dt1 = date(2012, 9, 28)
+>>> dt2 = date(2012, 10, 1)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \raggedleft
+      Import the \texttt{date} class from the standard
+      library module \texttt{datetime}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, II}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> from datetime import date
+>>> @\HL{dt1 = date(2012, 9, 28)}@
+>>> dt2 = date(2012, 10, 1)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      To instanciate an object, call the class name like a
+      function.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, III}
+\begin{lstlisting}
+>>> dir(dt1)
+['__add__', '__class__', @\ldots@, 'ctime', 'day',
+'fromordinal', 'fromtimestamp', 'isocalendar',
+'isoformat', 'isoweekday', 'max', 'min', 'month',
+'replace', 'resolution', 'strftime', 'timetuple',
+'today', 'toordinal', 'weekday', 'year']
+\end{lstlisting}
+
+  \+
+  The \texttt{dir} function can list all objects attributes.
+
+  \+
+  Note there is no distinction between instance variables and
+  methods!
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, IV}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> dt1.day
+28
+>>> dt1.month
+9
+>>> dt1.year
+2012
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      Access to object attributes is done by suffixing the
+      instance name with the attribute name, separated by a dot
+      ``\texttt{.}''.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example: the \texttt{datetime} object, V}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> dt1.day
+@\HL{28}@
+>>> dt2.day
+@\HL{1}@
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      The same attribute can have different
+      values in different instances!
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{No access control}
+  There are no ``public''/``private''/etc. qualifiers for object
+  attributes.
+
+  \+
+  \textbf{\emph{Any} code can create/read/overwrite/delete \emph{any} attribute on
+    \emph{any} object.}
+
+  \+
+  There are \emph{conventions}, though:
+  \begin{itemize}
+  \item ``protected'' attributes: \texttt{\_name}
+  \item ``private'' attributes: \texttt{\_\_name}
+  \end{itemize}
+  (But again, note that this is not \emph{enforced} by the system in
+  any way.)
+
+\end{frame}
+
+
+\begin{frame}[fragile,fragile]
+  \frametitle{Equality, identity}
+  The \texttt{is} operator returns \texttt{True} if two names refer to
+  the same instance; the \texttt{==} operator compares the
+  \emph{values} of two objects.\footnote{A class can define how
+    exactly the \texttt{==} operator should carry out the comparison.}
+
+  \+
+  Note that two instances may be equal in any respect yet be
+  different instances: \emph{equality is not identity!}
+\begin{lstlisting}
+>>> dt4 = date(2012,9,28)
+>>> dt5 = date(2012,9,28)
+>>> dt4 == dt5
+True
+>>> dt4 is dt5
+False
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Instance methods}
+\begin{lstlisting}[showstringspaces=false]
+>>> dt1.isoformat()
+'2012-09-28'
+\end{lstlisting}
+
+  \+
+  Invoke an instance method just like any other function.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, I}
+  \small
+
+  Within a function body, names are resolved according to \href{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}{the LEGB rule}:
+  \begin{description}
+  \item[L] Local scope: any names defined in the current function;
+  \item[E] Enclosing function scope: names defined in enclosing
+    functions (outermost last);
+  \item[G] global scope: names defined in the toplevel of the enclosing module;
+  \item[B] Built-in names (i.e., Python's \texttt{\_\_builtins\_\_} module).
+  \end{description}
+
+  \+
+  \textbf{Any name that is not in one of the above scopes \emph{must}
+    be qualified.}
+
+  \begin{references}
+    \url{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, II}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as @\HL{dt}@
+
+def today():
+  td = dt.date.today()
+  return "today is " + td.isoformat()
+
+def hey(name):
+  print("Hey " + name + "; " + today())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Create a Python module and bind it to the
+      \texttt{dt} name at global level.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, III}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as dt
+
+def today():
+  @\HL{td}@ = dt.date.today()
+  return "today is " + @\HL{td}@.isoformat()
+
+def hey(@\HL{name}@):
+  print("Hey " + @\HL{name}@ + "; " + today())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Unqualified name within a function: resolves to a local variable.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, IV}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as dt
+
+def today():
+  td = dt.date.today()
+  return "today is " + td.isoformat()
+
+def hey(name):
+  print("Hey " + name + "; " + @\HL{today}@())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Unqualified name: since there is no local variable by that name,
+      it resolves to a module-level binding, i.e., to the
+      \texttt{today} function defined above.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, V}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as dt
+
+def today():
+  td = @\HL{dt.date}@.today()
+  return "today is " + td.isoformat()
+
+def hey(name):
+  print("Hey " + name + "; " + today())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Qualified name: instructs Python to search the
+      \texttt{date} attribute within the \texttt{dt} module.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, VI}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as dt
+
+def today():
+  td = dt.date.today()
+  return "today is " + @\HL{td.isoformat}@()
+
+def hey(name):
+  print("Hey " + name + "; " + today())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Qualified name: Python searches the \texttt{isoformat} attribute
+      within the \texttt{td} object instance.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+% \begin{frame}[fragile]
+%   \frametitle{Name resolution rules, II}
+%   \begin{columns}
+%     \begin{column}[t]{0.6\linewidth}
+% \begin{lstlisting}
+% import datetime as dt
+
+% def today():
+%   td = dt.date.today()
+%   return "today is " + td.isoformat()
+
+% def hey(name):
+%   print("Hey " + name + "; " + today())
+
+% hey("you")
+% \end{lstlisting}
+%     \end{column}
+%     \begin{column}[t]{0.4\linewidth}
+%       \raggedleft
+
+%     \end{column}
+%   \end{columns}
+% \end{frame}
+
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
