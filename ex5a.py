@@ -1,35 +1,32 @@
 #!/usr/bin/env python
 
-class MinMax (object):
-    """
-    Change the MinMax class so that it can
-    be initialized with a sequence; the .min and .max
-    attributes should be initialized to the minimum and
-    maximum of that sequence.
-    
-    Example:
-    >>> m = MinMax([1,2,3])
-    >>> m.min == 1
-    True
-    >>> m.max == 3
-    True
-    """
+import math
 
-    def __init__(self, startseq = None):
-        if startseq:
-            self.min = min(startseq)
-            self.max = max(startseq)
-        else:
-            self.min = None
-            self.max = None
+class Vector(object):
+  """
+  Add a new method `norm` the `Vector` class: if
+  `v` is an instance of class `Vector`, then calling
+  `v.norm()` returns the norm (modulus) of the associated
+  vector.
 
-    def send(self, val):
-        if (self.min is None) or (val < self.min):
-            self.min = val
-        if (self.max is None) or (val > self.max):
-            self.max = val
+  Example:
+
+    >>> v = Vector(3,4)
+    >>> v.norm()
+    5
+  """
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x, self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def show(self):
+    return ("<%g,%g>" % (self.x, self.y))
+  def norm(self):
+    return math.sqrt(self.x**2 + self.y**2)
 
 if __name__ == "__main__":
-    m = MinMax([1, 2, 3])
-    assert m.min == 1
-    assert m.max == 3
+    v = Vector(3,4)
+    assert v.norm() == 5

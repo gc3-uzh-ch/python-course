@@ -105,8 +105,8 @@ _Day 1: Python basics_ (Tue 12.03.2013)
 _Day 2: Object-oriented Python_ (Wed 13.03.2013)
 
 * [List comprehensions][placeholder]<!--(part8.pdf)-->
-* [OOP: everything is an object!][placeholder]<!--(part5.pdf)-->
-  <!-- - Downloads: [[minmax.py]] -->
+* [Object-oriented programming basics][placeholder]<!--(part5.pdf)-->
+  <!-- - Downloads: [[vector.py.py]] -->
   <!-- - Solutions to exercises: [[ex5a.py]], [[ex5b.py]] -->
 * [OOP: inheritance][placeholder]<!--(part6.pdf)-->
   <!-- - Downloads: [[test_minmax.py]], [[grep.py]] -->

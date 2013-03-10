@@ -1,8 +1,8 @@
 \documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
 \usepackage{gc3}
 
-\title[OOP]{%
-  Object-oriented Python, I
+\title[OOP basics]{%
+  Object-orientation basics
 }
 \author[GC3]{%
   GC3: Grid Computing Competence Center, \\
@@ -17,8 +17,21 @@
 
 
 \begin{frame}
-  \frametitle{What's an \emph{object}?}
-  A Python object is a bundle of variables and functions.
+  \frametitle{What we shall see in this part}
+
+  How to define custom Python objects.
+
+  \+
+  We shall use \href{http://jccc-mpg.wikidot.com/vectors}{2D
+    vectors} and
+  \href{http://mathworld.wolfram.com/ComplexNumber.html}{complex
+    numbers} as examples.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Recall: \emph{What is an object}?}
+  \textbf{A Python object is a bundle of variables and functions.}
 
   \+
   What variable names and functions comprise an object is defined
@@ -37,171 +50,124 @@
 
 
 \begin{frame}
-  \frametitle{Objects \emph{vs} modules}
+  \frametitle{Recall: \emph{What is a 2D vector?}}
 
-  Modules are also namespaces of variables and functions.
+  A \emph{2D} vector is an element of the vector space
+  $\mathbb{R}^2$.
 
   \+
-  But each module has \emph{one and only one} instance in a Python
-  program.
-\end{frame}
+  Every \emph{2D} vector $\mathbf{u}$ is completely described by a
+  pair of real coordinates $\langle u_x, u_y \rangle$.
+  Two operations are defined on vectors:
 
-
-\begin{frame}[fragile]
-  \frametitle{Example: the \texttt{datetime} object, I}
-  \begin{columns}[c]
-    \begin{column}{0.5\textwidth}
-\begin{lstlisting}
->>> @\HL{from datetime import date}@
->>> dt1 = date(2012, 9, 28)
->>> dt2 = date(2012, 10, 1)
-\end{lstlisting}
-    \end{column}
-    \begin{column}{0.45\textwidth}
+  \+
+  \begin{columns}
+    \begin{column}{0.6\linewidth}
       \raggedleft
-      Import the \texttt{date} class from the standard
-      library module \texttt{datetime}
+      \emph{vector addition:} if $\mathbf{w} = \mathbf{u} +
+        \mathbf{v}$, then $w_x = u_x + v_x$ and $w_y = u_y + v_y$.
+    \end{column}
+    \begin{column}{0.4\linewidth}
+      \centering
+      \includegraphics[height=4\baselineskip]{fig/VectorAddition.jpg}
     \end{column}
   \end{columns}
-\end{frame}
 
-
-\begin{frame}[fragile]
-  \frametitle{Example: the \texttt{datetime} object, II}
-  \begin{columns}[c]
-    \begin{column}{0.5\textwidth}
-\begin{lstlisting}
->>> from datetime import date
->>> @\HL{dt1 = date(2012, 9, 28)}@
->>> dt2 = date(2012, 10, 1)
-\end{lstlisting}
+  \+
+  \begin{columns}
+    \begin{column}{0.4\linewidth}
+      \centering
+      \includegraphics[height=3\baselineskip]{fig/VectorScalarMultiplication.jpg}
     \end{column}
-    \begin{column}{0.5\textwidth}
-      \raggedleft
-      To instanciate an object, call the class name like a
-      function.
+    \begin{column}{0.6\linewidth}
+      \raggedright
+      \emph{scalar multiplication:} if $\mathbf{v} = \alpha
+      \cdot \mathbf{u}$ with $\alpha \in \mathbb{R}$, then $v_x =
+      \alpha \cdot u_x$ and $v_y = \alpha \cdot u_y$.
     \end{column}
   \end{columns}
+
+  \begin{references}
+    \tiny
+    Images courtesy of \url{http://jccc-mpg.wikidot.com/vectors},
+    which see for precise definitions and discussion of 2D vectors.
+  \end{references}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Example: the \texttt{datetime} object, III}
-\begin{lstlisting}
->>> dir(dt1)
-['__add__', '__class__', @\ldots@, 'ctime', 'day',
-'fromordinal', 'fromtimestamp', 'isocalendar',
-'isoformat', 'isoweekday', 'max', 'min', 'month',
-'replace', 'resolution', 'strftime', 'timetuple',
-'today', 'toordinal', 'weekday', 'year']
-\end{lstlisting}
-
-  \+
-  The \texttt{dir} function can list all objects attributes.
-
-  \+
-  Note there is no distinction between instance variables and
-  methods!
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Example: the \texttt{datetime} object, IV}
-  \begin{columns}[c]
+  \frametitle{A \emph{2D vector} in Python}
+  \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
->>> dt1.day
-28
->>> dt1.month
-9
->>> dt1.year
-2012
+class Vector(object):
+  """A 2D Vector."""
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x,
+                  self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def show(self):
+    return ("<%g,%g>" % (self.x, self.y))
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
       \raggedleft
-      Access to object attributes is done by suffixing the
-      instance name with the attribute name, separated by a dot
-      ``\texttt{.}''.
+      This code defines a Python object that implements a 2D vector.
     \end{column}
   \end{columns}
+
+  \+
+  {\scriptsize Source code available at:
+    \url{http://www.gc3.uzh.ch/vector.py}}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Example: the \texttt{datetime} object, V}
-  \begin{columns}[c]
-    \begin{column}{0.5\textwidth}
+  \frametitle{What does \texttt{Vector} do?}
+  \begin{columns}
+    \begin{column}[t]{0.5\linewidth}
+  We can create vectors by initializing them with the two coordinates
+  $(x,y)$:
 \begin{lstlisting}
->>> dt1.day
-@\HL{28}@
->>> dt2.day
-@\HL{1}@
+>>> u = Vector(1,0)
+>>> v = Vector(0,1)
 \end{lstlisting}
     \end{column}
-    \begin{column}{0.5\textwidth}
-      \raggedleft
-      The same attribute can have different
-      values in different instances!
+    \begin{column}[t]{0.5\linewidth}
+      The \texttt{show} method shows vector coordinates:
+\begin{lstlisting}
+>>> u.show()
+'<1,0>'
+>>> v.show()
+'<0,1>'
+\end{lstlisting}
+    \end{column}
+  \end{columns}
+
+  \+
+  \begin{columns}
+    \begin{column}[t]{0.5\linewidth}
+      The \texttt{add} method implements vector addition:
+\begin{lstlisting}
+>>> w = u.add(v)
+>>> w.show()
+'<1,1>'
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.5\linewidth}
+      The \texttt{mul} method implements scalar multiplication:
+\begin{lstlisting}
+>>> v2 = v.mul(2)
+>>> v2.show()
+'<0,2>'
+\end{lstlisting}
     \end{column}
   \end{columns}
 \end{frame}
-
-
-\begin{frame}
-  \frametitle{No access control}
-  There are no ``public''/``private''/etc. qualifiers for object
-  attributes.
-
-  \+
-  \textbf{\emph{Any} code can create/read/overwrite/delete \emph{any} attribute on
-    \emph{any} object.}
-
-  \+
-  There are \emph{conventions}, though:
-  \begin{itemize}
-  \item ``protected'' attributes: \texttt{\_name}
-  \item ``private'' attributes: \texttt{\_\_name}
-  \end{itemize}
-  (But again, note that this is not \emph{enforced} by the system in
-  any way.)
-
-\end{frame}
-
-
-\begin{frame}[fragile,fragile]
-  \frametitle{Equality, identity}
-  The \texttt{is} operator returns \texttt{True} if two names refer to
-  the same instance; the \texttt{==} operator compares the
-  \emph{values} of two objects.\footnote{A class can define how
-    exactly the \texttt{==} operator should carry out the comparison.}
-
-  \+
-  Note that two instances may be equal in any respect yet be
-  different instances: \emph{equality is not identity!}
-\begin{lstlisting}
->>> dt4 = date(2012,9,28)
->>> dt5 = date(2012,9,28)
->>> dt4 == dt5
-True
->>> dt4 is dt5
-False
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Instance methods}
-\begin{lstlisting}[showstringspaces=false]
->>> dt1.strftime('%a %d %b')
-'Fri 28 Sep'
-\end{lstlisting}
-
-  \+
-  Invoke an instance method just like any other function.
-\end{frame}
-
-
 
 
 \begin{frame}[fragile]
@@ -209,17 +175,18 @@ False
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-@\HL{\textbf{class} MinMax(object):}@
-
-  def __init__(self):
-    self.min = None
-    self.max = None
-
-  def send(self, val):
-    if (self.min is None) or (val < self.min):
-        self.min = val
-    if (self.max is None) or (val > self.max):
-        self.max = val
+@\HL{class}@ Vector(object):
+  """A 2D Vector."""
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x,
+                  self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def show(self):
+    return ("<%g,%g>" % (self.x, self.y))
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -230,10 +197,6 @@ False
       statement.
     \end{column}
   \end{columns}
-
-  \+
-  {\scriptsize Source code available at:
-    \url{http://www.gc3.uzh.ch/minmax.py}}
 \end{frame}
 
 
@@ -242,17 +205,18 @@ False
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-class MinMax@\HL{(object)}@:
-
-  def __init__(self):
-    self.min = None
-    self.max = None
-
-  def send(self, val):
-    if (self.min is None) or (val < self.min):
-        self.min = val
-    if (self.max is None) or (val > self.max):
-        self.max = val
+class Vector@\HL{(object)}@:
+  """A 2D Vector."""
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x,
+                  self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def show(self):
+    return ("<%g,%g>" % (self.x, self.y))
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -268,21 +232,52 @@ class MinMax@\HL{(object)}@:
 
 
 \begin{frame}[fragile]
-  \frametitle{User-defined classes, III}
+  \frametitle{User-defined classes, II}
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-class MinMax(object):
+class Vector(object):
+  @\HL{"""A 2D Vector."""}@
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x,
+                  self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def show(self):
+    return ("<%g,%g>" % (self.x, self.y))
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      Classes can have docstrings.
 
-  @\HL{\textbf{def} \_\_init\_\_(\textbf{self}):}@
-    self.min = None
-    self.max = None
+      The content of a class docstring will be shown as help text for
+      that class.
+    \end{column}
+  \end{columns}
+\end{frame}
 
-  def send(self, val):
-    if (self.min is None) or (val < self.min):
-        self.min = val
-    if (self.max is None) or (val > self.max):
-        self.max = val
+
+\begin{frame}[fragile]
+  \frametitle{User-defined classes, IV}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Vector(object):
+  """A 2D Vector."""
+  @\HL{\textbf{def} \_\_init\_\_(\textbf{self}, x, y):}@
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x,
+                  self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def show(self):
+    return ("<%g,%g>" % (self.x, self.y))
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -324,7 +319,7 @@ class MinMax(object):
 
 
 \begin{frame}[fragile]
-  \frametitle{Name resolution rules}
+  \frametitle{Recal: \emph{Name resolution rules}}
   \small
 
   Within a function body, names are resolved according to \href{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}{the LEGB rule}:
@@ -341,7 +336,7 @@ class MinMax(object):
     be qualified.}
 
   \+
-  So you have to write \texttt{self.min} to reference an attribute in
+  So you have to write \texttt{self.x} to reference an attribute in
   this instance, \texttt{datetime.date} to mean a class defined in module
   \texttt{date}, etc.
 
@@ -356,17 +351,17 @@ class MinMax(object):
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-class MinMax(object):
-
-  @\HL{\textbf{def} \_\_init\_\_(\textbf{self}):}@
-    self.min = None
-    self.max = None
-
-  def send(self, val):
-    if (self.min is None) or (val < self.min):
-        self.min = val
-    if (self.max is None) or (val > self.max):
-        self.max = val
+class Vector(object):
+  """A 2D Vector."""
+  @\HL{\textbf{def} \_\_init\_\_(\textbf{self}, x, y):}@
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x, self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def show(self):
+    return ("<%g,%g>" % (self.x, self.y))
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -389,8 +384,8 @@ class MinMax(object):
   You never call \lstinline|__init__| directly, it is invoked by
   Python when a new object is created from the class:
 \begin{lstlisting}
-# calls MinMax.\_\_init\_\_
-m = MinMax()
+# calls Vector.\_\_init\_\_
+v = Vector(0,1)
 \end{lstlisting}
 
   \+
@@ -421,24 +416,21 @@ m = MinMax()
 
 \begin{frame}[fragile]
   \begin{exercise}
-    Change the \texttt{MinMax} class so that it can be initialized
-    with a sequence; the \texttt{.min} and \texttt{.max} attributes
-    should be initialized to the minimum and maximum of that sequence.
-    Example:
-\begin{lstlisting}
->>> m = MinMax([1,2,3])
->>> m.min == 1
-True
->>> m.max == 3
-True
-\end{lstlisting}
+    Add a new method \texttt{norm} the \texttt{Vector} class: if
+    \texttt{v} is an instance of class \texttt{Vector}, then calling
+    \texttt{v.norm()} returns the norm $\sqrt{v_x^2 + v_y^2}$ of
+    the associated vector.
+    (You will need the
+    \href{http://docs.python.org/2/library/math.html}{math} standard
+    module for computing square roots.)
   \end{exercise}
 
+  \+
   \begin{exercise}
-    Augment the \texttt{MinMax} class so that it computes the
-    average of the numbers given to it via the \texttt{send} method.
-    Store this average in the \texttt{.average} instance attribute.
-    Call the new class \texttt{MinMaxAvg}.
+    Add a new method \texttt{unit} to the \texttt{Vector} class: if
+    \texttt{v} is an instance of class \texttt{Vector}, then calling
+    \texttt{v.unit()} returns the vector \texttt{u} having the
+    same direction as \texttt{v} but norm $1$.
   \end{exercise}
 \end{frame}
 

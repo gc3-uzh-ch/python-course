@@ -1,31 +1,36 @@
 #!/usr/bin/env python
 
-class MinMax (object):
-    """
-    Augment the MinMax class so that it computes the average of the
-    numbers given to it via the send method. Store this average in the
-    .average instance attribute.
-    """
+import math
 
-    def __init__(self):
-        self.min = None
-        self.max = None
-        self.average = None
-        self.__values = []
+class Vector(object):
+  """
+  Add a new method `norm` the `Vector` class: if
+  `v` is an instance of class `Vector`, then calling
+  `v.norm()` returns the norm (modulus) of the associated
+  vector.
 
-    def send(self, val):
-        self.__values.append(val)
-        if (self.min is None) or (val < self.min):
-            self.min = val
-        if (self.max is None) or (val > self.max):
-            self.max = val
-        self.average = float(sum(self.__values))/len(self.__values)
+  Example:
+
+    >>> v = Vector(3,4)
+    >>> v.norm()
+    5
+  """
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x, self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def show(self):
+    return ("<%g,%g>" % (self.x, self.y))
+  def norm(self):
+    return math.sqrt(self.x**2 + self.y**2)
+  def unit(self):
+    norm = self.norm()
+    return self.mul(1 / norm)
 
 if __name__ == "__main__":
-    m = MinMax()
-    m.send(1)
-    m.send(2)
-    m.send(3)
-    assert m.min == 1
-    assert m.max == 3
-    assert m.average == 2
+    v = Vector(3,4)
+    u = v.unit()
+    assert u.norm() == 1
