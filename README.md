@@ -108,6 +108,7 @@ _Day 2: Object-oriented Python_ (Wed 13.03.2013)
 * [Object-oriented programming basics][placeholder]<!--(part5.pdf)-->
   <!-- - Downloads: [[vector.py.py]] -->
   <!-- - Solutions to exercises: [[ex5a.py]], [[ex5b.py]] -->
+* [Special methods][placeholder]<!--(part5bis.pdf)-->
 * [OOP: inheritance][placeholder]<!--(part6.pdf)-->
   <!-- - Downloads: [[test_minmax.py]], [[grep.py]] -->
   <!-- - Solutions to exercises: [[ex6a.py]], [[ex6b.py]], [[ex6c.py]] -->

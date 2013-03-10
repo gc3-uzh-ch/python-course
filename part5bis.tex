@@ -1,0 +1,244 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usepackage{gc3}
+
+\title[Special methods]{%
+  Special methods
+}
+\author[GC3]{%
+  GC3: Grid Computing Competence Center, \\
+  University of Zurich
+}
+\date{Mar.~12--13, 2013}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+
+\begin{frame}
+  \frametitle{What we shall see in this part}
+
+  How to define custom behavior for Python's standard operators and
+  functions on user-defined objects.
+
+  \+
+  (Technically called ``operator overloading.'')
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Python's special methods}
+
+  \textbf{Names that start and end with two underscores (e.g.,
+    \lstinline|__init__|) have a special significance in Python.}
+
+  \+ Most of them directly map to Python's operators (e.g.,
+  ``\texttt{+}'').
+
+  \+
+  \begin{references}
+    \url{http://docs.python.org/2/reference/datamodel.html#special-method-names}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{First Example (1/2)}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Vector(object):
+  """A 2D Vector."""
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def add(self, other):
+    return Vector(self.x+other.x,
+                  self.y+other.y)
+  def mul(self, scalar):
+    return Vector(scalar*self.x, scalar*self.y)
+  def @\HL{\_\_str\_\_}@(self):
+    return ("<%g,%g>" % (self.x, self.y))
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      Let us rename the \texttt{show} method to \texttt{\_\_str\_\_}.
+    \end{column}
+  \end{columns}
+
+  \+
+  {\scriptsize Source code available at:
+    \url{http://www.gc3.uzh.ch/vector2.py}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{First Example (2/2)}
+\begin{lstlisting}
+>>> from vector2 import Vector
+>>> v = Vector(0,1)
+>>> print(v)
+<0,1>
+\end{lstlisting}
+
+  \+
+  Now Python's built-in \texttt{print} behaves like the \texttt{show} method did!
+
+  \+ Actually, \texttt{print} uses Python's built-in function
+  \texttt{str()} to convert an object to a string, and then prints
+  this string.
+
+  \+ {\bfseries By defining the \lstinline|__str__| method, we
+    override the default behavior of Python's \lstinline|str()| for
+    objects of class \texttt{Vector}.}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Second Example: equality testing (1/3)}
+
+  Can we test two instanced of class \texttt{Vector} for equality?
+\begin{lstlisting}
+>>> from vector2 import Vector
+>>> v1 = Vector(0,1)
+>>> v2 = Vector(0,1)
+>>> v1 == v2
+@\HL{False}@
+\end{lstlisting}
+
+  \+ Python does not know how to test if two user defined objects are
+  equal.
+
+  \+ \textbf{By default ``\texttt{==}'' behaves like the
+    ``\texttt{is}'' operator on user-defined classes}, i.e., two
+  user-defined objects are considered equal if and only if they are
+  the same object.
+
+  \+ \textbf{This can be changed by adding a \lstinline|__eq__| method.}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Second Example: equality testing (2/3)}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Vector(object):
+  """A 2D Vector."""
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  # (code omitted)
+  def __str__(self):
+    return ("<%g,%g>" % (self.x, self.y))
+  @\HL{\textbf{def} \_\_eq\_\_(\textbf{self}, other):}@
+    return (self.x == other.x) and (self.y == other.y)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      Let us add an \lstinline|__eq__|~method.
+    \end{column}
+  \end{columns}
+
+  \+
+  {\scriptsize Source code available at:
+    \url{http://www.gc3.uzh.ch/vector3.py}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Second Example: equality testing (3/3)}
+\begin{lstlisting}
+>>> from vector3 import Vector
+>>> v1 = Vector(0,1)
+>>> v2 = Vector(0,1)
+>>> v1 == v2
+True
+\end{lstlisting}
+
+  \+ {\bfseries By defining the \lstinline|__eq__| method, we
+    define the behavior of Python's equality test \lstinline|==| for
+    objects of class \texttt{Vector}.}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{3rd Example: vector addition (1/3)}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Vector(object):
+  """A 2D Vector."""
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def __str__(self):
+    return ("<%g,%g>" % (self.x, self.y))
+  def __eq__(self, other):
+    return (self.x == other.x) and (self.y == other.y)
+  @\HL{\textbf{def} \_\_add\_\_(\textbf{self}, other):}@
+    return Vector(self.x+other.x, self.y+other.y)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      The \lstinline|__add__| special method defines the behavior of the
+      ``\texttt{+}'' operator.
+
+      \+
+      Let's just rename \texttt{add} \\ to \texttt{\_\_add\_\_}.
+    \end{column}
+  \end{columns}
+
+  \+
+  {\scriptsize Source code available at:
+    \url{http://www.gc3.uzh.ch/vector4.py}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{3rd Example: vector addition (2/3)}
+
+  Now vector addition works with the usual ``\texttt{+}'' operator:
+\begin{lstlisting}
+>>> from vector4 import Vector
+>>> v1 = Vector(1,0)
+>>> v2 = Vector(0,1)
+>>> print (v1 + v2)
+<1,1>
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{3rd Example: vector addition (3/3)}
+
+  What if we add inhomogeneous objects, e.g., a vector and a number?
+\begin{lstlisting}
+>>> from vector4 import Vector
+>>> v1 = Vector(1,0)
+>>> print (v1 + 5.0)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "vector4.py", line 14, in __add__
+    return Vector(self.x+other.x, self.y+other.y)
+@\HL{AttributeError: 'float' object has no attribute 'x'}@
+\end{lstlisting}
+
+  \+ In this case, an error is the correct behavior: a vector can only
+  be summed to another vector.
+
+  \+ We shall see in the next part that sometimes it makes sense to
+  allow inhomogenneous operations, and how to implement them.
+\end{frame}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
