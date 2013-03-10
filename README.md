@@ -87,7 +87,7 @@ virtualization software that runs on MacOSX and Windows:
 
 ## Programme / Timetable
 
-_Day 1: Python basics_ (12.03.2013)
+_Day 1: Python basics_ (Tue 12.03.2013)
 
 * [Introduction][placeholder]<!--(part0.pdf)-->
 * [Workstation setup][placeholder]<!--(part1.pdf)-->
@@ -102,7 +102,7 @@ _Day 1: Python basics_ (12.03.2013)
   <!-- - Solutions to exercises: [[ex4a.py]], [[ex4b.py]], [[ex4c.py]], [[ex4d.py]] -->
 
 
-_Day 2: Object-oriented Python_ (13.03.2013)
+_Day 2: Object-oriented Python_ (Wed 13.03.2013)
 
 * [List comprehensions][placeholder]<!--(part8.pdf)-->
 * [OOP: everything is an object!][placeholder]<!--(part5.pdf)-->
