@@ -2,7 +2,7 @@
 \usepackage{gc3}
 
 \title[OOP]{%
-  Object-oriented Python, I
+  Objects, modules and variable scoping rules
 }
 \author[GC3]{%
   GC3: Grid Computing Competence Center, \\
@@ -33,18 +33,6 @@
   Variables and functions in an instance are collectively called
   \emph{instance attributes}; functions are also termed \emph{instance
     methods}.
-\end{frame}
-
-
-%% XXX: remove? seems not essential...
-\begin{frame}
-  \frametitle{Objects \emph{vs} modules}
-
-  Modules are also namespaces of variables and functions.
-
-  \+
-  But each module has \emph{one and only one} instance in a Python
-  program.
 \end{frame}
 
 
@@ -129,23 +117,54 @@
 \end{frame}
 
 
+\begin{frame}
+  \frametitle{Objects \emph{vs} modules}
+
+  Modules are also namespaces of variables and functions.
+
+  \+
+  The dot operator `\texttt{.}' is also used to access variables
+  and functions from modules.  The \texttt{dir()} function is also
+  used to list variables and functions from modules.
+
+  \+
+  But each module has \emph{one and only one} instance in a Python
+  program.
+\end{frame}
+
+
 \begin{frame}[fragile]
   \frametitle{Example: the \texttt{datetime} object, V}
   \begin{columns}[c]
-    \begin{column}{0.5\textwidth}
+    \begin{column}[b]{0.5\textwidth}
 \begin{lstlisting}
+>>> dt1 = date(2012, 9, 28)
+>>> dt2 = date(2012, 10, 1)
+
 >>> dt1.day
 @\HL{28}@
 >>> dt2.day
 @\HL{1}@
 \end{lstlisting}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}[b]{0.5\textwidth}
       \raggedleft
       The same attribute can have different
       values in different instances!
     \end{column}
   \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Instance methods}
+\begin{lstlisting}[showstringspaces=false]
+>>> dt1.isoformat()
+'2012-09-28'
+\end{lstlisting}
+
+  \+
+  Invoke an instance method just like any other function.
 \end{frame}
 
 
@@ -170,7 +189,7 @@
 \end{frame}
 
 
-\begin{frame}[fragile,fragile]
+\begin{frame}[fragile]
   \frametitle{Equality, identity}
   The \texttt{is} operator returns \texttt{True} if two names refer to
   the same instance; the \texttt{==} operator compares the
@@ -188,18 +207,6 @@ True
 >>> dt4 is dt5
 False
 \end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Instance methods}
-\begin{lstlisting}[showstringspaces=false]
->>> dt1.isoformat()
-'2012-09-28'
-\end{lstlisting}
-
-  \+
-  Invoke an instance method just like any other function.
 \end{frame}
 
 

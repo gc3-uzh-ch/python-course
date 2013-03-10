@@ -96,7 +96,7 @@ _Day 1: Python basics_ (Tue 12.03.2013)
    <!-- - Solutions to exercises: [[ex2c.py]] -->
 * [Basics 2: sequences and iteration][placeholder]<!--(part3.pdf)-->
   <!-- - Solutions to exercises: [[ex3a.py]], [[ex3b.py]], [[ex3c.py]] -->
-* [Object-oriented Python, I][placeholder]<!--(part3bis.pdf)-->
+* [Objects, modules and variable scoping rules][placeholder]<!--(part3bis.pdf)-->
 * [String manipulation, file I/O][placeholder]<!--(part4.pdf)-->
   <!-- - Downloads: [[values.dat]], [[euro.csv]] -->
   <!-- - Solutions to exercises: [[ex4a.py]], [[ex4b.py]], [[ex4c.py]], [[ex4d.py]] -->
