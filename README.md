@@ -108,13 +108,13 @@ _Day 2: Object-oriented Python_ (Wed 13.03.2013)
   <!-- - Downloads: [[vector.py.py]] -->
   <!-- - Solutions to exercises: [[ex06a.py]], [[ex06b.py]] -->
 * <!--AM-->[Special methods][placeholder]<!--(part07.pdf)-->
-* <!--RM-->[Object-oriented programming: inheritance][placeholder]<!--(part6.pdf)-->
-* <!--AM-->[Object-oriented programming: the _Template method_ pattern][placeholder]<!--(part6bis.pdf)-->
+* <!--RM-->[Object-oriented programming: inheritance][placeholder]<!--(part08.pdf)-->
+* <!--AM-->[Object-oriented programming: the _Template method_ pattern][placeholder]<!--(part09.pdf)-->
   <!-- - Downloads: [[grep.py]] -->
-  <!-- - Solutions to exercises: [[ex6a.py]], [[ex6b.py]], [[ex6c.py]] -->
-* <!--RM-->[Exceptions and error handling][placeholder]<!--(part7.pdf)-->
-  <!-- - Solutions to exercises: [[ex7a.py]] -->
-* <!--AM-->[Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part9.pdf)-->
+  <!-- - Solutions to exercises: [[ex09a.py]], [[ex09b.py]], [[ex09c.py]] -->
+* <!--RM-->[Exceptions and error handling][placeholder]<!--(part10.pdf)-->
+  <!-- - Solutions to exercises: [[ex10a.py]] -->
+* <!--AM-->[Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part11.pdf)-->
 
 [placeholder]: http://www.explosm.net/db/files/Comics/Matt/curiosity-killed-the-cat.png
 
