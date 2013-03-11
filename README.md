@@ -89,33 +89,32 @@ virtualization software that runs on MacOSX and Windows:
 
 _Day 1: Python basics_ (Tue 12.03.2013)
 
-* [Introduction][placeholder]<!--(part0.pdf)-->
-* [Workstation setup][placeholder]<!--(part1.pdf)-->
-* [Basics: data types, operators, assignment, functions][placeholder]<!--(part2.pdf)-->
+* <!--RM-->[Introduction][placeholder]<!--(part00.pdf)-->
+* <!--AM-->[Workstation setup][placeholder]<!--(part01.pdf)-->
+* <!--RM-->[Basics 1: data types, operators, assignment, functions][placeholder]<!--(part02.pdf)-->
    <!-- - Downloads: [[hello.py]], [[welcome.py]] -->
-   <!-- - Solutions to exercises: [[ex2c.py]] -->
-* [Basics 2: sequences and iteration][placeholder]<!--(part3.pdf)-->
-  <!-- - Solutions to exercises: [[ex3a.py]], [[ex3b.py]], [[ex3c.py]] -->
-* [Objects, modules and variable scoping rules][placeholder]<!--(part3bis.pdf)-->
-* [String manipulation, file I/O][placeholder]<!--(part4.pdf)-->
+   <!-- - Solutions to exercises: [[ex02c.py]] -->
+* <!--AM-->[Basics 2: sequences and iteration][placeholder]<!--(part03.pdf)-->
+  <!-- - Solutions to exercises: [[ex03a.py]], [[ex03b.py]], [[ex03c.py]] -->
+* <!--RM-->[Objects, modules and variable scoping rules][placeholder]<!--(part04.pdf)-->
+* <!--AM-->[String manipulation, file I/O][placeholder]<!--(part05.pdf)-->
   <!-- - Downloads: [[values.dat]], [[euro.csv]] -->
-  <!-- - Solutions to exercises: [[ex4a.py]], [[ex4b.py]], [[ex4c.py]], [[ex4d.py]] -->
+  <!-- - Solutions to exercises: [[ex05a.py]], [[ex05b.py]], [[ex05c.py]], [[ex05d.py]] -->
 
 
 _Day 2: Object-oriented Python_ (Wed 13.03.2013)
 
-* [List comprehensions][placeholder]<!--(part8.pdf)-->
-* [Object-oriented programming: basics][placeholder]<!--(part5.pdf)-->
+* <!--RM-->[Object-oriented programming: basics][placeholder]<!--(part06.pdf)-->
   <!-- - Downloads: [[vector.py.py]] -->
-  <!-- - Solutions to exercises: [[ex5a.py]], [[ex5b.py]] -->
-* [Special methods][placeholder]<!--(part5bis.pdf)-->
-* [Object-oriented programming: inheritance][placeholder]<!--(part6.pdf)-->
-* [Object-oriented programming: the _Template method_ pattern][placeholder]<!--(part6bis.pdf)-->
+  <!-- - Solutions to exercises: [[ex06a.py]], [[ex06b.py]] -->
+* <!--AM-->[Special methods][placeholder]<!--(part07.pdf)-->
+* <!--RM-->[Object-oriented programming: inheritance][placeholder]<!--(part6.pdf)-->
+* <!--AM-->[Object-oriented programming: the _Template method_ pattern][placeholder]<!--(part6bis.pdf)-->
   <!-- - Downloads: [[grep.py]] -->
   <!-- - Solutions to exercises: [[ex6a.py]], [[ex6b.py]], [[ex6c.py]] -->
-* [Exceptions and error handling][placeholder]<!--(part7.pdf)-->
+* <!--RM-->[Exceptions and error handling][placeholder]<!--(part7.pdf)-->
   <!-- - Solutions to exercises: [[ex7a.py]] -->
-* [Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part9.pdf)-->
+* <!--AM-->[Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part9.pdf)-->
 
 [placeholder]: http://www.explosm.net/db/files/Comics/Matt/curiosity-killed-the-cat.png
 
