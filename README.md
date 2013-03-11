@@ -105,16 +105,17 @@ _Day 1: Python basics_ (Tue 12.03.2013)
 _Day 2: Object-oriented Python_ (Wed 13.03.2013)
 
 * [List comprehensions][placeholder]<!--(part8.pdf)-->
-* [Object-oriented programming basics][placeholder]<!--(part5.pdf)-->
+* [Object-oriented programming: basics][placeholder]<!--(part5.pdf)-->
   <!-- - Downloads: [[vector.py.py]] -->
   <!-- - Solutions to exercises: [[ex5a.py]], [[ex5b.py]] -->
 * [Special methods][placeholder]<!--(part5bis.pdf)-->
-* [OOP: inheritance][placeholder]<!--(part6.pdf)-->
-  <!-- - Downloads: [[test_minmax.py]], [[grep.py]] -->
+* [Object-oriented programming: inheritance][placeholder]<!--(part6.pdf)-->
+* [Object-oriented programming: the _Template method_ pattern][placeholder]<!--(part6bis.pdf)-->
+  <!-- - Downloads: [[grep.py]] -->
   <!-- - Solutions to exercises: [[ex6a.py]], [[ex6b.py]], [[ex6c.py]] -->
 * [Exceptions and error handling][placeholder]<!--(part7.pdf)-->
   <!-- - Solutions to exercises: [[ex7a.py]] -->
-* [Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part8.pdf)-->
+* [Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part9.pdf)-->
 
 [placeholder]: http://www.explosm.net/db/files/Comics/Matt/curiosity-killed-the-cat.png
 
