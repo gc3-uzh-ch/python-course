@@ -142,15 +142,15 @@ For further information, please write to: <info@gc3.lists.uzh.ch>
 -->
 
 
-<!--
+
 ## Feedback
 
 <iframe
-    src="https://docs.google.com/spreadsheet/viewform?formkey=dERQWE02QnFnMGs1amg5WFEzbEhOM3c6MA&embedded=true"
+    src="https://docs.google.com/spreadsheet/embeddedform?formkey=dERQWE02QnFnMGs1amg5WFEzbEhOM3c6MA"
     width="640" height="2500"
     frameborder="0"
     marginheight="0"
     marginwidth="0">
         Loading...
 </iframe>
--->
+    
