@@ -79,8 +79,8 @@ virtualization software that runs on MacOSX and Windows:
 
 - You can download a Ubuntu 12.04 virtual machine with all software needed for the course from the following links:
 
-  * for 32-bit computers: <http://www.gc3.uzh.ch/teaching/gc3pie/GC3PieX32.ova>
-  * for 64-bit computers: <http://www.gc3.uzh.ch/teaching/gc3pie/GC3PieX64.ova>
+  * for 32-bit computers: <http://www.gc3.uzh.ch/teaching/gc3pie2012/GC3PieX32.ova>
+  * for 64-bit computers: <http://www.gc3.uzh.ch/teaching/gc3pie2012/GC3PieX64.ova>
 
   These virtual machine files will run under the VirtualBox or VMware emulators.
 
