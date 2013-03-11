@@ -109,7 +109,7 @@ _Day 2: Object-oriented Python_ (Wed 13.03.2013)
   <!-- - Solutions to exercises: [[ex06a.py]], [[ex06b.py]] -->
 * <!--AM-->[Special methods][placeholder]<!--(part07.pdf)-->
 * <!--RM-->[Object-oriented programming: inheritance][placeholder]<!--(part08.pdf)-->
-* <!--AM-->[Object-oriented programming: the _Template method_ pattern][placeholder]<!--(part09.pdf)-->
+* <!--AM-->[Unit tests and doctests][placeholder]<!--(part09.pdf)-->
   <!-- - Downloads: [[grep.py]] -->
   <!-- - Solutions to exercises: [[ex09a.py]], [[ex09b.py]], [[ex09c.py]] -->
 * <!--RM-->[Exceptions and error handling][placeholder]<!--(part10.pdf)-->

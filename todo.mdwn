@@ -1,6 +1,15 @@
 * part04:
-  - muovere slide "No access control" e "Equality vs Identity" in part5 (OOP1)
-  - muovere "Name resolution rules" subito dopo la definizione delle funzioni?
+  - (RM) muovere slide "No access control" e "Equality vs Identity" in part5 (OOP1)
+  - (RM) muovere "Name resolution rules" in OOP1, subito dopo la discussione di "self"
 
 * part05:
-  - introdurre qui le list comprehensions (part8.pdf)? per esempio per fare qualche esercizio?
+  - (AM) introdurre qui le list comprehensions (part8.pdf)? per esempio per fare qualche esercizio?
+
+* part07:
+  - (AM) introdurre anche il metodo __mul__ perché serve per ComplexNum
+
+* part09:
+  - (AM) scriverla
+
+* part11:
+  - (AM) scriverla
