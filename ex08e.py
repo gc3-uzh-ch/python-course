@@ -2,7 +2,6 @@
 
 import re
 
-## exercise 6C
 class GrepExactly(object):
 
     def __init__(self, filename, pattern):

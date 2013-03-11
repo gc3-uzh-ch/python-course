@@ -2,7 +2,6 @@
 
 import re
 
-## exercise 6A
 class Grep(object):
 
     def __init__(self, filename, pattern):

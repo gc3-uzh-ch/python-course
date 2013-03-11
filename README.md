@@ -109,6 +109,8 @@ _Day 2: Object-oriented Python_ (Wed 13.03.2013)
   <!-- - Solutions to exercises: [[ex06a.py]], [[ex06b.py]] -->
 * <!--AM-->[Special methods][placeholder]<!--(part07.pdf)-->
 * <!--RM-->[Object-oriented programming: inheritance][placeholder]<!--(part08.pdf)-->
+  <!-- - Downloads: [[complexnum.py]], [[vector_and_complexnum.py]], [[grep.py]] -->
+  <!-- - Solutions to exercises: [[ex08a.py]], [[ex08b.py]], [[ex08c.py]], [[ex08d.py]], [[ex08e.py]]-->
 * <!--AM-->[Unit tests and doctests][placeholder]<!--(part09.pdf)-->
   <!-- - Downloads: [[grep.py]] -->
   <!-- - Solutions to exercises: [[ex09a.py]], [[ex09b.py]], [[ex09c.py]] -->
@@ -153,4 +155,3 @@ For further information, please write to: <info@gc3.lists.uzh.ch>
     marginwidth="0">
         Loading...
 </iframe>
-    
