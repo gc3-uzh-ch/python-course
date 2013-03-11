@@ -8,7 +8,7 @@ programs.
 On day 1, Python syntax will be recapped and then, on day 2, we
 proceed on to object-orientation.
 
-[[Registration|#index8h2]] is open until **Friday, March 8, 2013**.
+<!-- [[Registration|#index8h2]] is open until **Friday, March 8, 2013**. -->
 
 
 [[!toc startlevel=2]]
@@ -129,6 +129,7 @@ facilities.  A typical meal costs between 7 and 12 CHF.
 For further information, please write to: <info@gc3.lists.uzh.ch>
 
 
+<!--
 <a name="anchor"></a>
 ## Registration
 
@@ -138,3 +139,4 @@ For further information, please write to: <info@gc3.lists.uzh.ch>
     marginwidth="0">
         Loading...
 </iframe>
+-->
