@@ -1,0 +1,6 @@
+* part04:
+  - muovere slide "No access control" e "Equality vs Identity" in part5 (OOP1)
+  - muovere "Name resolution rules" subito dopo la definizione delle funzioni?
+
+* part05:
+  - introdurre qui le list comprehensions (part8.pdf)? per esempio per fare qualche esercizio?
