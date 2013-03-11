@@ -91,6 +91,50 @@ print ("Welcome to Python!")
   \end{exercise}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{List comprehension, I}
+  Python has a better and more compact syntax for \emph{filtering} elements
+  of a list and/or \emph{applying} a function to them.
+
+  \+
+  An alternative solution to the previous example using \textit{list
+  comprehension}:
+  \begin{python}
+data = [ int(line) for line in open('values.dat') ]
+  \end{python}
+
+  \+
+  We can also \textit{filter} the elements using an extended syntax:
+
+  \begin{python}
+data = [ int(line) for line in open('values.dat')
+         if int(line) > 3000000 ]
+  \end{python}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{List comprehensions, II}
+  \def\e{\ttfamily\itshape}
+  
+  The general syntax of a list comprehension is:
+  \begin{python}
+    @\bf[@ @\e expr@ for @\e var@ in @\e iterable@ if @\e condition@ @\bf]@
+  \end{python}
+  where:
+  \begin{description}
+  \item[\e expr] is any Python expression;
+  \item[\e iterable] is a (generalized) sequence;
+  \item[\e condition] is a boolean expression, depending on
+    {\e var};
+  \item[\e var] is a variable that will be bound in turn to each item
+    in {\e iterable} which satisfies {\e condition}.
+  \end{description}
+
+  \+ \textit{Create a new list, and for each \textbf{var} in the
+    sequence \textbf{iterable}, if \textbf{condition} is true then add
+    \textbf{expr} to the list.}
+\end{frame}
+
 
 \begin{frame}[fragile]
   \frametitle{Operations on strings, I}
