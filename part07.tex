@@ -235,6 +235,44 @@ Traceback (most recent call last):
   allow inhomogenneous operations, and how to implement them.
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{4th Example: vector multiplication (1/2)}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{lstlisting}
+class Vector(object):
+  """A 2D Vector."""
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+  def __str__(self):
+    return ("<%g,%g>" % (self.x, self.y))
+  def __eq__(self, other):
+    return (self.x == other.x) and (self.y == other.y)
+  def __add__(self, other):
+    return Vector(self.x+other.x, self.y+other.y)
+  @\HL{\textbf{def} \_\_mul\_\_(\textbf{self}, scalar):}@
+    return Vector(scalar*self.x, scalar*self.y)
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      The \lstinline|__mul__| special method defines the behavior of
+      the ``\texttt{*}'' operator.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{4th Example: vector multiplication (1/2)}
+  Now vector addition works with the usual ``\texttt{+}'' operator:
+\begin{lstlisting}
+>>> from vector5 import Vector
+>>> v1 = Vector(1,2)
+>>> v1 * 3 == Vector(3, 6)
+>>> print (v1 * 2)
+<2,4>
+\end{frame}
 
 \end{document}
 
