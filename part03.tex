@@ -139,7 +139,6 @@
 \end{lstlisting}
 \end{frame}
 
-
 \begin{frame}[fragile]
   \frametitle{Dictionaries}
   The \texttt{dict} type implements a key/value mapping:
@@ -243,7 +242,8 @@ TypeError: 'str' object does not support item assignment
   \frametitle{The \texttt{in} operator and the \texttt{if} conditional
   }
 
-  To test if a specific element is present in a sequence, use the
+  Testing for the existence of an element in a container is a very
+  common pattern:
   \texttt{in} operator:
 
 \begin{lstlisting}
@@ -254,15 +254,14 @@ TypeError: 'str' object does not support item assignment
 Found!
 \end{lstlisting}
 
-\+
-And it works with \textbf{any} sequence:
+\+ Which is equivalent to the following, more verbose, less
+\textit{pythonic} form:
 \begin{lstlisting}
->>> if 'a' in ('a', 'b', 'c'):
-...    print "Found!"
-Found!
->>> if 'key' in {'key': 'value', 'key2': 'value'}:
-...    print "Key found!"
-Key found!
+>>> L = [1, 2, 3, 4]
+>>> for item in L:
+...     if item == 1:
+...         print "Found!"
+...         break
 \end{lstlisting}
 \end{frame}
 
@@ -313,12 +312,15 @@ Key found!
 
 \begin{frame}[fragile]
   \frametitle{All variables are references (demo)}
+
   \href{http://www.pythontutor.com/}{www.pythontutor.com}
+  \+
 
   \only<1>{\includegraphics[width=1.2\textheight]{fig/t1_screenshot_1.png}}
   \only<2>{\includegraphics[width=1.2\textheight]{fig/t1_screenshot_2.png}}
   \only<3>{\includegraphics[width=1.2\textheight]{fig/t1_screenshot_3.png}}
   \only<4>{\includegraphics[width=1.2\textheight]{fig/t1_screenshot_4.png}}
+
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

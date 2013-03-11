@@ -266,6 +266,34 @@ PRINT ("WELCOME TO PYTHON!")
 
 
 \begin{frame}[fragile]
+  \frametitle{Command line argument}
+  The \texttt{sys} module provides access to some variables used or
+  maintained by the interpreter.
+
+  One of such variables is a list containing the arguments passed on
+  the command line.
+
+  \textbf{Exercise:} Create a simple script that
+  prints the command line argument used to invoke it:
+
+  \begin{lstlisting}
+#!/usr/bin/env python
+
+import sys
+print sys.argv
+  \end{lstlisting}
+
+\+
+Then invoke the script with:
+
+\begin{lstlisting}
+$ python script.py foo bar
+\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}[fragile]
   \begin{exercise}\emph{(Homework)}
     Write a Python program \texttt{rename.py} with the following
     command-line:
