@@ -39,9 +39,10 @@ for more information.
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{The Python shell, II} Expressions can be entered at the
-  Python shell prompt (the `\texttt{>>>}' at the start of a line);
-  they are evaluated and the result is printed:
+  \frametitle{The Python shell, II}
+  Expressions can be entered at the Python shell prompt (the
+  `\texttt{>>>}' at the start of a line); they are evaluated and the
+  result is printed:
 \begin{semiverbatim}
 >>> 2+2
 4
@@ -223,7 +224,7 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   References:
   \url{http://lambda-the-ultimate.org/node/1044#comment-10878}
   \url{http://docs.python.org/reference/expressions.html}
-
+  
 \end{frame}
 
 
@@ -325,7 +326,7 @@ True
   \begin{description}
   \item[help(\texttt{fn})] Display help on the function named \texttt{fn}
   \end{description}
-
+  
   \+
   \begin{question}
     What happens if you type these at the prompt?
@@ -482,9 +483,8 @@ hello("world")
   \begin{exercise}
     Type and run the code on the previous page at the interactive
     prompt. (Type indentation spaces, too!)
-
-    What does \texttt{help(hello)} print?
-
+   
+    What does \texttt{help(hello)} print? 
     What's the result of evaluating the function \texttt{hello("world")}?
   \end{exercise}
 
@@ -493,14 +493,14 @@ hello("world")
     Type the same code in a file named \texttt{hello.py}, then type
     \texttt{import hello} at the interactive prompt.
     What happens?
-  \end{exercise}
+  \end{exercise} 
 \end{frame}
 
 
 \begin{frame}[fragile]
   \frametitle{Modules, I}
-  The \texttt{import} statement reads a \texttt{.py} file, \emph{executes
-  it}, and makes its contents available to the current program.
+  The \texttt{import} statement reads a \texttt{.py} file, executes
+  it, and makes its contents available to the current program.
 \begin{lstlisting}
 >>> import hello
 Hello, world!
@@ -543,7 +543,7 @@ else:
   # executed if none of the above matched
 \end{lstlisting}
 
-  \+ The \texttt{elif} can be repeated, with different conditions, or
+  \+The \texttt{elif} can be repeated, with different conditions, or
   left out entirely.
 
   \+
@@ -564,9 +564,9 @@ else:
 \begin{lstlisting}
 while @\it expr@:
   # indented block
-else:
-  # executed at natural end of the loop
 \end{lstlisting}
+% else:
+%   # executed at natural end of the loop
 
   \+
   To break out of a \texttt{while} loop, use the \texttt{break}
@@ -576,8 +576,8 @@ else:
   If a loop is exited via a \texttt{break} statement, the
   \texttt{else} clause is \emph{not} executed.
 
-  \+
-  The \texttt{else} clause is optional.
+  % \+
+  % The \texttt{else} clause is optional.
 \end{frame}
 
 
@@ -601,6 +601,20 @@ else:
   \end{description}
 
   \hyperlink{func1}{\beamergotobutton{Back to Functions, I}}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Recap}
+  \begin{itemize}
+  \item Variable are just \textbf{names}, a reference to real object.
+  \item to get information on something: \lstinline|help(something)|
+  \item \lstinline|def function(arg1, arg2, ...):| to define functions
+  \item Indentation is used to delimit blocks of code!
+  \item \lstinline|import| statement let you use extension modules.
+  \item modules are \textit{namespaces}
+  \item conversion between types with \lstinline|int(), float(), str()| functions.
+  \end{itemize}
 \end{frame}
 
 
