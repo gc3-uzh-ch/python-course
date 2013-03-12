@@ -89,34 +89,34 @@ virtualization software that runs on MacOSX and Windows:
 
 _Day 1: Python basics_ (Tue 12.03.2013)
 
-* <!--RM-->[Introduction][placeholder]<!--(part00.pdf)-->
-* <!--AM-->[Workstation setup][placeholder]<!--(part01.pdf)-->
-* <!--RM-->[Basics 1: data types, operators, assignment, functions][placeholder]<!--(part02.pdf)-->
-   <!-- - Downloads: [[hello.py]], [[welcome.py]] -->
-   <!-- - Solutions to exercises: [[ex02c.py]] -->
-* <!--AM-->[Basics 2: sequences and iteration][placeholder]<!--(part03.pdf)-->
-  <!-- - Solutions to exercises: [[ex03a.py]], [[ex03b.py]], [[ex03c.py]] -->
-* <!--RM-->[Objects, modules and variable scoping rules][placeholder]<!--(part04.pdf)-->
-* <!--AM-->[String manipulation, file I/O][placeholder]<!--(part05.pdf)-->
-  <!-- - Downloads: [[values.dat]], [[euro.csv]] -->
-  <!-- - Solutions to exercises: [[ex05a.py]], [[ex05b.py]], [[ex05c.py]], [[ex05d.py]] -->
+* [Introduction](part00.pdf)<!--RM-->
+* [Workstation setup](part01.pdf)<!--AM-->
+   - Downloads: [[welcome.py]]
+* [Basics 1: data types, operators, assignment, functions](part02.pdf)<!--RM-->
+   - Downloads: [[hello.py]]
+   - Solutions to exercises: [[ex02c.py]]
+* [Basics 2: sequences and iteration](part03.pdf)<!--AM-->
+  - Solutions to exercises: [[ex03a.py]], [[ex03b.py]], [[ex03c.py]]
+* [Objects, modules and variable scoping rules](part04.pdf)<!--RM-->
+* [String manipulation, file I/O](part05.pdf)<!--AM-->
+  - Downloads: [[values.dat]], [[euro.csv]]
+  - Solutions to exercises: [[ex05a.py]], [[ex05b.py]], [[ex05c.py]], [[ex05d.py]]
 
 
 _Day 2: Object-oriented Python_ (Wed 13.03.2013)
 
-* <!--RM-->[Object-oriented programming: basics][placeholder]<!--(part06.pdf)-->
-  <!-- - Downloads: [[vector.py.py]] -->
-  <!-- - Solutions to exercises: [[ex06a.py]], [[ex06b.py]] -->
-* <!--AM-->[Special methods][placeholder]<!--(part07.pdf)-->
-* <!--RM-->[Object-oriented programming: inheritance][placeholder]<!--(part08.pdf)-->
-  <!-- - Downloads: [[complexnum.py]], [[vector_and_complexnum.py]], [[grep.py]] -->
-  <!-- - Solutions to exercises: [[ex08a.py]], [[ex08b.py]], [[ex08c.py]], [[ex08d.py]], [[ex08e.py]]-->
-* <!--AM-->[Unit tests and doctests][placeholder]<!--(part09.pdf)-->
-  <!-- - Downloads: [[grep.py]] -->
-  <!-- - Solutions to exercises: [[ex09a.py]], [[ex09b.py]], [[ex09c.py]] -->
-* <!--RM-->[Exceptions and error handling][placeholder]<!--(part10.pdf)-->
-  <!-- - Solutions to exercises: [[ex10a.py]] -->
-* <!--AM-->[Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part11.pdf)-->
+* [Object-oriented programming: basics](part06.pdf)<!--RM-->
+  - Downloads: [[vector.py]]
+  - Solutions to exercises: [[ex06a.py]], [[ex06b.py]]
+* [Special methods](part07.pdf)<!--AM-->
+  - Downloads: [[vector2.py]], [[vector3.py]], [[vector4.py]], [[vector5.py]]
+* [Object-oriented programming: inheritance](part08.pdf)<!--RM-->
+  - Downloads: [[complexnum.py]], [[vector_and_complexnum.py]], [[grep.py]]
+  - Solutions to exercises: [[ex08a.py]], [[ex08b.py]], [[ex08c.py]], [[ex08d.py]], [[ex08e.py]]
+* [Unit tests and doctests][placeholder]<!--(part09.pdf)--><!--AM-->
+* [Exceptions and error handling](part10.pdf)<!--RM-->
+  - Solutions to exercises: [[ex10a.py]]
+* [Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part11.pdf)--><!--AM-->
 
 [placeholder]: http://www.explosm.net/db/files/Comics/Matt/curiosity-killed-the-cat.png
 
