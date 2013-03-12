@@ -116,7 +116,7 @@ _Day 2: Object-oriented Python_ (Wed 13.03.2013)
 * [Unit tests and doctests][placeholder]<!--(part09.pdf)--><!--AM-->
 * [Exceptions and error handling](part10.pdf)<!--RM-->
   - Solutions to exercises: [[ex10a.py]]
-* [Do not reinvent the wheel: a survey of useful Python libraries][placeholder]<!--(part11.pdf)--><!--AM-->
+* [Do not reinvent the wheel: a survey of useful Python libraries](part11.pdf)<!--AM-->
 
 [placeholder]: http://www.explosm.net/db/files/Comics/Matt/curiosity-killed-the-cat.png
 

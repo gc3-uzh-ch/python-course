@@ -1,0 +1,135 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usepackage{gc3}
+
+\title[Introduction]{%
+  Do not reinvent the wheel:
+  \\
+  A survey of useful Python packages
+}
+\author[GC3]{%
+  GC3: Grid Computing Competence Center, \\
+  University of Zurich
+}
+\date{Mar.~12--13, 2013}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+\begin{frame}
+  \frametitle{There is more to Python than this\ldots}
+
+  The time and scope of this course is rather limited.
+
+  \+
+  Here is an (incomplete) list of Python features that you might
+  want to look up as you become more experienced in the language:
+  % XXX: mettere un link per ciascuna di queste!
+  \begin{itemize}
+  \item Generators and Iterators
+  \item \href{http://www.artima.com/weblogs/viewpost.jsp?thread=240808}{Decorators}
+  \item Class-level attributes, classmethods, staticmethods
+  \item Properties and accessors
+  \item \href{http://stackoverflow.com/a/6581949/459543}{Metaclasses}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{NumPy: linear algebra package}
+
+  \href{http://www.numpy.org/}{NumPy} is a package for linear algebra
+  and advanced mathematics in Python.
+
+  \+ It provides a \emph{fast} implementation of multidimensional
+  numerical arrays (C/FORTRAN like), vectors, matrices, tensors and
+  operations on them.
+
+  \+ \emph{Use it if:} you long for MATLAB core features.
+
+  \begin{seealso}
+    \url{http://www.numpy.org/}
+  \end{seealso}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{SciPy: a toolbox for numerics}
+
+  ``\href{http://www.scipy.org}{SciPy} is open-source software for
+  mathematics, science, and engineering. \emph{[\ldots]} The SciPy
+  library provides many user-friendly and efficient numerical routines
+  such as routines for numerical integration and optimization.''
+
+  \+ One of its main aim is to provide a reimplementation of the
+  MATLAB toolboxes.
+
+  \+ \emph{Use it if:} you long for MATLAB toolbox features.
+
+  \begin{seealso}
+    \url{http://www.scipy.org/}
+  \end{seealso}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Pandas: doing statistics in Python}
+
+  \href{http://pandas.pydata.org/}{Pandas} is a Python data analysis
+  library, that provides optimized routines for analyzing 2D, 3D, 4D
+  data.
+
+  \+ ``Pandas \emph{[\ldots]} enables you to carry out your entire
+  data analysis workflow in Python without having to switch to a more
+  domain specific language like R.''
+
+  \+ \emph{Use it if:} you need features from \emph{R}, \texttt{plyr},
+  \texttt{reshape2}.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{NLTK: Natural Language Processing}
+
+  \href{http://nltk.org/}{NLTK} \emph{(Natural Language ToolKit)} ``is
+  a leading platform for building Python programs to work with human
+  language data. It provides easy-to-use interfaces to over 50 corpora
+  and lexical resources such as WordNet, along with a suite of text
+  processing libraries for classification, tokenization, stemming,
+  tagging, parsing, and semantic reasoning.''
+
+  \+ This is considered one of the leading natural language parsing
+  libraries, not just for Python.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{SQLAlchemy: portable access to databases}
+
+  \href{http://www.sqlalchemy.org/}{SQLAlchemy} is a Python library
+  that provides portable and powerful access to SQL databases, with a
+  natural Python syntax.
+
+  \+ \href{http://www.sqlalchemy.org/}{SQLAlchemy} frees you and your
+  code from knowing SQL syntax and the annoying little differences
+  among DBs: the same code would run witl SQLite, MySQL, PostgreSQL,
+  MS-SQL, Oracle, etc.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Want more? Look into PyPI}
+
+  \href{http://pypi.python.org}{PyPI} is \emph{the} index of Python software packages.
+
+  \+ It currently indexes 28941 packages, so the choice is really vast.
+
+  \+ Almost all packages can be installed with a single command by
+  running \href{https://pypi.python.org/pypi/pip}{\texttt{pip install
+    \emph{packagename}}}.
+
+  % XXX: inserire screenshot della front-page di PyPI
+\end{frame}
+
+\end{document}
