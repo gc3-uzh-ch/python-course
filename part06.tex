@@ -316,8 +316,29 @@ class Vector(object):
 \end{frame}
 
 
+\begin{frame}
+  \frametitle{No access control}
+  There are no ``public''/``private''/etc. qualifiers for object
+  attributes.
+
+  \+
+  \textbf{\emph{Any} code can create/read/overwrite/delete \emph{any} attribute on
+    \emph{any} object.}
+
+  \+
+  There are \emph{conventions}, though:
+  \begin{itemize}
+  \item ``protected'' attributes: \texttt{\_name}
+  \item ``private'' attributes: \texttt{\_\_name}
+  \end{itemize}
+  (But again, note that this is not \emph{enforced} by the system in
+  any way.)
+
+\end{frame}
+
+
 \begin{frame}[fragile]
-  \frametitle{Recal: \emph{Name resolution rules}}
+  \frametitle{Name resolution rules, I}
   \small
 
   Within a function body, names are resolved according to \href{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}{the LEGB rule}:
@@ -339,8 +360,183 @@ class Vector(object):
   \texttt{date}, etc.
 
   % \begin{references}
-  %   \url{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}}
+  %   \url{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}
   % \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, II}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as dt
+
+def today():
+  @\HL{td}@ = dt.date.today()
+  return "today is " + @\HL{td}@.isoformat()
+
+def hey(@\HL{name}@):
+  print("Hey " + @\HL{name}@ + "; " + today())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Unqualified name within a function: resolves to a local variable.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, III}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as dt
+
+def today():
+  td = dt.date.today()
+  return "today is " + td.isoformat()
+
+def hey(name):
+  print("Hey " + name + "; " + @\HL{today}@())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Unqualified name: since there is no local variable by that name,
+      it resolves to a module-level binding, i.e., to the
+      \texttt{today} function defined above.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, IV}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as @\HL[Red!25]{dt}@
+
+def today():
+  td = @\HL{dt}@.date.today()
+  return "today is " + td.isoformat()
+
+def hey(name):
+  print("Hey " + name + "; " + today())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Unqualified name: resolves to the \texttt{dt} name created at global scope by the \texttt{import} statement.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, V}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as dt
+
+def today():
+  td = @\HL{dt.date}@.today()
+  return "today is " + td.isoformat()
+
+def hey(name):
+  print("Hey " + name + "; " + today())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Qualified name: instructs Python to search the
+      \texttt{date} attribute within the \texttt{dt} module.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, VI}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+import datetime as dt
+
+def today():
+  td = dt.date.today()
+  return "today is " + @\HL{td.isoformat}@()
+
+def hey(name):
+  print("Hey " + name + "; " + today())
+
+hey("you")
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Qualified name: Python searches the \texttt{isoformat} attribute
+      within the \texttt{td} object instance.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, VI}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+class Vector(object):
+  def __init__(self, @\HL[Red!25]{x}@, @\HL[Red!25]{y}@):
+    self.x = @\HL{x}@
+    self.y = @\HL{y}@
+  # ...
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Unqualified name: resolves to a local variable in
+      scope of function \lstinline|__init__|.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Name resolution rules, VII}
+  \begin{columns}
+    \begin{column}[t]{0.6\linewidth}
+\begin{lstlisting}
+class Vector(object):
+  def __init__(self, x, y):
+    @\HL{self.x}@ = x
+    @\HL{self.y}@ = y
+  # ...
+\end{lstlisting}
+    \end{column}
+    \begin{column}[t]{0.4\linewidth}
+      \raggedleft
+      Qualified names: resolve to attributes in object \lstinline|self|.
+
+      \+ (Actually, \lstinline|self.x = ...| \emph{creates} the
+      attribute \lstinline|x| on \lstinline|self| if it does not exist
+      yet.)
+    \end{column}
+  \end{columns}
+
 \end{frame}
 
 
