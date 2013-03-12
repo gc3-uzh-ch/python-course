@@ -111,8 +111,8 @@ _Day 2: Object-oriented Python_ (Wed 13.03.2013)
 * [Special methods](part07.pdf)<!--AM-->
   - Downloads: [[vector2.py]], [[vector3.py]], [[vector4.py]], [[vector5.py]]
 * [Object-oriented programming: inheritance](part08.pdf)<!--RM-->
-  - Downloads: [[complexnum.py]], [[vector_and_complexnum.py]], [[grep.py]]
-  - Solutions to exercises: [[ex08a.py]], [[ex08b.py]], [[ex08c.py]], [[ex08d.py]], [[ex08e.py]]
+  - Downloads: [[complexnum.py]], [[vector_and_complexnum.py]], [[wt.csv]]
+  - Solutions to exercises: [[ex08a.py]], [[ex08b.py]], [[ex08c.py]], [[ex08d.py]], [[ex08e.py]], [[ex08f.py]]
 * [Unit tests and doctests](part09.pdf)<!--AM-->
   - Downloads: [[vector6.py]]
 * [Exceptions and error handling](part10.pdf)<!--RM-->

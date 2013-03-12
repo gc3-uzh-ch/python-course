@@ -19,11 +19,11 @@ class Evens(object):
 
 
 if __name__ == '__main__':
-    e = OnlyEvens([1,2,3,5,7,8,10])
+    e = Evens([1,2,3,5,7,8,10])
     e.next() == 2
     e.next() == 8
     e.next() == 10
 
-    e = OnlyEvens([1,2,3,5,7,8,10])
+    e = Evens([1,2,3,5,7,8,10])
     for i in e:
         print (i*i)

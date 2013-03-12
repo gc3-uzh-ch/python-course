@@ -1,25 +1,29 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
 
-import re
+class ReadPairs(object):
 
-class Grep(object):
+    def __init__(self, filename):
+        self.fd = open(filename, 'r')
 
-    def __init__(self, filename, pattern):
-        self._file = open(filename, 'r')
-        self._pattern = pattern
+    def next(self):
+        while True:
+            # upon EOF, this also raises StopIteration so no need to
+            # do it ourselves
+            line = self.fd.next()
+            values = line.split(",")
+            if len(values) == 2:
+                i = int(values[0])
+                j = int(values[1])
+                return (i, j)
 
+    # must return an iterator, i.e., an object with a next() method
     def __iter__(self):
         return self
 
-    def next(self):
-        line = self._file.next()
-        while not re.search(self._pattern, line):
-            line = self._file.next()
-        return line
-
 
 if __name__ == '__main__':
-    # test Grep
-    grep = Grep(__file__, 'class Grep[A-Za-z]+')
-    assert 'class GrepOnlyMatching(object):\n' == grep.next()
-    assert 'class GrepExactly(object):\n' == grep.next()
+    wt = ReadPairs('wt.csv')
+
+    # first well-formed lines of the file
+    assert wt.next() == (1, 21)
+    assert wt.next() == (128, 175)

@@ -2,7 +2,7 @@
 
 import re
 
-class GrepExactly(object):
+class GrepOnlyMatching(object):
 
     def __init__(self, filename, pattern):
         self._file = open(filename, 'r')
@@ -13,14 +13,15 @@ class GrepExactly(object):
 
     def next(self):
         line = self._file.next()
-        while self._pattern not in line:
+        match = re.search(self._pattern, line)
+        while not match:
             line = self._file.next()
-        return line
+            match = re.search(self._pattern, line)
+        return match.group(0)
 
 
 if __name__ == '__main__':
-    # test GrepExactly
-    grep = GrepExactly(__file__, 'class Grep')
-    assert 'class Grep(object):\n' == grep.next()
-    assert 'class GrepOnlyMatching(object):\n' == grep.next()
-    assert 'class GrepExactly(object):\n' == grep.next()
+    # test GrepOnlyMatching
+    grep = GrepOnlyMatching(__file__, 'class Grep[A-Za-z]+')
+    assert 'class GrepOnlyMatching' == grep.next()
+    assert 'class GrepExactly' == grep.next()
