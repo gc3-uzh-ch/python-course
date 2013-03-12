@@ -116,7 +116,7 @@ _Day 2: Object-oriented Python_ (Wed 13.03.2013)
 * [Unit tests and doctests](part09.pdf)<!--AM-->
   - Downloads: [[vector6.py]]
 * [Exceptions and error handling](part10.pdf)<!--RM-->
-  - Solutions to exercises: [[ex10a.py]]
+  - Solutions to exercises: [[ex10a.py]], [[ex10b.py]]
 * [Do not reinvent the wheel: a survey of useful Python libraries](part11.pdf)<!--AM-->
 
 [placeholder]: http://www.explosm.net/db/files/Comics/Matt/curiosity-killed-the-cat.png

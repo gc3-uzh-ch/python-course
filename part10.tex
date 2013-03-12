@@ -28,7 +28,7 @@
 \begin{lstlisting}
 class NewKindOfError(Exception):
   """
-  Do use the docstring to document 
+  Do use the docstring to document
   what this error is about.
   """
   pass
@@ -76,7 +76,7 @@ finally:
 
 \begin{frame}[fragile]
   \frametitle{Raising exceptions}
-  
+
   Use the \lstinline|raise| statement with an \texttt{Exception}
   instance:
 \begin{lstlisting}
@@ -98,18 +98,30 @@ except ItDidntWork:
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
   \begin{exercise}
-    The \texttt{os.mkdir()} function raises a \texttt{OSError}
-    exception if asked to create a directory that already exists.
+    Enhance the function \lstinline|load_data| defined in Exercise 5B:
+    if an error is found (for instance a line which cannot be converted to
+    an integer), silently ignore it.
 
-    \+ 
-    Write a \texttt{mkdir\_p(path)} function that creates a
-    directory at \texttt{path}, but does nothing if the directory
-    already exists.  Return \texttt{True} if the directory has been
-    actually created, and \texttt{False} if nothing was changed on the
-    file system.
+    Test your code on the \texttt{test.csv} data file:
+\begin{lstlisting}
+>>> load_data('test.csv')
+[1, 2, 3, 4]
+\end{lstlisting}
   \end{exercise}
+
+  % \begin{exercise}
+  %   The \texttt{os.mkdir()} function raises a \texttt{OSError}
+  %   exception if asked to create a directory that already exists.
+
+  %   \+
+  %   Write a \texttt{mkdir\_p(path)} function that creates a
+  %   directory at \texttt{path}, but does nothing if the directory
+  %   already exists.  Return \texttt{True} if the directory has been
+  %   actually created, and \texttt{False} if nothing was changed on the
+  %   file system.
+  % \end{exercise}
 \end{frame}
 
 
@@ -117,7 +129,7 @@ except ItDidntWork:
   \frametitle{Exception handling example}
 
 Read lines from a CSV file, ignoring those that do not have the
-required number of fields.  If other errors occur, abort. 
+required number of fields.  If other errors occur, abort.
 Close the file when done.
 \begin{lstlisting}
 job_state = { } # empty dict
@@ -140,7 +152,7 @@ finally:
 
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:

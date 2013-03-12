@@ -1,23 +1,25 @@
 #!/usr/bin/env python
 
-# stdlib module for filesystem operations
-import os
-
-
-def mkdir_p(path):
+def load_data(filename):
     """
-    Create a directory at location `path`.
-    If the directory already exists, do nothing.
-
-    Return `True` or `False`, depending on whether
-    a directory was created or not.
+    Write a function load_data(filename) that reads a file containing
+    one integer number per line, and return a list of the integer values.
     """
-    try:
-        os.mkdir(path)
-        return True
-    except OSError:
-        return False
+    fd = open(filename)
+
+    values = []
+    for line in fd:
+        line = line.strip()
+        try:
+            elt = int(line)
+            values.append(elt)
+        except:
+            print ("load_data: Ignoring line '%s'" % line)
+
+    return values
 
 
-if __name__ == '__main__':
-    assert mkdir_p('/') == False
+if __name__ == "__main__":
+    data = load_data('test.csv')
+
+    assert data == [1, 2, 3, 4]
