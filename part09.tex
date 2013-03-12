@@ -39,7 +39,7 @@
   \frametitle{Different kind of tests} 
 
   Each test will check that a component of your code behaves in a
-  specific way when feed it with a specific input.
+  specific way when you feed it with a specific input.
 
   \+
   There are two kind of tests:
@@ -61,7 +61,7 @@
 
 
 \begin{frame}[fragile]
-  \frametitle{Doctest (1/2)}
+  \frametitle{Doctest (1/3)}
 
   The \lstinline|doctest| module searches for text that looks like
   interactive Python sessions in \textit{docstrings}, and then
@@ -79,17 +79,83 @@
       >>> square(-2)
       4
     """
-
     return n*n
   \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Doctest (2/2)}
+  \frametitle{Doctest (2/3)}
+  \begin{columns}[t]
+    \begin{column}{0.6\textwidth}
+  \begin{lstlisting}
+def square(x):
+    """ 
+    @\HL{This function compute}@
+    @\HL{the square of a number.}@
 
-  Execute all the tests of your module with:
+      >>> square(2)
+      4
+    """    
+  \end{lstlisting}
+\end{column}
+\begin{column}{0.4\textwidth}
+  Line \textbf{not} starting with \texttt{>>>} and \textbf{not}
+  following any line starting with \texttt{>>>}. It's documentation.
+\end{column}
+\end{columns}
+\end{frame}
 
-  \begin{lstlisting}[language=sh]
+\begin{frame}[fragile]
+  \frametitle{Doctest (2/3)}
+\begin{columns}[t]
+  \begin{column}{0.6\textwidth}
+  \begin{lstlisting}
+def square(x):
+    """ 
+    This function compute
+    the square of a number.
+
+      @\HL{>>> square(2)}@
+      4
+    """    
+  \end{lstlisting}
+\end{column}
+\begin{column}{0.4\textwidth}
+  It starts with a \texttt{>>>}, so it's python code: the line will be
+  executed inside a python shell.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Doctest (2/3)}
+\begin{columns}[t]
+  \begin{column}{0.6\textwidth}
+  \begin{lstlisting}
+def square(x):
+    """
+    This function compute
+    the square of a number.
+
+      >>> square(2)
+      @\HL{4}@
+    """    
+  \end{lstlisting}
+\end{column}
+\begin{column}{0.4\textwidth}
+  It follows a line beginning with \texttt{>>>} \textbf{and} is
+  indented in the same way: it's the output of the previous python
+  statement.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Doctest (3/3)}
+
+  To execute all the tests of your module just run: 
+\+ 
+\begin{lstlisting}[language=sh]
 $ python -m doctest mymodule.py
   \end{lstlisting}
 %$
@@ -99,24 +165,39 @@ $ python -m doctest mymodule.py
   \lstinline|doctest| module using your module file as argument.
 
   \+
-  If you are writing a module and not a script you can also add to it:
+  By default it will only show failed tests, so if it does not print
+  anything it means that all the tests passed.
 
-  \begin{lstlisting}
-if __name__ == "__main__":
-    import doctest doctest.testmod()
-  \end{lstlisting}
+  \+
+  You can add a \lstinline|-v| option to have a more verbose output
+  which includes all the tests executed.
 
-  and execute the file with:
 
-  \begin{lstlisting}[language=sh]
-$ python mymodule.py    
-  \end{lstlisting}%$
+
+%   \+
+%   If you are writing a module and not a script you can also add to it:
+
+%   \begin{lstlisting}
+% if __name__ == "__main__":
+%     import doctest doctest.testmod()
+%   \end{lstlisting}
+
+%   and execute the file with:
+
+%   \begin{lstlisting}[language=sh]
+% $ python mymodule.py    
+%   \end{lstlisting}%$
 \end{frame}
 
 \begin{frame}
-\+ \textbf{Exercise:} the file
+\+
+\begin{exercise}
+  The file
   \href{http://www.gc3.uzh.ch/vector6.py}{\texttt{vector6.py}}
-  has some doctest, but they are wrong. Find them and fix them!.
+  has some doctest, but they are wrong. Run the tests, find the errors
+  and fix them!
+\end{exercise}
+
 \end{frame}
 
 
@@ -157,6 +238,11 @@ class MyTest(unittest.TestCase):
   \item[\texttt{assertAlmostEqual(x, y)}] 
   \item[\ldots] a lot more, cfr. \lstinline|help(unittest)|
   \end{description}
+
+  \+
+\textit{Each one of these method is able to print detailed informations on
+  why the test failed, this is why you don't just use
+  \texttt{assertTrue()} for all the tests\ldots}
 
 \end{frame}
 
