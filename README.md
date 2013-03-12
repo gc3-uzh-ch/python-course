@@ -100,7 +100,7 @@ _Day 1: Python basics_ (Tue 12.03.2013)
 * [Everything is an object!](part04.pdf)<!--RM-->
 * [String manipulation, file I/O](part05.pdf)<!--AM-->
   - Downloads: [[values.dat]], [[euro.csv]]
-  - Solutions to exercises: [[ex05a.py]], [[ex05b.py]], [[ex05c.py]], [[ex05d.py]]
+  - Solutions to exercises: [[ex05a.py]], [[ex05b.py]], [[ex05c.py]], [[ex05d.py]], [[ex05e.py]] (aka `rename.py`)
 
 
 _Day 2: Object-oriented Python_ (Wed 13.03.2013)
