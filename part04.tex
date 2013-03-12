@@ -1,8 +1,8 @@
 \documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
 \usepackage{gc3}
 
-\title[OOP]{%
-  Objects, modules and variable scoping rules
+\title[Objects]{%
+  Everything is an object!
 }
 \author[GC3]{%
   GC3: Grid Computing Competence Center, \\
@@ -168,224 +168,102 @@
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{No access control}
-  There are no ``public''/``private''/etc. qualifiers for object
-  attributes.
+\begin{frame}[fragile]
+  \frametitle{Everything is an object!}
+
+  The \texttt{dir} built-in function is used to list the attributes of an object.
+
+  \begin{python}
+>>> dir("hello!")
+  \end{python}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Everything is an object!}
+
+  The \texttt{dir} built-in function is used to list the attributes of an object.
+
+  \begin{python}
+>>> @\HL{dir("hello!")}@
+['__add__', '__class__', '__contains__',
+ '__delattr__', '__doc__', '__eq__',
+ @\ldots@
+'strip', 'swapcase', 'title',
+'translate', 'upper', 'zfill']
+\end{python}
+
+\+\ldots a string is an object!
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Everything is an object!}
+
+  \begin{python}
+>>> @\HL{dir([1,2,3])}@
+['__add__', '__class__', '__contains__',
+@\ldots@
+'append', 'count', 'extend',
+'index', 'insert', 'pop',
+'remove', 'reverse', 'sort']
+\end{python}
+
+\+\ldots a \texttt{list} is an object!
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Everything is an object!}
+  Indeed, you can do:
 
   \+
-  \textbf{\emph{Any} code can create/read/overwrite/delete \emph{any} attribute on
-    \emph{any} object.}
+  \begin{python}
+>>> "hello world!".split()
+['hello', 'world!']
+\end{python}
 
-  \+
-  There are \emph{conventions}, though:
-  \begin{itemize}
-  \item ``protected'' attributes: \texttt{\_name}
-  \item ``private'' attributes: \texttt{\_\_name}
-  \end{itemize}
-  (But again, note that this is not \emph{enforced} by the system in
-  any way.)
+\+
+\begin{python}
+>>> [1,1,2,3,5].count(1)
+2
+\end{python}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Everything is an object!}
+
+\begin{python}
+>>> @\HL{dir(1)}@
+\end{python}
 
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Equality, identity}
-  The \texttt{is} operator returns \texttt{True} if two names refer to
-  the same instance; the \texttt{==} operator compares the
-  \emph{values} of two objects.\footnote{A class can define how
-    exactly the \texttt{==} operator should carry out the comparison.}
+  \frametitle{Everything is an object!}
 
-  \+
-  Note that two instances may be equal in any respect yet be
-  different instances: \emph{equality is not identity!}
-\begin{lstlisting}
->>> dt4 = date(2012,9,28)
->>> dt5 = date(2012,9,28)
->>> dt4 == dt5
-True
->>> dt4 is dt5
-False
-\end{lstlisting}
+  \begin{python}
+>>> @\HL{dir(2)}@
+['__abs__', '__add__', '__and__',
+@\ldots@
+'conjugate', 'denominator',
+'imag', 'numerator', 'real']
+\end{python}
+
+\+\ldots an \texttt{int} is an object!
+
+\+
+\begin{python}
+>>> (2).numerator
+2
+>>> (2).denominator
+1
+\end{python}
+
+
 \end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Name resolution rules, I}
-  \small
-
-  Within a function body, names are resolved according to \href{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}{the LEGB rule}:
-  \begin{description}
-  \item[L] Local scope: any names defined in the current function;
-  \item[E] Enclosing function scope: names defined in enclosing
-    functions (outermost last);
-  \item[G] global scope: names defined in the toplevel of the enclosing module;
-  \item[B] Built-in names (i.e., Python's \texttt{\_\_builtins\_\_} module).
-  \end{description}
-
-  \+
-  \textbf{Any name that is not in one of the above scopes \emph{must}
-    be qualified.}
-
-  \begin{references}
-    \url{http://stackoverflow.com/questions/291978/short-description-of-python-scoping-rules/292502#292502}
-  \end{references}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Name resolution rules, II}
-  \begin{columns}
-    \begin{column}[t]{0.6\linewidth}
-\begin{lstlisting}
-import datetime as @\HL{dt}@
-
-def today():
-  td = dt.date.today()
-  return "today is " + td.isoformat()
-
-def hey(name):
-  print("Hey " + name + "; " + today())
-
-hey("you")
-\end{lstlisting}
-    \end{column}
-    \begin{column}[t]{0.4\linewidth}
-      \raggedleft
-      Create a Python module and bind it to the
-      \texttt{dt} name at global level.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Name resolution rules, III}
-  \begin{columns}
-    \begin{column}[t]{0.6\linewidth}
-\begin{lstlisting}
-import datetime as dt
-
-def today():
-  @\HL{td}@ = dt.date.today()
-  return "today is " + @\HL{td}@.isoformat()
-
-def hey(@\HL{name}@):
-  print("Hey " + @\HL{name}@ + "; " + today())
-
-hey("you")
-\end{lstlisting}
-    \end{column}
-    \begin{column}[t]{0.4\linewidth}
-      \raggedleft
-      Unqualified name within a function: resolves to a local variable.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Name resolution rules, IV}
-  \begin{columns}
-    \begin{column}[t]{0.6\linewidth}
-\begin{lstlisting}
-import datetime as dt
-
-def today():
-  td = dt.date.today()
-  return "today is " + td.isoformat()
-
-def hey(name):
-  print("Hey " + name + "; " + @\HL{today}@())
-
-hey("you")
-\end{lstlisting}
-    \end{column}
-    \begin{column}[t]{0.4\linewidth}
-      \raggedleft
-      Unqualified name: since there is no local variable by that name,
-      it resolves to a module-level binding, i.e., to the
-      \texttt{today} function defined above.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Name resolution rules, V}
-  \begin{columns}
-    \begin{column}[t]{0.6\linewidth}
-\begin{lstlisting}
-import datetime as dt
-
-def today():
-  td = @\HL{dt.date}@.today()
-  return "today is " + td.isoformat()
-
-def hey(name):
-  print("Hey " + name + "; " + today())
-
-hey("you")
-\end{lstlisting}
-    \end{column}
-    \begin{column}[t]{0.4\linewidth}
-      \raggedleft
-      Qualified name: instructs Python to search the
-      \texttt{date} attribute within the \texttt{dt} module.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Name resolution rules, VI}
-  \begin{columns}
-    \begin{column}[t]{0.6\linewidth}
-\begin{lstlisting}
-import datetime as dt
-
-def today():
-  td = dt.date.today()
-  return "today is " + @\HL{td.isoformat}@()
-
-def hey(name):
-  print("Hey " + name + "; " + today())
-
-hey("you")
-\end{lstlisting}
-    \end{column}
-    \begin{column}[t]{0.4\linewidth}
-      \raggedleft
-      Qualified name: Python searches the \texttt{isoformat} attribute
-      within the \texttt{td} object instance.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
-% \begin{frame}[fragile]
-%   \frametitle{Name resolution rules, II}
-%   \begin{columns}
-%     \begin{column}[t]{0.6\linewidth}
-% \begin{lstlisting}
-% import datetime as dt
-
-% def today():
-%   td = dt.date.today()
-%   return "today is " + td.isoformat()
-
-% def hey(name):
-%   print("Hey " + name + "; " + today())
-
-% hey("you")
-% \end{lstlisting}
-%     \end{column}
-%     \begin{column}[t]{0.4\linewidth}
-%       \raggedleft
-
-%     \end{column}
-%   \end{columns}
-% \end{frame}
 
 
 \end{document}
