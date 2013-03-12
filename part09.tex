@@ -70,14 +70,17 @@
   \+
   Combines \textit{documentation} and \textit{tests}
   \begin{lstlisting}
-  def __mul__(self, scalar):
+  def square(self, n):
     """
-    This works both as documentation *and* test.
+    This function compute the square of a number.
 
-      >>> v = Vector(1, 2)
-      >>> print v * 2
-      <2,4>
+      >>> square(2)
+      4
+      >>> square(-2)
+      4
     """
+
+    return n*n
   \end{lstlisting}
 \end{frame}
 
@@ -87,7 +90,7 @@
   Execute all the tests of your module with:
 
   \begin{lstlisting}[language=sh]
-$ python -m doctest vector6.py
+$ python -m doctest mymodule.py
   \end{lstlisting}
 %$
 
@@ -95,9 +98,94 @@ $ python -m doctest vector6.py
   The \lstinline|-m doctest| option tells python to \textit{execute} the
   \lstinline|doctest| module using your module file as argument.
 
-  \+ \textbf{Exercise:} the file
+  \+
+  If you are writing a module and not a script you can also add to it:
+
+  \begin{lstlisting}
+if __name__ == "__main__":
+    import doctest doctest.testmod()
+  \end{lstlisting}
+
+  and execute the file with:
+
+  \begin{lstlisting}[language=sh]
+$ python mymodule.py    
+  \end{lstlisting}%$
+\end{frame}
+
+\begin{frame}
+\+ \textbf{Exercise:} the file
   \href{http://www.gc3.uzh.ch/vector6.py}{\texttt{vector6.py}}
   has some doctest, but they are wrong. Find them and fix them!.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The unittest module (1/3)}
+  Allows you to create tests in a more structured way using the
+  \textit{Template method pattern}.
+
+  \+
+  Supports \textit{fixtures}, code to run before and/or after each
+  test to prepare and cleanup the testing environment
+
+  \begin{lstlisting}
+import unittest
+
+class MyTest(unittest.TestCase):
+  def test_square(self):
+    self.assertEqual(square(2), 4)
+    self.assertEqual(square(-2), 4)
+
+  def setUp(self):
+    # this code is run *before* each test method
+  def tearDown(self):
+    # this code is run *after* each test method.    
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{The unittest module (2/3)}
+
+  Each \lstinline|unittest.TestCase| class defines some methods:
+  \begin{description}
+  \item [\texttt{assertEqual(x,y)}] check that \lstinline|x == y|
+  \item[\texttt{assertTrue(x)}] check that \lstinline|x is True|
+  \item[\texttt{assertGreater(x, y)}] check that \lstinline|x > y|
+  \item[\texttt{assertIsInstance(obj, cls)}] check that
+    \lstinline|obj| is an isntance of \lstinline|cls|
+  \item[\texttt{assertAlmostEqual(x, y)}] 
+  \item[\ldots] a lot more, cfr. \lstinline|help(unittest)|
+  \end{description}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{The unittest module (3/3)}
+Run your tests using
+\+
+  \begin{lstlisting}[language=sh]
+$ python -m unittest -v modulename
+test_square (modulename.MyTest) ... ok
+
+--------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+\end{lstlisting}
+%$
+
+or, if it's a module and not a script, by adding:
+\begin{lstlisting}
+if __name__ == "__main__":
+    unittest.main()  
+\end{lstlisting}
+and executing:
+
+\begin{lstlisting}[language=sh]
+$ python modulenae.py
+\end{lstlisting}%$
+
 \end{frame}
 
 
