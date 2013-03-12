@@ -1,7 +1,3 @@
-* part04:
-  - (RM) muovere slide "No access control" e "Equality vs Identity" in part5 (OOP1)
-  - (RM) muovere "Name resolution rules" in OOP1, subito dopo la discussione di "self"
-
 * part09:
   - (AM) scriverla
 
