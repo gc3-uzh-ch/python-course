@@ -150,7 +150,7 @@ For further information, please write to: <info@gc3.lists.uzh.ch>
 
 <iframe
     src="https://docs.google.com/spreadsheet/embeddedform?formkey=dERQWE02QnFnMGs1amg5WFEzbEhOM3c6MA"
-    width="640" height="2500"
+    width="800" height="2600"
     frameborder="0"
     marginheight="0"
     marginwidth="0">
