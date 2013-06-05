@@ -43,33 +43,33 @@ We normally deliver the course in two sessions, of one day each:
 
 * [Introduction](part00.tex)
 * [Workstation setup](part01.tex)
-   - Downloads: [[welcome.py]]
+   - Downloads: [welcome.py](welcome.py)
 * [Basics 1: data types, operators, assignment, functions](part02.tex)
-   - Downloads: [[hello.py]]
-   - Solutions to exercises: [[ex02c.py]]
+   - Downloads: [hello.py](hello.py)
+   - Solutions to exercises: [ex02c.py](ex02c.py)
 * [Basics 2: sequences and iteration](part03.tex)
-  - Solutions to exercises: [[ex03a.py]], [[ex03b.py]], [[ex03c.py]]
+  - Solutions to exercises: [ex03a.py](ex03a.py), [ex03b.py](ex03b.py), [ex03c.py](ex03c.py)
 * [Everything is an object!](part04.tex)
 * [String manipulation, file I/O](part05.tex)
-  - Downloads: [[values.dat]], [[euro.csv]]
-  - Solutions to exercises: [[ex05a.py]], [[ex05b.py]], [[ex05c.py]], [[ex05d.py]], [[ex05e.py]] (aka `rename.py`)
+  - Downloads: [values.dat](values.dat), [euro.csv](euro.csv)
+  - Solutions to exercises: [ex05a.py](ex05a.py), [ex05b.py](ex05b.py), [ex05c.py](ex05c.py), [ex05d.py](ex05d.py), [ex05e.py](ex05e.py) (aka `rename.py`)
 
 
 ### Day 2: Object-oriented Python
 
 * [Object-oriented programming: basics](part06.tex)
-  - Downloads: [[vector.py]]
-  - Solutions to exercises: [[ex06a.py]], [[ex06b.py]]
+  - Downloads: [vector.py](vector.py)
+  - Solutions to exercises: [ex06a.py](ex06a.py), [ex06b.py](ex06b.py)
 * [Special methods](part07.tex)
-  - Downloads: [[vector2.py]], [[vector3.py]], [[vector4.py]], [[vector5.py]]
+  - Downloads: [vector2.py](vector2.py), [vector3.py](vector3.py), [vector4.py](vector4.py), [vector5.py](vector5.py)
 * [Object-oriented programming: inheritance](part08.tex)
-  - Downloads: [[complexnum.py]], [[vector_and_complexnum.py]], [[wt.csv]]
-  - Solutions to exercises: [[ex08a.py]], [[ex08b.py]], [[ex08c.py]], [[ex08d.py]], [[ex08e.py]], [[ex08f.py]]
+  - Downloads: [complexnum.py](complexnum.py), [vector_and_complexnum.py](vector_and_complexnum.py), [wt.csv](wt.csv)
+  - Solutions to exercises: [ex08a.py](ex08a.py), [ex08b.py](ex08b.py), [ex08c.py](ex08c.py), [ex08d.py](ex08d.py), [ex08e.py](ex08e.py), [ex08f.py](ex08f.py)
 * [Unit tests and doctests](part09.tex)
-  - Downloads: [[vector6.py]]
+  - Downloads: [vector6.py](vector6.py)
 * [Exceptions and error handling](part10.tex)
-  - Downloads: [[test.csv]]
-  - Solutions to exercises: [[ex10a.py]], [[ex10b.py]]
+  - Downloads: [test.csv](test.csv)
+  - Solutions to exercises: [ex10a.py](ex10a.py), [ex10b.py](ex10b.py)
 * [Do not reinvent the wheel: a survey of useful Python libraries](part11.tex)
 
 
