@@ -1,4 +1,5 @@
 \documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usetheme[informal]{gc3}
 \usepackage{gc3}
 
 \title[Part 4]{%
@@ -115,7 +116,7 @@ data = [ int(line) for line in open('values.dat')
 \begin{frame}[fragile]
   \frametitle{List comprehensions, II}
   \def\e{\ttfamily\itshape}
-  
+
   The general syntax of a list comprehension is:
   \begin{python}
     @\bf[@ @\e expr@ for @\e var@ in @\e iterable@ if @\e condition@ @\bf]@

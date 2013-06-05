@@ -1,4 +1,5 @@
 \documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usetheme[informal]{gc3}
 \usepackage{gc3}
 
 \title[Testing]{%
@@ -36,7 +37,7 @@
 
 
 \begin{frame}
-  \frametitle{Different kind of tests} 
+  \frametitle{Different kind of tests}
 
   Each test will check that a component of your code behaves in a
   specific way when you feed it with a specific input.
@@ -89,13 +90,13 @@
     \begin{column}{0.6\textwidth}
   \begin{lstlisting}
 def square(x):
-    """ 
+    """
     @\HL{This function compute}@
     @\HL{the square of a number.}@
 
       >>> square(2)
       4
-    """    
+    """
   \end{lstlisting}
 \end{column}
 \begin{column}{0.4\textwidth}
@@ -111,13 +112,13 @@ def square(x):
   \begin{column}{0.6\textwidth}
   \begin{lstlisting}
 def square(x):
-    """ 
+    """
     This function compute
     the square of a number.
 
       @\HL{>>> square(2)}@
       4
-    """    
+    """
   \end{lstlisting}
 \end{column}
 \begin{column}{0.4\textwidth}
@@ -139,7 +140,7 @@ def square(x):
 
       >>> square(2)
       @\HL{4}@
-    """    
+    """
   \end{lstlisting}
 \end{column}
 \begin{column}{0.4\textwidth}
@@ -153,8 +154,8 @@ def square(x):
 \begin{frame}[fragile]
   \frametitle{Doctest (3/3)}
 
-  To execute all the tests of your module just run: 
-\+ 
+  To execute all the tests of your module just run:
+\+
 \begin{lstlisting}[language=sh]
 $ python -m doctest mymodule.py
   \end{lstlisting}
@@ -185,7 +186,7 @@ $ python -m doctest mymodule.py
 %   and execute the file with:
 
 %   \begin{lstlisting}[language=sh]
-% $ python mymodule.py    
+% $ python mymodule.py
 %   \end{lstlisting}%$
 \end{frame}
 
@@ -221,7 +222,7 @@ class MyTest(unittest.TestCase):
   def setUp(self):
     # this code is run *before* each test method
   def tearDown(self):
-    # this code is run *after* each test method.    
+    # this code is run *after* each test method.
   \end{lstlisting}
 \end{frame}
 
@@ -235,7 +236,7 @@ class MyTest(unittest.TestCase):
   \item[\texttt{assertGreater(x, y)}] check that \lstinline|x > y|
   \item[\texttt{assertIsInstance(obj, cls)}] check that
     \lstinline|obj| is an isntance of \lstinline|cls|
-  \item[\texttt{assertAlmostEqual(x, y)}] 
+  \item[\texttt{assertAlmostEqual(x, y)}]
   \item[\ldots] a lot more, cfr. \lstinline|help(unittest)|
   \end{description}
 
@@ -264,7 +265,7 @@ OK
 or, if it's a module and not a script, by adding:
 \begin{lstlisting}
 if __name__ == "__main__":
-    unittest.main()  
+    unittest.main()
 \end{lstlisting}
 and executing:
 

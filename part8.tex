@@ -1,6 +1,6 @@
 \documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
- \usepackage{gc3}
-%\usepackage{lsci}
+ \usetheme[informal]{gc3}
+\usepackage{gc3}
 
 \title[Part 7]{%
   List comprehensions and generators
@@ -63,15 +63,15 @@ for entry in os.listdir(path):
   Python has a better and more compact syntax for \emph{filtering} elements
   of a list and/or \emph{applying} a function to them:
   \begin{python}
-dotfiles = [ entry for entry in dotfiles 
+dotfiles = [ entry for entry in dotfiles
              if entry.startswith('.') ]
   \end{python}
 \+
 \begin{python}
 upper = [ word.upper() for word in wordlist ]
 \end{python}
-  
-  \+ 
+
+  \+
   This is called a \emph{list comprehension}.
 \end{frame}
 
@@ -79,7 +79,7 @@ upper = [ word.upper() for word in wordlist ]
 \begin{frame}[fragile]
   \frametitle{List comprehensions, II}
   \def\e{\ttfamily\itshape}
-  
+
   The general syntax of a list comprehension is:
   \begin{python}
     @\bf[@ @\e expr@ for @\e var@ in @\e iterable@ if @\e condition@ @\bf]@
@@ -153,7 +153,7 @@ upper = [ word.upper() for word in wordlist ]
 
 \end{document}
 
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: t
-%%% End: 
+%%% End:
