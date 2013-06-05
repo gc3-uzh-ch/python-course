@@ -1,5 +1,0 @@
-* part09:
-  - (AM) scriverla
-
-* part11:
-  - (AM) scriverla
