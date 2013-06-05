@@ -88,7 +88,7 @@ or send us an email at <mailto:info@gc3.lists.uzh.ch>.
        <img alt="Creative Commons License" style="border-width:0"
            src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" />
 </a>
-<br />
+<p>
 The <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Python Course</span>
 by the <a xmlns:cc="http://creativecommons.org/ns#"
    href="http://www.gc3.uzh.ch/" property="cc:attributionName"
@@ -97,9 +97,5 @@ by the <a xmlns:cc="http://creativecommons.org/ns#"
    href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative
    Commons Attribution-NonCommercial-ShareAlike 3.0 Unported
    License</a>.
-<br />
-Based on a work at <a xmlns:dct="http://purl.org/dc/terms/"
-   href="https://github.com/gc3-uzh-ch/python-course"
-   rel="dct:source">https://github.com/gc3-uzh-ch/python-course</a>.
-<br />
 Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:info@gc3.lists.uzh.ch" rel="cc:morePermissions">mailto:info@gc3.lists.uzh.ch</a>.
+</p>
