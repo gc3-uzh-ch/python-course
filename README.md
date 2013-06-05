@@ -1,159 +1,105 @@
-Object-oriented Python training, March 12-13, 2013
-==================================================
+Object-oriented Python course
+=============================
 
-This 2-day course assumes generic familiarity with programming and
-basic computer programming concepts like variables, functions,
-programs.
+This repository collects slides, exercises and other supporting
+material used in the [Python language courses](http://www.gc3.uzh.ch/edu/python) held by
+the [GC3](http://www.gc3.uzh.ch/) at the [University of Zurich](http://www.uzh.ch/).
 
-On day 1, Python syntax will be recapped and then, on day 2, we
-proceed on to object-orientation.
-
-<!-- [[Registration|#index8h2]] is open until **Friday, March 8, 2013**. -->
-
-
-[[!toc startlevel=2]]
-
-## Who
-This introductory course is aimed at those who want to learn how to
-use python for implementing their own scientific scripts and programs.
-
-## Prerequisites
-We assume that you are already familiar with scripting languages
-(e.g. bash, perl) and have already written some computer programs.
-
-## What
-This course will cover the basics of python programming and object-orientation.
-
-The first day of the course introduces Python syntax and the
-fundamental data types.
-
-The second day of the course covers Object-oriented Python: the basic
-concepts of object-oriented programming (class, instances, interfaces
-and inheritance) are introduced along with Python code examples.  Then
-we delve into object-oriented Python idioms that every working Python
-programmer should know about.
-
-## When
-_March 12-13_ 2013.
-
-On each day, the course starts at 9:30 and ends by 15:30.
-
-## Where
-
-The training takes place at the [UZH Irchel campus](http://www.mnf.uzh.ch/en/studies/irchel-campus.html).
-
-On Tuesday 12th March, the training will be in room
-[Y13][y13] M 12 (that's _room 12_ on _floor M_ in [building Y13][y13]).
-
-On Wednesday 13th March, the training takes place in room
-[Y21][y21] D 68a (that's _room 68a_ on _floor D_ in [building Y21][y21]).
-
-[y13]: http://www.plaene.unizh.ch/Y13?z=6&lon=951683.9186948&lat=6007215.8016207&f=showAll&w=618&h=453&m=marker_building_Y13
-[y21]: http://www.plaene.unizh.ch/Y21?z=6&lon=951683.9186948&lat=6007215.8016207&f=showAll&w=618&h=453&m=marker_building_Y21
+The material in this course covers the basics of Python programming
+and object-orientation.  We assume that students are already familiar
+with scripting languages (e.g. bash, perl) and have already written
+some computer programs.
 
 
-## Needed equipment
+How to use the material
+-----------------------
 
-In order to attend the course, you will need to have your own laptop
-with wireless LAN connectivity.  In addition, the following software
-is needed:
+The files named `partNN.tex` are used as slide decks during the
+lessons.  Exercises are interspersed in the slides; solutions are
+provided in the `.py` files.
 
-- Python, at least version 2.6
-- a terminal application
-- a text editor (e.g., [Emacs][1], [`vi`][2], or [gedit][3])
-
-[1]: http://www.gnu.org/software/emacs/
-[2]: http://www.vim.org/
-[3]: http://projects.gnome.org/gedit/
-
-MacOSX and [recent versions of GNU/Linux][^1] all come with these programs preinstalled.
-
-[^1]: Ubuntu 12.04, Debian "squeeze", and CentOS6 are all fine choices in this respect.
-
-If your computer does not run Linux or MacOSX, you might consider
-running a Linux Virtual Machine in your usual operating system.
-[VirtualBox](http://www.virtualbox.org/) is a freely-available
-virtualization software that runs on MacOSX and Windows:
-
-- You can download VirtualBox for your computer from <https://www.virtualbox.org/wiki/Downloads>
-
-- You can download a Ubuntu 12.04 virtual machine with all software needed for the course from the following links:
-
-  * for 32-bit computers: <http://www.gc3.uzh.ch/teaching/gc3pie2012/GC3PieX32.ova>
-  * for 64-bit computers: <http://www.gc3.uzh.ch/teaching/gc3pie2012/GC3PieX64.ova>
-
-  These virtual machine files will run under the VirtualBox or VMware emulators.
+To create the PDF files for the slides, you need to download the
+[GC3 beamer style](http://github.com/gc3-uzh-ch/beamer-theme-gc3).
+Place the GC3 beamer style files in the directory there the
+`partNN.tex` files are, then type `make all`.
 
 
-## Programme / Timetable
+Programme / Timetable
+---------------------
 
-_Day 1: Python basics_ (Tue 12.03.2013)
+We normally deliver the course in two sessions, of one day each:
 
-* [Introduction](part00.pdf)<!--RM-->
-* [Workstation setup](part01.pdf)<!--AM-->
+- The first day of the course introduces Python syntax and the
+  fundamental data types.
+
+- The second day of the course covers Object-oriented Python: the
+  basic concepts of object-oriented programming (class, instances,
+  interfaces and inheritance) are introduced along with Python code
+  examples.  Then we delve into object-oriented Python idioms that
+  every working Python programmer should know about.
+
+
+### Day 1: Python basics
+
+* [Introduction](part00.tex)
+* [Workstation setup](part01.tex)
    - Downloads: [[welcome.py]]
-* [Basics 1: data types, operators, assignment, functions](part02.pdf)<!--RM-->
+* [Basics 1: data types, operators, assignment, functions](part02.tex)
    - Downloads: [[hello.py]]
    - Solutions to exercises: [[ex02c.py]]
-* [Basics 2: sequences and iteration](part03.pdf)<!--AM-->
+* [Basics 2: sequences and iteration](part03.tex)
   - Solutions to exercises: [[ex03a.py]], [[ex03b.py]], [[ex03c.py]]
-* [Everything is an object!](part04.pdf)<!--RM-->
-* [String manipulation, file I/O](part05.pdf)<!--AM-->
+* [Everything is an object!](part04.tex)
+* [String manipulation, file I/O](part05.tex)
   - Downloads: [[values.dat]], [[euro.csv]]
   - Solutions to exercises: [[ex05a.py]], [[ex05b.py]], [[ex05c.py]], [[ex05d.py]], [[ex05e.py]] (aka `rename.py`)
 
 
-_Day 2: Object-oriented Python_ (Wed 13.03.2013)
+### Day 2: Object-oriented Python
 
-* [Object-oriented programming: basics](part06.pdf)<!--RM-->
+* [Object-oriented programming: basics](part06.tex)
   - Downloads: [[vector.py]]
   - Solutions to exercises: [[ex06a.py]], [[ex06b.py]]
-* [Special methods](part07.pdf)<!--AM-->
+* [Special methods](part07.tex)
   - Downloads: [[vector2.py]], [[vector3.py]], [[vector4.py]], [[vector5.py]]
-* [Object-oriented programming: inheritance](part08.pdf)<!--RM-->
+* [Object-oriented programming: inheritance](part08.tex)
   - Downloads: [[complexnum.py]], [[vector_and_complexnum.py]], [[wt.csv]]
   - Solutions to exercises: [[ex08a.py]], [[ex08b.py]], [[ex08c.py]], [[ex08d.py]], [[ex08e.py]], [[ex08f.py]]
-* [Unit tests and doctests](part09.pdf)<!--AM-->
+* [Unit tests and doctests](part09.tex)
   - Downloads: [[vector6.py]]
-* [Exceptions and error handling](part10.pdf)<!--RM-->
+* [Exceptions and error handling](part10.tex)
   - Downloads: [[test.csv]]
   - Solutions to exercises: [[ex10a.py]], [[ex10b.py]]
-* [Do not reinvent the wheel: a survey of useful Python libraries](part11.pdf)<!--AM-->
-
-[placeholder]: http://www.explosm.net/db/files/Comics/Matt/curiosity-killed-the-cat.png
+* [Do not reinvent the wheel: a survey of useful Python libraries](part11.tex)
 
 
-## Other info
+How to contribute
+-----------------
 
-There's no organized catering for lunches and coffee breaks;
-participants can use the
-[UZH Irchel mensa](http://www.mensa.uzh.ch/menueplaene/mensa-uzh-irchel.html)
-facilities.  A typical meal costs between 7 and 12 CHF.
-
-For further information, please write to: <info@gc3.lists.uzh.ch>
+We welcome contributions from other Python instructors, programmers,
+students and enthusiasts in general :-).  Please submit a pull request
+or send us an email at <mailto:info@gc3.lists.uzh.ch>.
 
 
-<!--
-<a name="anchor"></a>
-## Registration
+--------
 
-<iframe
-    src="https://docs.google.com/forms/d/1ej0rqI7NYyUu0TsuvgGn1DM3rTuUkBkXV3sQgrX4k-I/viewform?embedded=true"
-    width="760" height="500" frameborder="0" marginheight="0"
-    marginwidth="0">
-        Loading...
-</iframe>
--->
-
-
-
-## Feedback
-
-<iframe
-    src="https://docs.google.com/spreadsheet/embeddedform?formkey=dERQWE02QnFnMGs1amg5WFEzbEhOM3c6MA"
-    width="800" height="2600"
-    frameborder="0"
-    marginheight="0"
-    marginwidth="0">
-        Loading...
-</iframe>
+<a rel="license"
+   href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+       <img alt="Creative Commons License" style="border-width:0"
+           src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" />
+</a>
+<br />
+The <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Python Course</span>
+by the <a xmlns:cc="http://creativecommons.org/ns#"
+   href="http://www.gc3.uzh.ch/" property="cc:attributionName"
+   rel="cc:attributionURL">Grid Computing Competence Center,
+   University of Zurich</a> is licensed under a <a rel="license"
+   href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative
+   Commons Attribution-NonCommercial-ShareAlike 3.0 Unported
+   License</a>.
+<br />
+Based on a work at <a xmlns:dct="http://purl.org/dc/terms/"
+   href="https://github.com/gc3-uzh-ch/python-course"
+   rel="dct:source">https://github.com/gc3-uzh-ch/python-course</a>.
+<br />
+Permissions beyond the scope of this license may be available at <a xmlns:cc="http://creativecommons.org/ns#" href="mailto:info@gc3.lists.uzh.ch" rel="cc:morePermissions">mailto:info@gc3.lists.uzh.ch</a>.
