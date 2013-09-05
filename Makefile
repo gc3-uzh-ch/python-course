@@ -14,7 +14,7 @@ clean:
 
 
 # remake all LaTeX files
-all: $(patsubst %.tex,%.pdf,$(wildcard *.tex))
+all: $(patsubst %.tex,%.pdf,$(wildcard part*.tex))
 
 
 # the default wildcard rule for generating PDFs from `.tex` files
