@@ -76,7 +76,7 @@ for more information.
   %   automatically from \texttt{int} to \texttt{long} when needed.
   \item[float] Double precision floating-point numbers, e.g.:
     \texttt{3.1415}, \texttt{-1e-3}.
-  \item[str] Strings of byte-size characters.
+  \item[str] Text (strings of byte-size characters).
   %\item[unicode] Strings of UNICODE characters.
   \item[list] Mutable list of Python objects
   \item[dict] Key/value mapping
@@ -117,8 +117,8 @@ True
 ... """
 \end{lstlisting}
 
-\+
-(In other words, you need not use the \texttt{\textbackslash}'s at the end of the lines.)
+  \+ In other words, you need not use the backslashes
+  ``\texttt{\textbackslash}'' at the end of the lines.
 \end{frame}
 
 
@@ -148,6 +148,13 @@ True
     \end{itemize}
   \end{references}
 \end{frame}
+
+
+\begin{frame}
+  \frametitle{Your first exercise}
+  \href{http://www.pythonchallenge.com}{\includegraphics[width=\linewidth]{fig/2to38}}
+\end{frame}
+
 
 \begin{frame}[fragile]
   \frametitle{Operators, II}
@@ -184,17 +191,29 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
     >>> 9 % 2
     1
   \end{lstlisting}
+\end{frame}
 
-  \+
-  But it is also used for \emph{string formatting}:
+
+\begin{frame}[fragile]
+  \frametitle{Operators, IV}
+  The ``\texttt{\%}'' operator is also used for \emph{string
+    formatting}:
 \begin{lstlisting}[showstringspaces=false]
->>> "This is slide %d of %d" % (13, 32)
-'This is slide 13 of 32.'
->>> "We are %.1f%% done." % (100.0 * 13/32)
+>>> "This is slide ~\alt<2>{\HL{\%d}}{\%d}~ of %d" % (~\alt<2>{\HL{11}}{11}~, 32)
+'This is slide 11 of 32.'
+>>> "We are ~\alt<3>{\HL{\%.1f}}{\%.1f}~%% done." % (~\alt<3>{\HL{100.0 * 11/32}}{100.0 * 11/32}~)
 'We are 40.6% done.'
->>> "Today is %s %d, %d" % ('October', 28, 2012)
+>>> "Today is ~\alt<4>{\HL{\%s}}{\%s}~ %d, %d" % (~\alt<4>{\HL{'September'}}{'September'}~, 11, 2012)
 'Today is October 28, 2012'
 \end{lstlisting}
+
+  \only<2>{The \texttt{\%d} in the left string is substituted with the
+    base-10 representation of the integer number on the right side.}
+  \only<3>{The \texttt{\%f} in the left string is substituted with the
+    floating-point number on the right side; the number of digits to
+    put after the comma is written \emph{before} the \texttt{f}}
+  \only<4>{The \texttt{\%s} in the left string is substituted with the
+    string on the right side.}
 
   \begin{references}
     \url{http://docs.python.org/library/stdtypes.html#string-formatting-operations}
@@ -214,12 +233,8 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   \texttt{1 + (1.0/2) + 2**(-2)}
 
   \+
-  Not all Python constructs return a value.
-  \emph{Assignment, for example, does not:}
-\begin{semiverbatim}
->>> a = 1
-\end{semiverbatim}
-  Similarly for the update operators \texttt{+=}, \texttt{-=}, etc.
+  \emph{Not all Python constructs return a value.}
+  (Assignment, for example, does not.)
 
   \+\scriptsize
   References:
@@ -234,7 +249,7 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   Assignment is done via the `\texttt{=}' statement:
 \begin{semiverbatim}
 >>> a = 1
->>> print a
+>>> print(a)
 1
 \end{semiverbatim}
 
@@ -338,54 +353,54 @@ True
   \end{question}
 \end{frame}
 
-\begin{frame}
-  \frametitle{The most important function of all, II}
+% \begin{frame}
+%   \frametitle{The most important function of all, II}
 
-  When called without any argument, \hl{help()} starts an interactive
-  help prompt.
+%   When called without any argument, \hl{help()} starts an interactive
+%   help prompt.
 
-  \+
-  \begin{semiverbatim}\tiny
->>> help()
+%   \+
+%   \begin{semiverbatim}\tiny
+% >>> help()
 
-Welcome to Python 2.7!  This is the online help utility.
+% Welcome to Python 2.7!  This is the online help utility.
 
-If this is your first time using Python, you should definitely check out
-the tutorial on the Internet at http://docs.python.org/tutorial/.
+% If this is your first time using Python, you should definitely check out
+% the tutorial on the Internet at http://docs.python.org/tutorial/.
 
-Enter the name of any module, keyword, or topic to get help on writing
-Python programs and using Python modules.  To quit this help utility and
-return to the interpreter, just type "quit".
+% Enter the name of any module, keyword, or topic to get help on writing
+% Python programs and using Python modules.  To quit this help utility and
+% return to the interpreter, just type "quit".
 
-To get a list of available modules, keywords, or topics, type "modules",
-"keywords", or "topics".  Each module also comes with a one-line summary
-of what it does; to list the modules whose summaries contain a given word
-such as "spam", type "modules spam".
+% To get a list of available modules, keywords, or topics, type "modules",
+% "keywords", or "topics".  Each module also comes with a one-line summary
+% of what it does; to list the modules whose summaries contain a given word
+% such as "spam", type "modules spam".
 
-help>
-\end{semiverbatim}
+% help>
+% \end{semiverbatim}
 
-  \+
-  To return to the normal prompt, type \texttt{quit}
+%   \+
+%   To return to the normal prompt, type \texttt{quit}
 
-  \+
-  \hl{help(\texttt{'topic'})} has the same effect as typing
-  \texttt{topic} at the interactive help prompt.
-\end{frame}
+%   \+
+%   \hl{help(\texttt{'topic'})} has the same effect as typing
+%   \texttt{topic} at the interactive help prompt.
+% \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{How to define new functions}
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-@\HL{\textbf{def} hello(name):}@
+~\HL{\textbf{def} greet(name):}~
   """
   A friendly function.
   """
   print ("Hello, " + name + "!")
 
 # the customary greeting
-hello("world")
+greet("world")
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -399,14 +414,14 @@ hello("world")
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-def hello(name):
+def greet(name):
   """
   A friendly function.
   """
-  @\HL{print ("Hello, " + name + "!")}@
+  ~\HL{print ("Hello, " + name + "!")}~
 
 # the customary greeting
-hello("world")
+greet("world")
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -421,14 +436,14 @@ hello("world")
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-def hello(name):
+def greet(name):
   """
   A friendly function.
   """
   print ("Hello, " + name + "!")
 
-@\HL{\it\tt\#\ the customary greeting}@
-hello("world")
+~\HL{\it\tt\#\ the customary greeting}~
+greet("world")
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -442,14 +457,14 @@ hello("world")
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-def hello(name):
+def greet(name):
   """
   A friendly function.
   """
   print ("Hello, " + name + "!")
 
 # the customary greeting
-@\HL{hello("world")}@
+~\HL{greet("world")}~
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -463,14 +478,14 @@ def hello(name):
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-def hello(name):
-  @\HL{"""}@
-  @\HL{A friendly function.}@
-  @\HL{"""}@
+def greet(name):
+  ~\HL{"""}~
+  ~\HL{A friendly function.}~
+  ~\HL{"""}~
   print ("Hello, " + name + "!")
 
 # the customary greeting
-hello("world")
+greet("world")
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -485,8 +500,8 @@ hello("world")
     Type and run the code on the previous page at the interactive
     prompt. (Type indentation spaces, too!)
 
-    What does \texttt{help(hello)} print?
-    What's the result of evaluating the function \texttt{hello("world")}?
+    What does \texttt{help(greet)} print?
+    What's the result of evaluating the function \texttt{greet("world")}?
   \end{exercise}
 
   \+
@@ -519,7 +534,7 @@ Hello, world!
   a module must be prefixed with the module name when used in other
   modules:
 \begin{lstlisting}
->>> hello.hello("Bob")
+>>> hello.greet("Bob")
 Hello, Bob!
 \end{lstlisting}
 
@@ -536,9 +551,9 @@ Hello, Bob!
   \frametitle{Conditionals}
   Conditional execution uses the \texttt{if} statement:
 \begin{lstlisting}
-if @\it expr@:
+if ~\it expr~:
   # indented block
-elif @\it other-expr@:
+elif ~\it other-expr~:
   # indented block
 else:
   # executed if none of the above matched
@@ -563,7 +578,7 @@ else:
   \frametitle{Looping}
   Conditional looping uses the \texttt{while} statement:
 \begin{lstlisting}
-while @\it expr@:
+while ~\it expr~:
   # indented block
 \end{lstlisting}
 % else:
@@ -584,7 +599,7 @@ while @\it expr@:
 
 \begin{frame}
   \begin{exercise}
-    Modify the \texttt{hello()} function to print ``Welcome back!'' if
+    Modify the \texttt{greet()} function to print ``Welcome back!'' if
     the argument \texttt{name} is your name.
   \end{exercise}
 \end{frame}
@@ -607,15 +622,15 @@ while @\it expr@:
 
 \begin{frame}
   \frametitle{Recap}
-  \begin{itemize}
-  \item Variable are just \textbf{names}, a reference to real object.
-  \item to get information on something: \lstinline|help(something)|
-  \item \lstinline|def function(arg1, arg2, ...):| to define functions
+  \begin{enumerate}
   \item Indentation is used to delimit blocks of code!
-  \item \lstinline|import| statement let you use extension modules.
-  \item modules are \textit{namespaces}
-  \item conversion between types with \lstinline|int(), float(), str()| functions.
-  \end{itemize}
+  \item Variables are just names, a reference to real object.
+  \item \lstinline|def function(arg1, arg2, ...):| to define functions
+  \item \lstinline|import filename| to use code from other files.
+  % \item Modules are \textit{namespaces}.
+  % \item Conversion between types with \lstinline|int(), float(), str()| functions.
+  \item To get information on something: \lstinline|help(something)|
+  \end{enumerate}
 \end{frame}
 
 

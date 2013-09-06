@@ -1,4 +1,4 @@
-def hello(name):
+def greet(name):
     """
     A friendly function.
     """
