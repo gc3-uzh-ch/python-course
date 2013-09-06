@@ -9,7 +9,7 @@ References and further reading on Python
   and enhanced with contributions from several people in the Python
   community, it is written in a clear and terse style that makes it an
   excellent reading and introduction to Python.
-  
+
   Covers syntax, built-in types and data structures,
   object-orientation in Python and introduces the basic functionality
   available in the
@@ -25,13 +25,13 @@ References and further reading on Python
   A tutorial introduction to Python: assuming you already know Java,
   it presents the equivalent Python code for a number of examples and
   explains the differences.
-  
+
 
 * [An introduction to the Zen of Python](http://www.slideshare.net/doughellmann/an-introduction-to-the-zen-of-python)
   Slides by Doug Hellmann, illustrating Python by examples.
 
 * [Introduction to Python](http://www.slideshare.net/amiable_indian/introduction-to-python)
-  [Part 2](http://www.slideshare.net/amiable_indian/introduction-to-python-part-two), 
+  [Part 2](http://www.slideshare.net/amiable_indian/introduction-to-python-part-two),
   [Part 3](http://www.slideshare.net/amiable_indian/introduction-to-python-part-three)
   A set of slides covering the almost the same topics as these
   lectures, but with a slightly different angle and more attention to
@@ -44,7 +44,7 @@ References and further reading on Python
   A presentation of Python programming idioms for writing better
   (simpler, cleaner and often faster) code, by
   [David Goodger](http://python.net/~goodger/).
-  
+
   Especially useful if you are already versed in programming with
   other languages, as Python has some distinctively unique features
   that can make a difference in the way you write code.
@@ -70,3 +70,17 @@ References and further reading on Python
 * [The Python 2.3 Method Resolution Order](http://www.python.org/download/releases/2.3/mro/)
   A detailed still very readable explanation of how Python searches
   for methods in multiple-inheritance hierarchies.
+
+
+## Learn by doing
+
+* [The Python challenge](http://www.pythonchallenge.com/)
+
+  A puzzle game where you advance through levels by writing Python code.
+
+
+* [Python Koans](https://github.com/gregmalcolm/python_koans/wiki)
+
+  Learn Python and
+  [TDD](http://en.wikipedia.org/wiki/Test-driven_development) by
+  writing automated tests for small Python code snippets.
