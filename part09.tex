@@ -194,7 +194,7 @@ $ python -m doctest mymodule.py
 \+
 \begin{exercise}
   The file
-  \href{http://www.gc3.uzh.ch/vector6.py}{\texttt{vector6.py}}
+  \href{https://raw.github.com/gc3-uzh-ch/python-course/master/vector6.py}{\texttt{vector6.py}}
   has some doctest, but they are wrong. Run the tests, find the errors
   and fix them!
 \end{exercise}
@@ -203,31 +203,33 @@ $ python -m doctest mymodule.py
 
 
 \begin{frame}[fragile]
-  \frametitle{The unittest module (1/3)}
+  \frametitle{The unittest module (1/4)}
   Allows you to create tests in a more structured way using the
   \textit{Template method pattern}.
-
-  \+
-  Supports \textit{fixtures}, code to run before and/or after each
-  test to prepare and cleanup the testing environment
 
   \begin{lstlisting}
 import unittest
 
 class MyTest(unittest.TestCase):
-  def test_square(self):
+  def test_square1(self):
+    assert square(1) == 1
+
+  def test_square2(self):
     self.assertEqual(square(2), 4)
     self.assertEqual(square(-2), 4)
-
-  def setUp(self):
-    # this code is run *before* each test method
-  def tearDown(self):
-    # this code is run *after* each test method.
   \end{lstlisting}
+
+Any method whose name starts with \lstinline|test_| will be run.
+A test is successful iff it does \emph{not} raise an exception!
+
+\+
+Specialized ``asserts'' are defined in the \lstinline|TestCase|
+class: they provide better logging and reporting of failures.
 \end{frame}
 
+
 \begin{frame}[fragile]
-  \frametitle{The unittest module (2/3)}
+  \frametitle{The unittest module (2/4)}
 
   Each \lstinline|unittest.TestCase| class defines some methods:
   \begin{description}
@@ -244,11 +246,30 @@ class MyTest(unittest.TestCase):
 \textit{Each one of these method is able to print detailed informations on
   why the test failed, this is why you don't just use
   \texttt{assertTrue()} for all the tests\ldots}
-
 \end{frame}
 
+
 \begin{frame}[fragile]
-\frametitle{The unittest module (3/3)}
+  \frametitle{The unittest module (3/4)}
+  Supports \textit{fixtures}, code to run before and/or after each
+  test to prepare and cleanup the testing environment
+
+  \+
+  \begin{lstlisting}
+import unittest
+
+class MyTest(unittest.TestCase):
+  def setUp(self):
+    """This code is run *before* each test method."""
+
+  def tearDown(self):
+    """This code is run *after* each test method."""
+  \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{The unittest module (4/4)}
 Run your tests using
 \+
   \begin{lstlisting}[language=sh]

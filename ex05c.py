@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-
 """
 Write a program that reads the euro.csv file, and populates a
 dictionary from it: currency names (first column) are the dictionary

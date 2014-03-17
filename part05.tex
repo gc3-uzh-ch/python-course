@@ -65,7 +65,7 @@ True
 
     \+
     Test it with the
-    \href{http://www.gc3.uzh.ch/welcome.py}{welcome.py}
+    \href{https://raw.github.com/gc3-uzh-ch/python-course/master/welcome.py}{welcome.py}
     file:
 \begin{lstlisting}
 >>> cat('welcome.py')
@@ -83,7 +83,7 @@ print ("Welcome to Python!")
 
     \+
     Test it with the
-    \href{http://www.gc3.uzh.ch/values.dat}{values.dat}
+    \href{https://raw.github.com/gc3-uzh-ch/python-course/master/values.dat}{values.dat}
     file:
 \begin{lstlisting}
 >>> load_data('values.dat')
@@ -93,13 +93,19 @@ print ("Welcome to Python!")
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{List comprehension, I}
+  \frametitle{List comprehensions, I}
   Python has a better and more compact syntax for \emph{filtering} elements
   of a list and/or \emph{applying} a function to them.
 
   \+
-  An alternative solution to the previous example using \textit{list
-  comprehension}:
+  The previous example:
+  \begin{lstlisting}
+data = []
+for num in open('values.dat').read().split():
+    data.append(int(num))
+  \end{lstlisting}
+  \+
+  can be written using \textit{list comprehension}:
   \begin{python}
 data = [ int(line) for line in open('values.dat') ]
   \end{python}
@@ -112,6 +118,7 @@ data = [ int(line) for line in open('values.dat')
          if int(line) > 3000000 ]
   \end{python}
 \end{frame}
+
 
 \begin{frame}[fragile]
   \frametitle{List comprehensions, II}
@@ -134,6 +141,20 @@ data = [ int(line) for line in open('values.dat')
   \+ \textit{Create a new list, and for each \textbf{var} in the
     sequence \textbf{iterable}, if \textbf{condition} is true then add
     \textbf{expr} to the list.}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \begin{exercise}
+    Write a function called \texttt{load\_data2(filename, bound)}
+    that, \textbf{using comprehensions}, reads a file containing one
+    integer number per line, and return a list of the integer values
+    \textit{lesser than} \texttt{bound}.
+
+    Test it with the
+    \href{https://raw.github.com/gc3-uzh-ch/python-course/master/values.dat}{values.dat}
+    file.
+  \end{exercise}
 \end{frame}
 
 
@@ -187,7 +208,7 @@ data = [ int(line) for line in open('values.dat')
 
 \begin{frame}[fragile]
   \begin{exercise}
-    Write a program that reads the \href{http://www.gc3.uzh.ch/euro.csv}{euro.csv} file, and populates a dictionary from it: currency names (first column) are the dictionary keys, conversion rates (second column) are the dictionary values.
+    Write a program that reads the \href{https://raw.github.com/gc3-uzh-ch/python-course/master/euro.csv}{euro.csv} file, and populates a dictionary from it: currency names (first column) are the dictionary keys, conversion rates (second column) are the dictionary values.
   \end{exercise}
 
   \+
@@ -227,11 +248,14 @@ PRINT ("WELCOME TO PYTHON!")
     Assumes that all parent directories exist already.
   \end{describe}
 
-  \begin{describe}{\lstinline|os.makedirs(path)|}
-    Create a directory; no-op if the directory already exists.
-    Creates all the intermediate-level directories needed to contain
-    the leaf.
-  \end{describe}
+  % \begin{describe}{\lstinline|os.makedirs(path)|}
+  %   Create a directory; no-op if the directory already exists.
+  %   Creates all the intermediate-level directories needed to contain
+  %   the leaf.
+  % \end{describe}
+
+  \begin{describe}{\lstinline|os.rename(old,new)|}
+    Rename a file or directory from \texttt{old} to \texttt{new}.
 
   \begin{references}
     \url{http://docs.python.org/library/os.html}
@@ -244,7 +268,7 @@ PRINT ("WELCOME TO PYTHON!")
   These functions are available from the \texttt{os.path} module.
 
   \begin{describe}{\lstinline|os.path.exists(path)|,
-      \lstinline|os.path.isdir(path)|}
+      \lstinline|os.path.isdir(path)|}, \lstinline|os.path.isfile(path)|
     Return \texttt{True} if \texttt{path} exists / is a directory / is
     a regular file.
   \end{describe}
@@ -305,7 +329,7 @@ python rename.py EXT1 EXT2 DIR [DIR ...]
     \begin{description}
     \item[ext1,ext2] Are file name extensions (without the leading
       dot), e.g., \texttt{jpg} and \texttt{jpeg}.
-    \item[dir] Is directory path; possibly, many directories names can
+    \item[dir] Is a directory path; possibly, many directories names can
       be given on the command-line.
     \end{description}
 

@@ -31,7 +31,7 @@
   \href{http://numpy.scipy.org}{NumPy} package, which is commonly used in
   scientific Python codes, defines:
   \begin{description}
-  \item[array] \emph{mutable}, homogeneous
+  \item[array] \emph{mutable}, homogeneous (like C/Fortran arrays)
   \end{description}
 
 \end{frame}
@@ -90,8 +90,8 @@
 \end{lstlisting}
 
   \+
-  The \texttt{len()} function returns the number of elements in a
-  sequence.
+  The \texttt{len()} function returns the number of elements in any
+  sequence (not just lists).
 \begin{lstlisting}
 >>> len(L)
 3
@@ -117,7 +117,7 @@
 
 
 \begin{frame}[fragile]
-  \frametitle{List mutation}
+  \frametitle{List mutation (1)}
   You can replace items in a \emph{mutable} sequence by assigning them
   a new value:
 \begin{lstlisting}
@@ -140,6 +140,65 @@
 \end{lstlisting}
 \end{frame}
 
+
+\begin{frame}[fragile]
+  \frametitle{List mutation (2)}
+  You can remove individual elements from a list either by specifying
+  the element:
+\begin{lstlisting}
+>>> L.remove('Z')
+>>> L
+['G', 'u', 'r', 'i', 'c', 'h']
+\end{lstlisting}
+
+or the position:
+
+\begin{lstlisting}
+>>> L.pop(2)
+'r'
+>>> L
+['G', 'u', 'i', 'c', 'h']
+\end{lstlisting}
+
+Please note that the \texttt{remove()} method only removes
+\textit{one} element:
+
+\begin{lstlisting}
+>>> L = ['a', 'a', 'a']
+>>> L.remove('a')
+>>> L
+['a', 'a']
+\end{lstlisting}
+\begin{lstlisting}
+
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other containers}
+
+  The following builtin containers are always available:
+  \begin{description}
+  \item[dict] \textit{mutable} key/value mapping.
+  \item[set] \textit{mutable}, unordered set of \textit{unique} elements.
+  \item[frozenset] \textit{immutable}, unordered set of
+    \textit{unique} elements.
+  \end{description}
+
+  \pause
+  Other specialized containers are available in the
+  \texttt{collections} module:
+
+  \begin{description}
+  \item[dequeue] a generalization of stacks and queues
+  \item[namedtuple] similar to a tuple, but allows you to access the
+    elements \textit{by name}
+  \item[OrderedDict] dictionary that remembers the order that the
+    items were inserted.
+  \end{description}
+\end{frame}
+
+
 \begin{frame}[fragile]
   \frametitle{Dictionaries}
   The \texttt{dict} type implements a key/value mapping:
@@ -160,6 +219,8 @@
 >>> D1 == D2
 True
 \end{lstlisting}
+
+Keys must be \textit{hashable} objects.
 \end{frame}
 
 
@@ -170,18 +231,26 @@ True
 \begin{lstlisting}
 >>> S = set()
 >>> S.add(1)
->>> S.add(2)
+>>> S.add('two')
 >>> S.add(1)
 >>> S
-set([1, 2])
+set([1, 'two'])
 \end{lstlisting}
 
   \+
   You can create a set and add elements to it in one go:
 \begin{lstlisting}
->>> S2 = set([1, 2])
->>> S2 == S
-True
+>>> S2 = set([1, 2, 3, 4])
+\end{lstlisting}
+
+and remove elements:
+
+\begin{lstlisting}
+>>> S2.remove(2)
+>>> S2.pop()
+1
+>>> S2
+set([3,4])
 \end{lstlisting}
 \end{frame}
 
@@ -470,6 +539,35 @@ for i in range(0, 4):
       \emph{The \texttt{.values()} cannot be omitted!}
     \end{column}
   \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+
+  If you want to loop over a \textit{sorted} sequence you can use the
+  function \texttt{sorted()} :
+
+  \begin{lstlisting}
+>>> for val in sorted([1,3,4,2]):
+...  print val
+1
+2
+3
+4
+  \end{lstlisting}
+
+and to loop over a sequence in \textit{inverted} order you can use the
+\texttt{reversed()} function:
+
+\begin{lstlisting}
+>>> for val in reversed([1,3,4,2]):
+...     print val
+2
+4
+3
+1
+\end{lstlisting}
+
 \end{frame}
 
 
