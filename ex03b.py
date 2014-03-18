@@ -1,21 +1,29 @@
 #!/usr/bin/env python
+"""
+    Write a function \texttt{concat} that takes a list of lists and
+    returns the concatenation of those lists.
+"""
 
-def zip2(tlist):
+def concat1(lst):
     """
-    Implement a zip2 function, that takes a list of 2-tuples and
-    returns two lists: a list of all the first items in the pairs, and
-    a list of all the second items in the pairs.
+    Solution 1: using list operators
     """
-    list1 = []
-    list2 = []
-    for item1, item2 in tlist:
-        list1.append(item1)
-        list2.append(item2)
-    return (list1, list2)
+    result = []
+    for l in lst:
+        result += l
+    return result
 
-if __name__ =="__main__":
-    tlist = [(1, '1',),
-             (2, '2'),
-             (3, '3'),
-             ]
-    assert zip2(tlist) == ([1,2,3], ['1','2','3'])
+def concat2(lst):
+    """
+    Solution 2: using nested loops
+    """
+    result = []
+    for l in lst:
+        for i in l:
+            result.append(i)
+    return result
+
+if __name__ == "__main__":
+    assert concat1([ [1,2,3], [4,5,6], [7,8,9] ]) == [1, 2, 3, 4, 5, 6, 7, 8, 9]      
+    assert concat2([ [1,2,3], [4,5,6], [7,8,9] ]) == [1, 2, 3, 4, 5, 6, 7, 8, 9]      
+

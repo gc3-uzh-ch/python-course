@@ -8,6 +8,10 @@
 def odd(lst):
     result = []
     for i in lst:
-        if i % 2 == 0:
+        if i % 2 == 1:
             result.append(i)
     return result
+
+if __name__ == "__main__":
+    assert odd([1,2,3,4, -3]) == [1,3, -3]
+
