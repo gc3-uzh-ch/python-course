@@ -75,7 +75,7 @@
     emph={self},%
     emphstyle=\bfseries\color{gray},%
     % --- escaping and special displays ---
-    escapechar=@,% text between "@" will be rendered as normal TeX
+    escapechar=~,% text between "~" will be rendered as normal TeX
     %moredelim=[il][\small\itshape]{\#},% ditto for text beween "#" and end-of-line
     texcl,%
     mathescape=false,%
@@ -162,3 +162,8 @@
 }{%
   \egroup%
 }
+
+
+%% Make completely invisible stuff which comes after \pause when it
+%% should not be visible.
+\setbeamercovered{transparent=0}
