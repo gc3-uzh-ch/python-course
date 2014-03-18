@@ -554,6 +554,49 @@ Hello, Bob!
 
 
 \begin{frame}[fragile]
+  \frametitle{The `return` statement}
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{lstlisting}
+def double(x):
+  ~\HL{return x+x}~
+
+double(3) == 6
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft The result of a function evaluation is set by the
+      \textit{return} statement.
+ 
+     \+
+      If no \texttt{return} is present, the function returns the
+      special value \texttt{None}.
+
+         \end{column}
+  \end{columns}
+\+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{lstlisting}
+def double(x):
+  return x+x
+  # the following line 
+  # is never exec'd
+  ~\HL{print('Hello')}~
+      \end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft After executing \texttt{return} the control flow
+      leaves the function.
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+%%% Conditionals
+
+\begin{frame}[fragile]
   \frametitle{Conditionals}
   Conditional execution uses the \texttt{if} statement:
 \begin{lstlisting}
