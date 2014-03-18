@@ -174,7 +174,7 @@ class Vector(object):
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-@\HL{class}@ Vector(object):
+~\HL{class}~ Vector(object):
   """A 2D Vector."""
   def __init__(self, x, y):
     self.x = x
@@ -204,7 +204,7 @@ class Vector(object):
   \begin{columns}[t]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
-class Vector@\HL{(object)}@:
+class Vector~\HL{(object)}~:
   """A 2D Vector."""
   def __init__(self, x, y):
     self.x = x
@@ -236,7 +236,7 @@ class Vector@\HL{(object)}@:
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
 class Vector(object):
-  @\HL{"""A 2D Vector."""}@
+  ~\HL{"""A 2D Vector."""}~
   def __init__(self, x, y):
     self.x = x
     self.y = y
@@ -267,7 +267,7 @@ class Vector(object):
 \begin{lstlisting}
 class Vector(object):
   """A 2D Vector."""
-  @\HL{\textbf{def} \_\_init\_\_(\textbf{self}, x, y):}@
+  ~\HL{\textbf{def} \_\_init\_\_(\textbf{self}, x, y):}~
     self.x = x
     self.y = y
   def add(self, other):
@@ -374,11 +374,11 @@ class Vector(object):
 import datetime as dt
 
 def today():
-  @\HL{td}@ = dt.date.today()
-  return "today is " + @\HL{td}@.isoformat()
+  ~\HL{td}~ = dt.date.today()
+  return "today is " + ~\HL{td}~.isoformat()
 
-def hey(@\HL{name}@):
-  print("Hey " + @\HL{name}@ + "; " + today())
+def hey(~\HL{name}~):
+  print("Hey " + ~\HL{name}~ + "; " + today())
 
 hey("you")
 \end{lstlisting}
@@ -403,7 +403,7 @@ def today():
   return "today is " + td.isoformat()
 
 def hey(name):
-  print("Hey " + name + "; " + @\HL{today}@())
+  print("Hey " + name + "; " + ~\HL{today}~())
 
 hey("you")
 \end{lstlisting}
@@ -423,10 +423,10 @@ hey("you")
   \begin{columns}
     \begin{column}[t]{0.6\linewidth}
 \begin{lstlisting}
-import datetime as @\HL[Red!25]{dt}@
+import datetime as ~\HL[Red!25]{dt}~
 
 def today():
-  td = @\HL{dt}@.date.today()
+  td = ~\HL{dt}~.date.today()
   return "today is " + td.isoformat()
 
 def hey(name):
@@ -451,7 +451,7 @@ hey("you")
 import datetime as dt
 
 def today():
-  td = @\HL{dt.date}@.today()
+  td = ~\HL{dt.date}~.today()
   return "today is " + td.isoformat()
 
 def hey(name):
@@ -478,7 +478,7 @@ import datetime as dt
 
 def today():
   td = dt.date.today()
-  return "today is " + @\HL{td.isoformat}@()
+  return "today is " + ~\HL{td.isoformat}~()
 
 def hey(name):
   print("Hey " + name + "; " + today())
@@ -501,9 +501,9 @@ hey("you")
     \begin{column}[t]{0.6\linewidth}
 \begin{lstlisting}
 class Vector(object):
-  def __init__(self, @\HL[Red!25]{x}@, @\HL[Red!25]{y}@):
-    self.x = @\HL{x}@
-    self.y = @\HL{y}@
+  def __init__(self, ~\HL[Red!25]{x}~, ~\HL[Red!25]{y}~):
+    self.x = ~\HL{x}~
+    self.y = ~\HL{y}~
   # ...
 \end{lstlisting}
     \end{column}
@@ -523,8 +523,8 @@ class Vector(object):
 \begin{lstlisting}
 class Vector(object):
   def __init__(self, x, y):
-    @\HL{self.x}@ = x
-    @\HL{self.y}@ = y
+    ~\HL{self.x}~ = x
+    ~\HL{self.y}~ = y
   # ...
 \end{lstlisting}
     \end{column}
@@ -548,7 +548,7 @@ class Vector(object):
 \begin{lstlisting}
 class Vector(object):
   """A 2D Vector."""
-  @\HL{\textbf{def} \_\_init\_\_(\textbf{self}, x, y):}@
+  ~\HL{\textbf{def} \_\_init\_\_(\textbf{self}, x, y):}~
     self.x = x
     self.y = y
   def add(self, other):

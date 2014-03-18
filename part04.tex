@@ -42,7 +42,7 @@
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
->>> @\HL{from datetime import date}@
+>>> ~\HL{from datetime import date}~
 >>> dt1 = date(2012, 9, 28)
 >>> dt2 = date(2012, 10, 1)
 \end{lstlisting}
@@ -62,7 +62,7 @@
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
 >>> from datetime import date
->>> @\HL{dt1 = date(2012, 9, 28)}@
+>>> ~\HL{dt1 = date(2012, 9, 28)}~
 >>> dt2 = date(2012, 10, 1)
 \end{lstlisting}
     \end{column}
@@ -79,7 +79,7 @@
   \frametitle{Example: the \texttt{datetime} object, III}
 \begin{lstlisting}
 >>> dir(dt1)
-['__add__', '__class__', @\ldots@, 'ctime', 'day',
+['__add__', '__class__', ~\ldots~, 'ctime', 'day',
 'fromordinal', 'fromtimestamp', 'isocalendar',
 'isoformat', 'isoweekday', 'max', 'min', 'month',
 'replace', 'resolution', 'strftime', 'timetuple',
@@ -143,9 +143,9 @@
 >>> dt2 = date(2012, 10, 1)
 
 >>> dt1.day
-@\HL{28}@
+~\HL{28}~
 >>> dt2.day
-@\HL{1}@
+~\HL{1}~
 \end{lstlisting}
     \end{column}
     \begin{column}[b]{0.5\textwidth}
@@ -186,10 +186,10 @@
   The \texttt{dir} built-in function is used to list the attributes of an object.
 
   \begin{python}
->>> @\HL{dir("hello!")}@
+>>> ~\HL{dir("hello!")}~
 ['__add__', '__class__', '__contains__',
  '__delattr__', '__doc__', '__eq__',
- @\ldots@
+ ~\ldots~
 'strip', 'swapcase', 'title',
 'translate', 'upper', 'zfill']
 \end{python}
@@ -202,9 +202,9 @@
   \frametitle{Everything is an object!}
 
   \begin{python}
->>> @\HL{dir([1,2,3])}@
+>>> ~\HL{dir([1,2,3])}~
 ['__add__', '__class__', '__contains__',
-@\ldots@
+~\ldots~
 'append', 'count', 'extend',
 'index', 'insert', 'pop',
 'remove', 'reverse', 'sort']
@@ -236,7 +236,7 @@
   \frametitle{Everything is an object!}
 
 \begin{python}
->>> @\HL{dir(1)}@
+>>> ~\HL{dir(1)}~
 \end{python}
 
 \end{frame}
@@ -246,9 +246,9 @@
   \frametitle{Everything is an object!}
 
   \begin{python}
->>> @\HL{dir(2)}@
+>>> ~\HL{dir(2)}~
 ['__abs__', '__add__', '__and__',
-@\ldots@
+~\ldots~
 'conjugate', 'denominator',
 'imag', 'numerator', 'real']
 \end{python}

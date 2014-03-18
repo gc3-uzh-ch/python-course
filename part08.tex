@@ -192,15 +192,15 @@ class ComplexNum(object):
 \begin{lstlisting}[basicstyle=\tiny\ttfamily,showstringspaces=false]
 class Vector(object):
 
-  @\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_init\_\_}(\textbf{self}, x, y):}@
+  ~\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_init\_\_}(\textbf{self}, x, y):}~
     self.x = x
     self.y = y
 
-  @\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_eq\_\_}(\textbf{self}, other):}@
+  ~\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_eq\_\_}(\textbf{self}, other):}~
     return (self.x == other.x) \
             and (self.y == other.y)
 
-  @\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_add\_\_}(\textbf{self}, other):}@
+  ~\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_add\_\_}(\textbf{self}, other):}~
     return Vector(
       self.x+other.x, self.y+other.y)
 
@@ -217,15 +217,15 @@ class Vector(object):
 \begin{lstlisting}[basicstyle=\tiny\ttfamily,showstringspaces=false]
 class ComplexNum(object):
 
-  @\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_init\_\_}(\textbf{self}, z1, z2):}@
+  ~\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_init\_\_}(\textbf{self}, z1, z2):}~
     self.re = z1
     self.im = z2
 
-  @\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_eq\_\_}(\textbf{self}, other):}@
+  ~\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_eq\_\_}(\textbf{self}, other):}~
     return (self.re == other.re) \
            and (self.im == other.im)
 
-  @\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_add\_\_}(\textbf{self}, other):}@
+  ~\HL[Yellow!25]{\textbf{def} {\color{Red}\bfseries \_\_add\_\_}(\textbf{self}, other):}~
     return ComplexNum(
       self.re+other.re, self.im+other.im)
 
@@ -298,7 +298,7 @@ class Vector(object):
     \end{column}
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}[basicstyle=\tiny\ttfamily,showstringspaces=false]
-class @\HL{ComplexNum(Vector)}@:
+class ~\HL{ComplexNum(Vector)}~:
 
   def __mul__(self, other):
     return ComplexNum(
@@ -334,15 +334,15 @@ class @\HL{ComplexNum(Vector)}@:
 \begin{lstlisting}[basicstyle=\tiny\ttfamily,showstringspaces=false]
 class Vector(object):
 
-  @\HL{\textbf{def} {\color{Red}\bfseries \_\_init\_\_}(\textbf{self}, x, y):}@
+  ~\HL{\textbf{def} {\color{Red}\bfseries \_\_init\_\_}(\textbf{self}, x, y):}~
     self.x = x
     self.y = y
 
-  @\HL{\textbf{def} {\color{Red}\bfseries \_\_eq\_\_}(\textbf{self}, other):}@
+  ~\HL{\textbf{def} {\color{Red}\bfseries \_\_eq\_\_}(\textbf{self}, other):}~
     return (self.x == other.x) \
             and (self.y == other.y)
 
-  @\HL{\textbf{def} {\color{Red}\bfseries \_\_add\_\_}(\textbf{self}, other):}@
+  ~\HL{\textbf{def} {\color{Red}\bfseries \_\_add\_\_}(\textbf{self}, other):}~
     return self.__class__(
       self.x+other.x, self.y+other.y)
 
@@ -396,12 +396,12 @@ class Vector(object):
     return self.__class__(
       self.x+other.x, self.y+other.y)
 
-  @\HL[Yellow!25]{\textbf{def} {\color{Red}\_\_mul\_\_}(\textbf{self}, other):}@
+  ~\HL[Yellow!25]{\textbf{def} {\color{Red}\_\_mul\_\_}(\textbf{self}, other):}~
     return Vector(
       scalar*self.x,
       scalar*self.y)
 
-  @\HL[Yellow!25]{\textbf{def} {\color{Red}\_\_str\_\_}(\textbf{self}):}@
+  ~\HL[Yellow!25]{\textbf{def} {\color{Red}\_\_str\_\_}(\textbf{self}):}~
     return ("<%g,%g>" % (self.x, self.y))
 \end{lstlisting}
     \end{column}
@@ -409,12 +409,12 @@ class Vector(object):
 \begin{lstlisting}[basicstyle=\tiny\ttfamily,showstringspaces=false]
 class ComplexNum(Vector):
 
-  @\HL{\textbf{def} {\color{Red}\_\_mul\_\_}(\textbf{self}, other):}@
+  ~\HL{\textbf{def} {\color{Red}\_\_mul\_\_}(\textbf{self}, other):}~
     return ComplexNum(
       self.x*other.x - self.y*other.y,
       self.x*other.y + self.y*other.x)
 
-  @\HL{\textbf{def} {\color{Red}\_\_str\_\_}(\textbf{self}):}@
+  ~\HL{\textbf{def} {\color{Red}\_\_str\_\_}(\textbf{self}):}~
     return ("%g + %gi" % (self.x, self.y))
 \end{lstlisting}
 
@@ -490,7 +490,7 @@ class Application(Task):
 class ComplexNum(Vector):
   # ...
   def print_as_vector(self):
-    return @\HL{Vector.\_\_str\_\_(self)}@
+    return ~\HL{Vector.\_\_str\_\_(self)}~
     \end{python}
 \end{frame}
 
@@ -548,7 +548,7 @@ AttributeError: 'int' object has no attribute 'x'
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "vector_and_complexnum.py", line 20, in __mul__
-    self.x*@\HL{other.x}@ - self.y*@\HL{other.y}@,
+    self.x*~\HL{other.x}~ - self.y*~\HL{other.y}~,
 AttributeError: 'int' object has no attribute 'x'
 \end{lstlisting}
 
@@ -694,9 +694,9 @@ True
 \begin{lstlisting}
 >>> fd = open('welcome.py', 'r')
 >>> dir(fd)
-['__class__', @\ldots,@ 'name',
- 'newlines', @\HL{\tt 'next'}@, 'read',
- @\ldots,@  'writelines', 'xreadlines']
+['__class__', ~\ldots,~ 'name',
+ 'newlines', ~\HL{\tt 'next'}~, 'read',
+ ~\ldots,~  'writelines', 'xreadlines']
 \end{lstlisting}
 
   \+
@@ -911,11 +911,11 @@ class Grep(object):
 
   def next(self):
     line = self._file.next()
-    match = @\HL{self.match}@(line)
+    match = ~\HL{self.match}~(line)
     while not match:
         line = self._file.next()
-        match = @\HL{self.match}@(line)
-    return @\HL{self.result}@(match, line)
+        match = ~\HL{self.match}~(line)
+    return ~\HL{self.result}~(match, line)
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -934,11 +934,11 @@ class Grep(object):
 \begin{lstlisting}
 
 class GrepOnlyMatching(Grep):
-  @\HL{\textbf{def} result}@(self, match, line):
+  ~\HL{\textbf{def} result}~(self, match, line):
     return match.group(0)
 
 class GrepExactly(Grep):
-  @\HL{\textbf{def} match}@(self, line):
+  ~\HL{\textbf{def} match}~(self, line):
     return (self._pattern in line)
 \end{lstlisting}
     \end{column}

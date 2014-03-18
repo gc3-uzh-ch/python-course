@@ -59,7 +59,7 @@ class Vector(object):
                   self.y+other.y)
   def mul(self, scalar):
     return Vector(scalar*self.x, scalar*self.y)
-  def @\HL{\_\_str\_\_}@(self):
+  def ~\HL{\_\_str\_\_}~(self):
     return ("<%g,%g>" % (self.x, self.y))
 \end{lstlisting}
     \end{column}
@@ -106,7 +106,7 @@ class Vector(object):
 >>> v1 = Vector(0,1)
 >>> v2 = Vector(0,1)
 >>> v1 == v2
-@\HL{False}@
+~\HL{False}~
 \end{lstlisting}
 
   \+ Python does not know how to test if two user defined objects are
@@ -155,7 +155,7 @@ class Vector(object):
   # (code omitted)
   def __str__(self):
     return ("<%g,%g>" % (self.x, self.y))
-  @\HL{\textbf{def} \_\_eq\_\_(\textbf{self}, other):}@
+  ~\HL{\textbf{def} \_\_eq\_\_(\textbf{self}, other):}~
     return (self.x == other.x) and (self.y == other.y)
 \end{lstlisting}
     \end{column}
@@ -201,7 +201,7 @@ class Vector(object):
     return ("<%g,%g>" % (self.x, self.y))
   def __eq__(self, other):
     return (self.x == other.x) and (self.y == other.y)
-  @\HL{\textbf{def} \_\_add\_\_(\textbf{self}, other):}@
+  ~\HL{\textbf{def} \_\_add\_\_(\textbf{self}, other):}~
     return Vector(self.x+other.x, self.y+other.y)
 \end{lstlisting}
     \end{column}
@@ -247,7 +247,7 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "vector4.py", line 14, in __add__
     return Vector(self.x+other.x, self.y+other.y)
-@\HL{AttributeError: 'float' object has no attribute 'x'}@
+~\HL{AttributeError: 'float' object has no attribute 'x'}~
 \end{lstlisting}
 
   \+ In this case, an error is the correct behavior: a vector can only
@@ -273,7 +273,7 @@ class Vector(object):
     return (self.x == other.x) and (self.y == other.y)
   def __add__(self, other):
     return Vector(self.x+other.x, self.y+other.y)
-  @\HL{\textbf{def} \_\_mul\_\_(\textbf{self}, scalar):}@
+  ~\HL{\textbf{def} \_\_mul\_\_(\textbf{self}, scalar):}~
     return Vector(scalar*self.x, scalar*self.y)
 \end{lstlisting}
     \end{column}
