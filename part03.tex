@@ -281,6 +281,34 @@ for i in range(0, 4):
   \end{columns}
 \end{frame}
 
+\begin{frame}[fragile]
+
+  If you want to loop over a \textit{sorted} sequence you can use the
+  function \texttt{sorted()} :
+
+  \begin{lstlisting}
+>>> for val in sorted([1,3,4,2]):
+...  print val
+1
+2
+3
+4
+  \end{lstlisting}
+
+and to loop over a sequence in \textit{inverted} order you can use the
+\texttt{reversed()} function:
+
+\begin{lstlisting}
+>>> for val in reversed([1,3,4,2]):
+...     print val
+2
+4
+3
+1
+\end{lstlisting}
+
+\end{frame}
+
 %%% Exercise on for loops and lists
 
 \begin{frame}[fragile]
@@ -326,10 +354,12 @@ for i in range(0, 4):
   \end{description}
 \end{frame}
 
+%%% set container
+
 \begin{frame}[fragile]
-  \frametitle{Sets (1)}
-  The \texttt{set} type implements an unordered container that holds
-  exactly one object per equivalence class:
+  \frametitle{Sets (1)} The \texttt{set} type implements an
+  \textbf{unordered} container that holds exactly one object per
+  equivalence class:
 \begin{lstlisting}
 >>> S = set()
 >>> S.add(1)
@@ -339,8 +369,12 @@ for i in range(0, 4):
 set([1, 'two'])
 \end{lstlisting}
 
-  \+
-  You can create a set and add elements to it in one go:
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Sets (2)}
+You can create a set and add elements to it in one go:
 \begin{lstlisting}
 >>> S2 = set([1, 2, 3, 4])
 \end{lstlisting}
@@ -357,7 +391,7 @@ set([3,4])
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Sets (2)}
+  \frametitle{Sets (3)}
   Sets are often used to get unique values from a list:
   \begin{lstlisting}
 >>> L = [1, 1, 2, 2, 3, 3]
@@ -372,8 +406,15 @@ Of course, you can also create a list from a set:
 >>> list(S)
 [1, 2, 3]
 \end{lstlisting}
+
+\+\pause
+\begin{question}
+  In what order will the set items appear in the list?
+\end{question}
+
 \end{frame}
 
+%%% dictionaries
 
 \begin{frame}[fragile]
   \frametitle{Dictionaries}
@@ -387,30 +428,76 @@ Of course, you can also create a list from a set:
 \end{lstlisting}
 
   \+\pause
-  Dictionaries can be created and initialized using two
-  different but equivalent syntaxes:
+  Dictionaries can be created and initialized using the following syntax:
 \begin{lstlisting}
->>> D1 = { 'a':1, 'b':2 }
->>> D2 = dict(a=1, b=2)
->>> D1 == D2
-True
+>>> D = { 'a':1, 2:'b' }
+>>> D['a']
+1
 \end{lstlisting}
 
 \end{frame}
 
 \begin{frame}[fragile]
+  The \texttt{for} statement can be used to loop over keys of a dictionary:
+  \+
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> D = dict(a=1, b=2)
+>>> for val in ~\HL{D.keys()}~:
+...   print val
+'a'
+'b'
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \raggedleft
+      Loop over dictionary~\emph{keys}.
+
+      \emph{The \texttt{.keys()} part can be omitted, as it's the
+        default!}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  If you want to loop over dictionary \emph{values}, you have to
+  explicitly request it.
+
+  \+
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+>>> D = dict(a=1, b=2)
+>>> for val in ~\HL{D.values()}~:
+...   print val
+1
+2
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \raggedleft
+      Loop over dictionary~\emph{values}
+
+      \emph{The \texttt{.values()} cannot be omitted!}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+    \begin{exercise}
+    Write a function \texttt{invert(D)} that takes a dictionary
+    \texttt{D} and returns a dictionary \texttt{Dinv} with keys and
+    values swapped. (We assume that \texttt{D} is 1-1.)
+  \end{exercise}
+\end{frame}
+
+%%% Mutable vs immutable
+
+\begin{frame}[fragile]
   \frametitle{Mutable vs Immutable}
   Some objects (e.g., \texttt{tuple}, \texttt{int}, \texttt{str})
   are \emph{immutable} and cannot be modified.
-\begin{lstlisting}[basicstyle=\footnotesize\ttfamily]
->>> T = ('U', 'Z', 'H')
->>> T[2] = 'h'
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-TypeError: 'tuple' object does not support item assignment
-\end{lstlisting}
-
-\+
 \begin{lstlisting}
 >>> S = 'GC3'
 >>> S[2] = '2'
@@ -428,11 +515,12 @@ TypeError: 'str' object does not support item assignment
 \begin{frame}[fragile]
   \frametitle{Dictionary, sets and mutable objects} 
 
-  A dictionary is essentially an \textbf{HashMap}, therefore keys of a
+  A dictionary is essentially an
+  \href{http://en.wikipedia.org/wiki/Hash_table}{Hash Table}, therefore keys of a
   dictionary must be \textit{hashable} objects.
 
   \+
-  Similarly, elements of a set must be hashable objects too.
+  Similarly, elements of a \texttt{set} must be hashable too.
 
   \+\pause
   The hash of an object must not change over time, so:
@@ -440,21 +528,131 @@ TypeError: 'str' object does not support item assignment
   \begin{itemize}
   \pause
     \item
-      \textit{Immutable} objects (like \texttt{str}, \texttt{int},
-      \texttt{tuple}, \texttt{frozenset}) \textbf{can be} used.
+      \textit{Immutable} objects \textbf{can be} used as \texttt{dict} keys.
       
   \pause
     \item
-      \textit{Mutable} objects (like \texttt{list}, \texttt{dict},
-      \texttt{set}) \textbf{cannot be} used.
+      \textit{Mutable} objects  \textbf{cannot be} used as \texttt{dict} keys.
     \end{itemize}
     
     \+\pause
-  But custom types can define an \verb|__hash__| function to compute their
+  But custom types can define an \verb|__hash__| method to compute their
   hash.
 \end{frame}
 
 
+%%% tuples
+
+\begin{frame}[fragile]
+  \frametitle{Tuples}
+  Tuples are like lists
+  \begin{lstlisting}
+>>> T = (1, 2, 3)
+>>> T[0]
+1
+>>> T[0:1]
+(1,)
+  \end{lstlisting}
+
+  \+\pause
+but they are \textit{immutable}
+
+\begin{lstlisting}[basicstyle=\footnotesize\ttfamily]
+>>> T[0] = 'a'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+\end{lstlisting}
+\end{frame}
+
+%%% multiple assignment
+
+\begin{frame}[fragile]
+\frametitle{Multiple assignment}
+% aka "destructuring bind"
+You can assing multiple variables at the same time
+\begin{lstlisting}
+>>> a, b, c = (1, 2, 3)
+>>> print a
+1
+>>> print b
+2
+\end{lstlisting}
+
+\+
+
+It works with any sequence:
+
+\begin{lstlisting}
+>>> a, b, c = 'GC3'
+>>> print a
+G
+\end{lstlisting}
+
+\pause
+\begin{question}
+  Can you think of a way to swap the values of two variables using this?
+\end{question}
+\pause
+\begin{lstlisting}
+>>> a, b = b, a
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Multiple assignment (2)}
+Multiple assignment can be used in \texttt{for} statements as well.
+\begin{lstlisting}
+>>> L = [(1,'a'), (2,'b'), (3, 'c')]
+>>> for num, char in L:
+...     print ("num is " + str(num)
+...            + ' and char is ' + char)
+\end{lstlisting}
+
+  \+
+  This is particularly useful with functions that return a tuple.
+  For instance the \texttt{enumerate()} function (look it up with
+  \texttt{help()}!).
+\end{frame}
+
+\begin{frame}[fragile]
+
+  \begin{exercise}
+    Implement a \texttt{zip2} function, that takes a list of 2-tuples
+    and returns \emph{two} lists: a list of all the first items in the
+    pairs, and a list of all the second items in the pairs.
+
+    \begin{lstlisting}
+>>> zip2( [('a', 1), ('b', 2), ('c', 3)] )
+(['a', 'b', 'c'], [1, 2, 3])      
+    \end{lstlisting}
+  \end{exercise}
+
+  \+
+  \begin{exercise}
+    Read the documentation for the \texttt{dict.items} method, and
+    give a solution of exercise \textbf{C} using multiple assignment
+    and \texttt{dict.items}.
+  \end{exercise}
+\end{frame}
+
+%%% data structures recap
+
+\begin{frame}
+  \frametitle{Data structures recap}
+  \begin{center}
+    \begin{tabular}{>{\ttfamily}c|>{\ttfamily}c|>{\footnotesize}p{0.5\linewidth}}
+      \rmfamily \textbf{mutable} & \rmfamily \textbf{immutable} & \\
+      set & frozenset & unordered container of
+      unique elements\\[1ex]
+      list & tuple & ordered sequence\\[1ex]
+      dict & $-$ & key/values mapping\\[1ex]
+      $-$& str & ordered sequence of characters\\
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+%%% the `in` operator
 
 \begin{frame}[fragile]
   \frametitle{The `{\ttfamily\bfseries in}' operator}
@@ -602,114 +800,7 @@ Found!
 %   \end{question}
 % \end{frame}
 
-\begin{frame}[fragile]
-  The \texttt{for} statement can be used to loop over elements in \emph{any sequence}.
 
-  \+
-  \begin{columns}[c]
-    \begin{column}{0.5\textwidth}
-\begin{lstlisting}
->>> D = dict(a=1, b=2)
->>> for val in ~\HL{D.keys()}~:
-...   print val
-'a'
-'b'
-\end{lstlisting}
-    \end{column}
-    \begin{column}{0.4\textwidth}
-      \raggedleft
-      Loop over dictionary~\emph{keys}.
-
-      \emph{The \texttt{.keys()} part can be omitted, as it's the
-        default!}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-\begin{frame}[fragile]
-  If you want to loop over dictionary \emph{values}, you have to
-  explicitly request it.
-
-  \+
-  \begin{columns}[c]
-    \begin{column}{0.5\textwidth}
-\begin{lstlisting}
->>> D = dict(a=1, b=2)
->>> for val in ~\HL{D.values()}~:
-...   print val
-1
-2
-\end{lstlisting}
-    \end{column}
-    \begin{column}{0.4\textwidth}
-      \raggedleft
-      Loop over dictionary~\emph{values}
-
-      \emph{The \texttt{.values()} cannot be omitted!}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
-\begin{frame}[fragile]
-
-  If you want to loop over a \textit{sorted} sequence you can use the
-  function \texttt{sorted()} :
-
-  \begin{lstlisting}
->>> for val in sorted([1,3,4,2]):
-...  print val
-1
-2
-3
-4
-  \end{lstlisting}
-
-and to loop over a sequence in \textit{inverted} order you can use the
-\texttt{reversed()} function:
-
-\begin{lstlisting}
->>> for val in reversed([1,3,4,2]):
-...     print val
-2
-4
-3
-1
-\end{lstlisting}
-
-\end{frame}
-
-
-\begin{frame}[fragile]
-  Multiple assignment can be used in \texttt{for} statements as well.
-\begin{lstlisting}
->>> L = [(1,'a'), (2,'b'), (3, 'c')]
->>> for num, char in L:
-...     print ("num is " + str(num)
-...            + ' and char is ' + char)
-\end{lstlisting}
-
-  \+
-  This is particularly useful with functions that return a tuple.
-  For instance the \texttt{enumerate()} function (look it up with
-  \texttt{help()}!).
-\end{frame}
-
-
-\begin{frame}
-  \begin{exercise}
-    Write a function \texttt{invert(D)} that takes a dictionary
-    \texttt{D} and returns a dictionary \texttt{Dinv} with keys and
-    values swapped. (We assume that \texttt{D} is 1-1.)
-  \end{exercise}
-
-  \+
-  \begin{exercise}
-    Implement a \texttt{zip2} function, that takes a list of 2-tuples
-    and returns \emph{two} lists: a list of all the first items in the
-    pairs, and a list of all the second items in the pairs.
-  \end{exercise}
-\end{frame}
 
 
 \begin{frame}[fragile]
