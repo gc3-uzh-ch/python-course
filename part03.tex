@@ -804,6 +804,55 @@ Found!
 % \end{frame}
 
 
+\begin{frame}[fragile]
+  \frametitle{How to copy an object?}  
+  \begin{lstlisting}
+>>> import copy
+>>> a = [1, 2]
+>>> b = copy.copy(a)
+>>> b.remove(1)
+>>> print(b)
+[2]
+>>> print(a)
+[1, 2]
+  \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{How to copy an object? (2)}  
+Note that \texttt{copy.copy} makes a \emph{shallow} copy:
+  \begin{lstlisting}
+>>> D = { 'a':[1,2], 'b':3 }
+>>> print(D['a'])
+[1, 2]
+>>> E = copy.copy(D)
+>>> print(E)
+{ 'a':[1, 2], 'b':3 }
+>>> E['a'].remove(1)
+>>> print(D['a'])
+[2]    
+  \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{How to copy an object? (3)}  
+To make a copy of nested data structures, you need \texttt{copy.deepcopy}:
+  \begin{lstlisting}
+>>> D = { 'a':[1,2], 'b':3 }
+>>> print(D['a'])
+[1, 2]
+>>> E = copy.deepcopy(D)
+>>> print(E)
+{ 'a':[1, 2], 'b':3 }
+>>> E['a'].remove(1)
+>>> print(D['a'])
+[1, 2]    
+>>> print(E['a'])
+[2]    
+  \end{lstlisting}
+\end{frame}
 
 
 \begin{frame}[fragile]
