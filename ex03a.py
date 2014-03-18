@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 
-def invert(D):
-    """
-    Write a function invert(D) that takes a dictionary D and returns a
-    dictionary Dinv with keys and values swapped. (We assume that D is
-    1-1.)
-    """
-    invD = {}
-    for key in D:
-        value = D[key]
-        invD[value] = key
-    return invD
+"""
+    Write a function \texttt{odd} that takes a list of integers and
+    returns a list of all the odd ones.
+"""
 
-if __name__ == "__main__":
-    assert invert({'a':'aaa','b':'bbb'}) == {'aaa':'a', 'bbb':'b'}
+def odd(lst):
+    result = []
+    for i in lst:
+        if i % 2 == 0:
+            result.append(i)
+    return result
