@@ -636,22 +636,6 @@ Multiple assignment can be used in \texttt{for} statements as well.
   \end{exercise}
 \end{frame}
 
-%%% data structures recap
-
-\begin{frame}
-  \frametitle{Data structures recap}
-  \begin{center}
-    \begin{tabular}{>{\ttfamily}c|>{\ttfamily}c|>{\footnotesize}p{0.5\linewidth}}
-      \rmfamily \textbf{mutable} & \rmfamily \textbf{immutable} & \\
-      set & frozenset & unordered container of
-      unique elements\\[1ex]
-      list & tuple & ordered sequence\\[1ex]
-      dict & $-$ & key/values mapping\\[1ex]
-      $-$& str & ordered sequence of characters\\
-    \end{tabular}
-  \end{center}
-\end{frame}
-
 %%% the `in` operator
 
 \begin{frame}[fragile]
@@ -676,7 +660,6 @@ Multiple assignment can be used in \texttt{for} statements as well.
   \end{describe}
 
 \end{frame}
-
 
 \begin{frame}[fragile,fragile]
   \frametitle{The \texttt{in} operator and the \texttt{if} conditional
@@ -705,6 +688,24 @@ Found!
 % \end{lstlisting}
 \end{frame}
 
+
+%%% data structures recap
+
+\begin{frame}
+  \frametitle{Data structures recap}
+  \begin{center}
+    \begin{tabular}{>{\ttfamily}c|>{\ttfamily}c|>{\footnotesize}p{0.5\linewidth}}
+      \rmfamily \textbf{mutable} & \rmfamily \textbf{immutable} & \\
+      set & frozenset & unordered container of
+      unique elements\\[1ex]
+      list & tuple & ordered sequence\\[1ex]
+      dict & $-$ & key/values mapping\\[1ex]
+      $-$& str & ordered sequence of characters\\
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+
 % \begin{frame}[fragile]
 %   \frametitle{Useful data structures operations}
 
@@ -717,6 +718,8 @@ Found!
 %   And remember that \texttt{dir()} and \texttt{help()} are your friends!
 % \end{frame}
 
+
+%%% NOTE: This should be split in two slides
 
 \begin{frame}[fragile]
   \frametitle{All variables are references}
