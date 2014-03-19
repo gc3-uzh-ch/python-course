@@ -496,6 +496,60 @@ class ComplexNum(Vector):
 
 
 \begin{frame}[fragile]
+  \frametitle{Inheritance, IV}
+Take a look at this Python interaction:
+\begin{lstlisting}
+>>> z = ComplexNum(1,0)
+>>> print(z)
+1 + i0
+>>> w = ComplexNum(0,1)
+>>> print(w)
+0 + i1
+>>> u = z + w
+>>> print(u)
+\end{lstlisting}
+\only<1>{\em  What do you think will be printed now?}
+\only<2>{%
+  \vspace{-1.5em}
+\begin{semiverbatim}
+\HL{<1,1>}
+\end{semiverbatim}
+{\em  This is no \texttt{ComplexNum}! What's happening here?}
+}%
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Inheritance, V}
+  The answer is in the code:
+    \begin{python}
+class Vector(object):
+  # ...
+  def __add__(self, other):
+    return ~\HL{Vector}~(self.x+other.x, self.y+other.y)
+    \end{python}
+    \pause
+    The \lstinline|Vector.__add__| method returns a new
+    \lstinline|Vector| instance, even when called from a
+    \lstinline|ComplexNum| !
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Inheritance, VI}
+  Correct code:
+    \begin{python}
+class Vector(object):
+  # ...
+  def __add__(self, other):
+    return ~\HL{self.\_\_class\_\_}~(self.x+other.x, self.y+other.y)
+    \end{python}
+    Use the class of the actual instance that's passed,
+    instead of hard-coding a class name.
+\end{frame}
+
+
+\begin{frame}[fragile]
   \frametitle{Polymorphism, I}
 
   The multiplication operator ``\texttt{*}'' on instances of the
@@ -620,6 +674,7 @@ True
 >>> isinstance(0.5, float)
 True
 >>> isinstance("hi!", str)
+True
 \end{lstlisting}
     \end{column}
     \begin{column}{0.5\textwidth}
