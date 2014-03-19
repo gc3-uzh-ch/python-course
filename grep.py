@@ -20,6 +20,5 @@ class Grep(object):
 
 if __name__ == '__main__':
     # test Grep
-    grep = Grep(__file__, 'class Grep[A-Za-z]+')
-    assert 'class GrepOnlyMatching(object):\n' == grep.next()
-    assert 'class GrepExactly(object):\n' == grep.next()
+    grep = Grep(__file__, 'class Grep.*')
+    assert 'class Grep(object):\n' == grep.next()
