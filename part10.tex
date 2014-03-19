@@ -2,8 +2,8 @@
 \usetheme[informal]{gc3}
 \usepackage{gc3}
 
-\title[Testing]{%
-  Testing your code
+\title[OOP 3]{%
+  Object-oriented programming, III
 }
 \author[GC3]{%
   GC3: Grid Computing Competence Center, \\
@@ -18,313 +18,318 @@
 
 
 \begin{frame}
-  \frametitle{Testing is \textbf{not} a waste of time.}
-  A \emph{test} is a piece of code that checks if the code you
-  wrote behave as expected.
+  \frametitle{What we shall see in this part}
+
+  Iterators: the Python way of implementing generalized sequences,
+  e.g., ``infinite lists''.
 
   \+
-  Testing\ldots
-  \begin{itemize}
-  \item[$\triangleright$] makes sure your code works properly (under given conditions).
-  \item[$\triangleright$] ensures changes to the code do not break existing functionality.
-  \item[$\triangleright$] forces you to think about unusual conditions and corner cases.
-  \end{itemize}
-
-  \+ \textbf{Test Driven Development:} writing tests \textit{before}
-  writing the code helps you to write \emph{better code.}
+  The \href{http://en.wikipedia.org/wiki/Template_method_pattern}{Template
+    method}: an object-oriented pattern for code reuse.
 \end{frame}
 
 
 \begin{frame}
-  \frametitle{Different kind of tests}
+  \frametitle{Protocols}
+  A \emph{protocol}, in the Python jargon, is an informal
+  specification of what methods an object should implement in order to
+  be used in a certain context.
 
-  There are two kind of tests:
+  \+ For example, objects that implement the same methods as the
+  \texttt{file} object are called ``file-like'' and can be used in
+  stead of a real file.
 
   \+
-  \begin{tabular}{>{\em}r>{\raggedright}p{0.75\linewidth}}
-    unit tests
-    &
-    check that a method or class, in isolation,
-    actually performs the tasks that it is supposed to do
-    \\
-    functional tests
-    &
-    check that the global behavior of an application is the expected one
-    \\
+  (This corresponds to the notion of \emph{interfaces} in other
+  programming languages, but interfaces are usually a formal language
+  construct.)
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The Iterator Protocol}
+
+  An \emph{iterator} is an object that can be used in the
+  \texttt{in}-clause of a \texttt{for \ldots in \ldots} statement.
+
+  \+
+  An object can work as an iterator if and only if it implements a
+  \texttt{next()} method, that:
+  \begin{description}
+  \item[\emph{either}] returns the next value in the iteration,
+  \item[\emph{or}] use \lstinline|raise StopIteration| to signal the
+    end of the iteration.
+  \end{description}
+
+  \+
+  An object can be iterated over with \lstinline|for| if it implements a
+  \lstinline|__iter__()| method that returns an iterator.
+
+  \begin{references}
+    \url{http://www.python.org/dev/peps/pep-0234/}
+  \end{references}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Examples of Iterators, I}
+
+  The \texttt{file} object:
+\begin{lstlisting}
+>>> fd = open('welcome.py', 'r')
+>>> dir(fd)
+['__class__', ~\ldots,~ 'name',
+ 'newlines', ~\HL{\tt 'next'}~, 'read',
+ ~\ldots,~  'writelines', 'xreadlines']
+\end{lstlisting}
+
+  \+
+  The \texttt{.next()} method of \texttt{file} objects returns the
+  lines one by one:
+\begin{lstlisting}
+>>> fd.next()
+'#! /usr/bin/env python\n'
+>>> fd.next()
+'\n'
+>>> fd.next()
+'print ("Welcome to Python!")\n'
+\end{lstlisting}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Examples of Iterators, II}
+
+  You can get an iterator from any sequence with the \texttt{iter()} built-in function:
+\begin{lstlisting}
+>>> S = "Python"
+>>> it = iter(S)
+\end{lstlisting}
+
+  \+
+  The \texttt{.next()} method of such iterators returns the
+  elements of the sequence one by one:
+\begin{lstlisting}
+>>> it.next()
+'P'
+>>> it.next()
+'y'
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Detour: Regular Expressions}
+
+  Regular expressions (RE) are a way to describe text
+  patterns.
+
+  \+
+  Any character, except those listed below, matches itself.
+
+  \+
+  \begin{tabular}{>{\ttfamily}c>{\small}p{0.85\linewidth}}
+    .  &    Matches any character except a newline. \\
+    \textasciicircum  &    Matches the start of the string. \\
+    \$ &    Matches the end of the string or just before the newline at the end of the string. \\
+    *  &    Matches 0 or more repetitions of the preceding RE. \\
+    +  &    Matches 1 or more repetitions of the preceding RE. \\
+    ?  &    Matches 0 or 1 of the preceding RE. \\
   \end{tabular}
 
+  \begin{seealso}
+    \url{http://regexone.com/} (learn RE), \\
+    \url{http://regexpal.com/} (try RE live)
+  \end{seealso}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Regular Expression objects}
+  The \texttt{re} module in the standard library provides
+  \emph{regular expression searching}, allowing you to match a string
+  against a pattern.
+
   \+
-  It's better to have both :-) but we are only going to cover
-  only ``unit tests'' here.
+  \begin{describe}{re.search(pattern, string)}
+    If \texttt{pattern} is matched anywhere in \texttt{string}, return
+    a \emph{match object}.  Otherwise, return \texttt{None}.
+  \end{describe}
+
+  \+
+  \begin{describe}{\emph{match}.group(0)}
+    The entire string matched by \texttt{pattern} in a search operation.
+  \end{describe}
+
+  \+
+  \begin{references}
+    \url{http://docs.python.org/library/re.html}
+  \end{references}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Doctest (1/7)}
-
-  The \lstinline|doctest| module searches for text that looks like
-  interactive Python sessions in \textit{docstrings}, and then
-  executes them to verify that they work exactly as shown.
-
-  \+
-  Combines \textit{documentation} and \textit{tests}. Example:
-  \begin{lstlisting}
-  def square(self, n):
-    """
-    This function compute the square of a number.
-
-      >>> square(2)
-      4
-      >>> square(-2)
-      4
-    """
-    return n*n
-  \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Doctest (2/7)}
+  \frametitle{A user-defined iterator}
   \begin{columns}[t]
-    \begin{column}{0.6\textwidth}
-  \begin{lstlisting}
-def square(x):
-    """
-    ~\HL{This function compute}~
-    ~\HL{the square of a number.}~
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
+import re
 
-      >>> square(2)
-      4
-    """
-  \end{lstlisting}
-\end{column}
-\begin{column}{0.5\textwidth}
-  \raggedleft Line \emph{not} starting with \texttt{>>>} or \emph{not}
-  following a line starting with \texttt{>>>} are documentation lines,
-  and are thus ignored for testing purposes.
-\end{column}
-\end{columns}
-\end{frame}
+class Grep(object):
+    def __init__(self, filename, pattern):
+        self._file = open(filename, 'r')
+        self._pattern = pattern
 
-\begin{frame}[fragile]
-  \frametitle{Doctest (3/7)}
-\begin{columns}[t]
-  \begin{column}{0.6\textwidth}
-  \begin{lstlisting}
-def square(x):
-    """
-    This function compute
-    the square of a number.
+    def __iter__(self):
+        return self
 
-      ~\HL{>>> square(2)}~
-      4
-    """
-  \end{lstlisting}
-\end{column}
-\begin{column}{0.4\textwidth}
-  \raggedleft
-  This line starts with \texttt{>>>}, so it's Python code: it will be
-  executed inside a Python shell.
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Doctest (4/7)}
-\begin{columns}[t]
-  \begin{column}{0.6\textwidth}
-  \begin{lstlisting}
-def square(x):
-    """
-    This function compute
-    the square of a number.
-
-      >>> square(2)
-      ~\HL{4}~
-    """
-  \end{lstlisting}
-\end{column}
-\begin{column}{0.4\textwidth}
-  \raggedleft
-  This line follows a line starting with \texttt{>>>} \emph{and} is
-  indented in the same way: it's the output of the previous Python
-  statement.
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}[fragile,fragile]
-  \frametitle{Doctest (5/7)}
-
-  To execute all the doctests of module \texttt{foo.py}, run:
+    def next(self):
+        line = self._file.next()
+        while not re.search(self._pattern, line):
+            line = self._file.next()
+        return line
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      Iterate over lines of a file matching a pattern.
+    \end{column}
+  \end{columns}
 
   \+
-\begin{lstlisting}[language=sh]
-$ python -m doctest foo.py
+  {\scriptsize Source code available at:
+    \url{https://raw.github.com/gc3-uzh-ch/python-course/master/evens.py}}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Example using \texttt{Grep}, I}
+\begin{lstlisting}[showstringspaces=false]
+>>> from grep import Grep
+>>> g = Grep('grep.py', 'def')
+>>> g.next()
+'    def __init__(self, filename, pattern):\n'
+>>> g.next()
+'    def __iter__(self):\n'
+>>> g.next()
+'    def next(self):\n'
+>>> g.next()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "grep.py", line 17, in next
+    line = self._file.next()
+StopIteration
 \end{lstlisting}
-%$
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Doctest (6/7)}
-
-  By default, running doctests only shows failed tests:
-\begin{lstlisting}[language=sh,basicstyle=\footnotesize\ttfamily]
-$ python -m doctest vector6.py
-**********************************************************************
-File "vector6.py", line 32, in vector6.Vector
-Failed example:
-    print v * 2
-Expected:
-    <2,1>
-Got:
-    <2,4>
-~[\ldots]~
-**********************************************************************
-1 items had failures:
-   2 of  10 in vector6.Vector
-***Test Failed*** 2 failures.
+  \frametitle{Example using \texttt{Grep}, II}
+\begin{lstlisting}
+>>> from grep import Grep
+>>> g = Grep('grep.py', 'def')
+>>> for line in g:
+...   print line.strip()
+... 
 \end{lstlisting}
-  Otherwise: no output means that all the tests passed.
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Doctest (7/7)}
-
-  You can add a \lstinline|-v| option to have a more verbose output
-  which includes all the tests executed:
-\begin{lstlisting}[language=sh,basicstyle=\ttfamily\scriptsize]
-$ python -m doctest -v vector6.py
-~[\ldots]~
-Trying:
-    print v * 2
-Expecting:
-    <2,4>
-ok
-5 items had no tests:
-    vector6
-    vector6.Vector.__add__
-    vector6.Vector.__eq__
-    vector6.Vector.__init__
-    vector6.Vector.__str__
-1 items passed all tests:
-   2 tests in vector6.Vector.__mul__
-**********************************************************************
-1 items had failures:
-   2 of  10 in vector6.Vector
-12 tests in 7 items.
-10 passed and 2 failed.
-***Test Failed*** 2 failures.
-\end{lstlisting}
-%$
-\end{frame}
-
-
-\begin{frame}
-\+
-\begin{exercise}
-  The file
-  \href{https://raw.github.com/gc3-uzh-ch/python-course/master/vector6.py}{\texttt{vector6.py}}
-  has some doctest, but they are wrong. Run the tests, find the errors
-  and fix them!
-\end{exercise}
-
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{The unittest module (1/4)}
-  Allows you to create tests in a more structured way using the
-  \textit{Template method pattern}.
-
-  \begin{lstlisting}
-import unittest
-
-class MyTest(unittest.TestCase):
-  def test_square1(self):
-    assert square(1) == 1
-
-  def test_square2(self):
-    self.assertEqual(square(2), 4)
-    self.assertEqual(square(-2), 4)
-  \end{lstlisting}
-
-Any method whose name starts with \lstinline|test_| will be run.
-A test is successful iff it does \emph{not} raise an exception!
-
-\+
-Specialized ``asserts'' are defined in the \lstinline|TestCase|
-class: they provide better logging and reporting of failures.
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{The unittest module (2/4)}
-
-  The \lstinline|unittest.TestCase| class defines some useful methods:
-  \begin{tabular}{>{\scriptsize\ttfamily}rp{0.75\linewidth}}
-  assertEqual(x,y)           & check that \texttt{x == y} \\
-  assertTrue(x)              & check that \texttt{x is True} \\
-  assertGreater(x, y)        & check that \texttt{x > y} \\
-  assertIsInstance(obj, cls) & check that \texttt{obj} is an instance of \texttt{cls} \\
-  \ldots                     & a lot more, cf. \texttt{help(unittest)}
-  \end{tabular}
-
-  \+
-  Each one of these method is able to print detailed informations on
-  why the test failed, this is why you don't just use
-  \texttt{assertTrue()} for all the tests\ldots
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{The unittest module (3/4)}
-  Supports \textit{fixtures}, code to run before and/or after each
-  test to prepare and cleanup the testing environment.
-
-  \+
-  \begin{lstlisting}
-import unittest
-
-class MyTest(unittest.TestCase):
-  def setUp(self):
-    """This code is run *before* each test method."""
-
-  def tearDown(self):
-    """This code is run *after* each test method."""
-  \end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-\frametitle{The unittest module (4/4)}
-Run unit tests with:
-\+
-  \begin{lstlisting}[language=sh]
-$ python -m unittest ex10b
-....
-----------------------------------------------------------------------
-Ran 4 tests in 0.000s
-
-OK
-\end{lstlisting}
-%$
+\vspace{-1.5em}
+\begin{verbatim}
+def __init__(self, filename, pattern):
+def __iter__(self):
+def next(self):
+\end{verbatim}
 \end{frame}
 
 
 \begin{frame}[fragile]
   \begin{exercise}
-    Write a set of unit tests for the following function:
-\begin{lstlisting}
-def is_prime(number):
-  """Return True if `number` is prime."""
-  for element in range(number):
-    if number % element == 0:
-      return False
-  return True
-\end{lstlisting}
-    Pay special attention to the corner cases!
+    Define a \texttt{GrepOnlyMatching} class, similar to \texttt{Grep}
+    except that its \texttt{next()} method returns only the part of
+    the line that matched the \texttt{pattern} expression.
   \end{exercise}
+
+  \+
+  \begin{exercise}
+    Define a \texttt{GrepExactly} class, similar to \texttt{Grep}
+    except that \texttt{pattern} is now a fixed string, and the
+    \texttt{next()} method returns lines that \emph{contain} it.
+  \end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The ``Template method'' pattern}
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
+class Grep(object):
+
+    def __init__(self, filename, pattern):
+        self._file = open(filename, 'r')
+        self._pattern = pattern
+
+    def match(self, line):
+        return re.search(self._pattern, line)
+
+    def result(self, match, line):
+        return line
+
+    def next(self):
+        line = self._file.next()
+        match = self.match(line)
+        while not match:
+            line = self._file.next()
+            match = self.match(line)
+        return self.result(match, line)
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The ``Template method'' pattern, I}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+class Grep(object):
+
+  # parts omitted
+
+  def next(self):
+    line = self._file.next()
+    match = ~\HL{self.match}~(line)
+    while not match:
+        line = self._file.next()
+        match = ~\HL{self.match}~(line)
+    return ~\HL{self.result}~(match, line)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      These calls delegate the actual matching and
+      extraction of the result from the line to instance methods.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The ``Template method'' pattern, II}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+\begin{lstlisting}
+
+class GrepOnlyMatching(Grep):
+  ~\HL{\textbf{def} result}~(self, match, line):
+    return match.group(0)
+
+class GrepExactly(Grep):
+  ~\HL{\textbf{def} match}~(self, line):
+    return (self._pattern in line)
+\end{lstlisting}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \raggedleft
+      So we need only re-define those methods in derived
+      classes to implement a variant behavior.
+    \end{column}
+  \end{columns}
 \end{frame}
 
 

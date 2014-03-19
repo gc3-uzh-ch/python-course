@@ -1,19 +1,25 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
-import re
+def load_data(filename):
+    """
+    Write a function load_data(filename) that reads a file containing
+    one integer number per line, and return a list of the integer values.
+    """
+    fd = open(filename)
 
-class GrepOnlyMatching(object):
-    def __init__(self, filename, pattern):
-        self._stream = open(filename, 'r')
-        self._pattern = pattern
+    values = []
+    for line in fd:
+        line = line.strip()
+        try:
+            elt = int(line)
+            values.append(elt)
+        except:
+            print ("load_data: Ignoring line '%s'" % line)
 
-    def next(self):
-        for line in self._stream:
-            m = re.search(self._pattern, line)
-            if m is not None:
-                return m.group(0)
+    return values
 
-if __name__ == '__main__':
-    # test GrepOnlyMatching
-    grep = GrepOnlyMatching(__file__, 'class Grep[A-Za-z]+')
-    assert 'class GrepOnlyMatching' == grep.next()
+
+if __name__ == "__main__":
+    data = load_data('test.csv')
+
+    assert data == [1, 2, 3, 4]

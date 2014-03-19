@@ -1,23 +1,36 @@
-#!/usr/bin/env python
+import unittest
 
-# stdlib module for filesystem operations
-import os
-
-
-def mkdir_p(path):
-    """
-    Create a directory at location `path`.
-    If the directory already exists, do nothing.
-
-    Return `True` or `False`, depending on whether
-    a directory was created or not.
-    """
-    try:
-        os.mkdir(path)
-        return True
-    except OSError:
+def is_prime(number):
+    """Return True if *number* is prime."""
+    if number < 0:
         return False
 
+    if number in (0, 1):
+        return False
 
-if __name__ == '__main__':
-    assert mkdir_p('/') == False
+    for element in range(2, number):
+        if number % element == 0:
+            return False
+
+    return True
+
+class PrimeTestCase(unittest.TestCase):
+    def test_is_four_not_prime(self):
+        """Is four successfully determined to be composite?"""
+        self.assertFalse(is_prime(4))
+
+    def test_is_five_prime(self):
+        """Is five successfully determined to be prime?"""
+        self.assertTrue(is_prime(5))
+
+    def test_is_zero_not_prime(self):
+        """Is zero correctly determined not to be prime?"""
+        self.assertFalse(is_prime(0))
+    
+    def test_negative_number(self):
+        """Is a negative number correctly determined not to be prime?"""
+        for index in range(-1, -10, -1):
+            self.assertFalse(is_prime(index), msg="%d should not be prime" % index)
+
+if __name__ == "__main__":
+    unittest.main()

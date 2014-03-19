@@ -1,9 +1,9 @@
 \documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
-\usetheme[informal]{gc3}
+ \usetheme[informal]{gc3}
 \usepackage{gc3}
 
-\title[OOP 3]{%
-  Object-oriented programming, III
+\title[Part 7]{%
+  Exceptions
 }
 \author[GC3]{%
   GC3: Grid Computing Competence Center, \\
@@ -17,319 +17,136 @@
 \maketitle
 
 
-\begin{frame}
-  \frametitle{What we shall see in this part}
-
-  Iterators: the Python way of implementing generalized sequences,
-  e.g., ``infinite lists''.
-
-  \+
-  The \href{http://en.wikipedia.org/wiki/Template_method_pattern}{Template
-    method}: an object-oriented pattern for code reuse.
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Protocols}
-  A \emph{protocol}, in the Python jargon, is an informal
-  specification of what methods an object should implement in order to
-  be used in a certain context.
-
-  \+ For example, objects that implement the same methods as the
-  \texttt{file} object are called ``file-like'' and can be used in
-  stead of a real file.
-
-  \+
-  (This corresponds to the notion of \emph{interfaces} in other
-  programming languages, but interfaces are usually a formal language
-  construct.)
-\end{frame}
-
-
 \begin{frame}[fragile]
-  \frametitle{The Iterator Protocol}
+  \frametitle{Exceptions}
 
-  An \emph{iterator} is an object that can be used in the
-  \texttt{in}-clause of a \texttt{for \ldots in \ldots} statement.
-
-  \+
-  An object can work as an iterator if and only if it implements a
-  \texttt{next()} method, that:
-  \begin{description}
-  \item[\emph{either}] returns the next value in the iteration,
-  \item[\emph{or}] use \lstinline|raise StopIteration| to signal the
-    end of the iteration.
-  \end{description}
+  Exceptions are objects that inherit from the built-in
+  \lstinline|Exception| class.
 
   \+
-  An object can be iterated over with \lstinline|for| if it implements a
-  \lstinline|__iter__()| method that returns an iterator.
-
-  \begin{references}
-    \url{http://www.python.org/dev/peps/pep-0234/}
-  \end{references}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Examples of Iterators, I}
-
-  The \texttt{file} object:
+  To create a new exception just make a new class:
 \begin{lstlisting}
->>> fd = open('welcome.py', 'r')
->>> dir(fd)
-['__class__', ~\ldots,~ 'name',
- 'newlines', ~\HL{\tt 'next'}~, 'read',
- ~\ldots,~  'writelines', 'xreadlines']
+class NewKindOfError(Exception):
+  """
+  Do use the docstring to document
+  what this error is about.
+  """
+  pass
 \end{lstlisting}
 
   \+
-  The \texttt{.next()} method of \texttt{file} objects returns the
-  lines one by one:
-\begin{lstlisting}
->>> fd.next()
-'#! /usr/bin/env python\n'
->>> fd.next()
-'\n'
->>> fd.next()
-'print ("Welcome to Python!")\n'
-\end{lstlisting}
-
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Examples of Iterators, II}
-
-  You can get an iterator from any sequence with the \texttt{iter()} built-in function:
-\begin{lstlisting}
->>> S = "Python"
->>> it = iter(S)
-\end{lstlisting}
-
-  \+
-  The \texttt{.next()} method of such iterators returns the
-  elements of the sequence one by one:
-\begin{lstlisting}
->>> it.next()
-'P'
->>> it.next()
-'y'
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Detour: Regular Expressions}
-
-  Regular expressions (RE) are a way to describe text
-  patterns.
-
-  \+
-  Any character, except those listed below, matches itself.
-
-  \+
-  \begin{tabular}{>{\ttfamily}c>{\small}p{0.85\linewidth}}
-    .  &    Matches any character except a newline. \\
-    \textasciicircum  &    Matches the start of the string. \\
-    \$ &    Matches the end of the string or just before the newline at the end of the string. \\
-    *  &    Matches 0 or more repetitions of the preceding RE. \\
-    +  &    Matches 1 or more repetitions of the preceding RE. \\
-    ?  &    Matches 0 or 1 of the preceding RE. \\
-  \end{tabular}
+  Exceptions are handled by class name, so they usually do not need
+  any new methods (although you are free to define some if needed).
 
   \begin{seealso}
-    \url{http://regexone.com/} (learn RE), \\
-    \url{http://regexpal.com/} (try RE live)
+    \url{http://docs.python.org/library/exceptions.html}
   \end{seealso}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Regular Expression objects}
-  The \texttt{re} module in the standard library provides
-  \emph{regular expression searching}, allowing you to match a string
-  against a pattern.
+
+\begin{frame}[fragile]
+\begin{lstlisting}
+try:
+  # code that might raise an exception
+except SomeException:
+  # handle some exception
+except AnotherException, ex:
+  # the actual Exception instance
+  # is available as variable `ex'
+else:
+  # performed on normal exit from `try'
+finally:
+  # performed on exit in any case
+\end{lstlisting}
 
   \+
-  \begin{describe}{re.search(pattern, string)}
-    If \texttt{pattern} is matched anywhere in \texttt{string}, return
-    a \emph{match object}.  Otherwise, return \texttt{None}.
-  \end{describe}
+  The optional \lstinline|else| clause is executed if and when control flows off the
+  \emph{end} of the \lstinline|try| clause.
 
   \+
-  \begin{describe}{\emph{match}.group(0)}
-    The entire string matched by \texttt{pattern} in a search operation.
-  \end{describe}
+  The optional \lstinline|finally| clause is executed on exit from the
+  \lstinline|try| or \lstinline|except| block in \emph{any} case.
 
-  \+
   \begin{references}
-    \url{http://docs.python.org/library/re.html}
-  \end{references}
+    \scriptsize
+    \url{http://docs.python.org/reference/compound_stmts.html#try}
+\end{references}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{A user-defined iterator}
-  \begin{columns}[t]
-    \begin{column}{0.5\textwidth}
-\begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
-import re
+  \frametitle{Raising exceptions}
 
-class Grep(object):
-    def __init__(self, filename, pattern):
-        self._file = open(filename, 'r')
-        self._pattern = pattern
-
-    def __iter__(self):
-        return self
-
-    def next(self):
-        line = self._file.next()
-        while not re.search(self._pattern, line):
-            line = self._file.next()
-        return line
+  Use the \lstinline|raise| statement with an \texttt{Exception}
+  instance:
+\begin{lstlisting}
+if an_error_occurred:
+  raise AnError("Spider sense is tingling.")
 \end{lstlisting}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \raggedleft
-      Iterate over lines of a file matching a pattern.
-    \end{column}
-  \end{columns}
 
   \+
-  {\scriptsize Source code available at:
-    \url{https://raw.github.com/gc3-uzh-ch/python-course/master/evens.py}}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Example using \texttt{Grep}, I}
-\begin{lstlisting}[showstringspaces=false]
->>> from grep import Grep
->>> g = Grep('grep.py', 'def')
->>> g.next()
-'    def __init__(self, filename, pattern):\n'
->>> g.next()
-'    def __iter__(self):\n'
->>> g.next()
-'    def next(self):\n'
->>> g.next()
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "grep.py", line 17, in next
-    line = self._file.next()
-StopIteration
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Example using \texttt{Grep}, II}
+  Within an \lstinline|except| clause, you can use \lstinline|raise|
+  with no arguments to re-raise the current exception:
 \begin{lstlisting}
->>> from grep import Grep
->>> g = Grep('grep.py', 'def')
->>> for line in g:
-...   print line.strip()
-... 
+try:
+  something()
+except ItDidntWork:
+  do_cleanup()
+  # re-raise exception to caller
+  raise
 \end{lstlisting}
-\vspace{-1.5em}
-\begin{verbatim}
-def __init__(self, filename, pattern):
-def __iter__(self):
-def next(self):
-\end{verbatim}
 \end{frame}
 
 
 \begin{frame}[fragile]
   \begin{exercise}
-    Define a \texttt{GrepOnlyMatching} class, similar to \texttt{Grep}
-    except that its \texttt{next()} method returns only the part of
-    the line that matched the \texttt{pattern} expression.
+    Enhance the function \lstinline|load_data| defined in Exercise 5B:
+    if an error is found (for instance a line which cannot be converted to
+    an integer), silently ignore it.
+
+    Test your code on the \texttt{test.csv} data file:
+\begin{lstlisting}
+>>> load_data('test.csv')
+[1, 2, 3, 4]
+\end{lstlisting}
   \end{exercise}
 
-  \+
-  \begin{exercise}
-    Define a \texttt{GrepExactly} class, similar to \texttt{Grep}
-    except that \texttt{pattern} is now a fixed string, and the
-    \texttt{next()} method returns lines that \emph{contain} it.
-  \end{exercise}
+  % \begin{exercise}
+  %   The \texttt{os.mkdir()} function raises a \texttt{OSError}
+  %   exception if asked to create a directory that already exists.
+
+  %   \+
+  %   Write a \texttt{mkdir\_p(path)} function that creates a
+  %   directory at \texttt{path}, but does nothing if the directory
+  %   already exists.  Return \texttt{True} if the directory has been
+  %   actually created, and \texttt{False} if nothing was changed on the
+  %   file system.
+  % \end{exercise}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{The ``Template method'' pattern}
-\begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
-class Grep(object):
+  \frametitle{Exception handling example}
 
-    def __init__(self, filename, pattern):
-        self._file = open(filename, 'r')
-        self._pattern = pattern
-
-    def match(self, line):
-        return re.search(self._pattern, line)
-
-    def result(self, match, line):
-        return line
-
-    def next(self):
-        line = self._file.next()
-        match = self.match(line)
-        while not match:
-            line = self._file.next()
-            match = self.match(line)
-        return self.result(match, line)
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{The ``Template method'' pattern, I}
-  \begin{columns}[t]
-    \begin{column}{0.5\textwidth}
+Read lines from a CSV file, ignoring those that do not have the
+required number of fields.  If other errors occur, abort.
+Close the file when done.
 \begin{lstlisting}
-class Grep(object):
-
-  # parts omitted
-
-  def next(self):
-    line = self._file.next()
-    match = ~\HL{self.match}~(line)
-    while not match:
-        line = self._file.next()
-        match = ~\HL{self.match}~(line)
-    return ~\HL{self.result}~(match, line)
+job_state = { } # empty dict
+try:
+  csv_file = open('jobs.csv', 'r')
+  for line in csv_file:
+    line = line.strip() # remove trailing newline
+    try:
+      name, jobid, state = line.split(",")
+    except ValueError:
+      continue # ignore line
+    job_state[jobid] = state
+except IOError:
+  raise # up to caller
+finally:
+  csv_file.close()
 \end{lstlisting}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \raggedleft
-      These calls delegate the actual matching and
-      extraction of the result from the line to instance methods.
-    \end{column}
-  \end{columns}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{The ``Template method'' pattern, II}
-  \begin{columns}[t]
-    \begin{column}{0.5\textwidth}
-\begin{lstlisting}
-
-class GrepOnlyMatching(Grep):
-  ~\HL{\textbf{def} result}~(self, match, line):
-    return match.group(0)
-
-class GrepExactly(Grep):
-  ~\HL{\textbf{def} match}~(self, line):
-    return (self._pattern in line)
-\end{lstlisting}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-      \raggedleft
-      So we need only re-define those methods in derived
-      classes to implement a variant behavior.
-    \end{column}
-  \end{columns}
 \end{frame}
 
 
