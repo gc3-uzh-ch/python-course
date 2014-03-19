@@ -30,3 +30,21 @@ class GrepExactly(object):
         for line in self._stream:
             if self._pattern in line:
                 return line
+
+if __name__ == '__main__':
+    # test Grep
+    grep = Grep(__file__, 'class Grep[A-Za-z]+')
+    assert 'class GrepOnlyMatching(object):\n' == grep.next()
+    assert 'class GrepExactly(object):\n' == grep.next()
+
+
+    # test GrepOnlyMatching
+    grep = GrepOnlyMatching(__file__, 'class Grep[A-Za-z]+')
+    assert 'class GrepOnlyMatching' == grep.next()
+    assert 'class GrepExactly' == grep.next()
+
+    # test GrepExactly
+    grep = GrepExactly(__file__, 'class Grep')
+    assert 'class Grep(object):\n' == grep.next()
+    assert 'class GrepOnlyMatching(object):\n' == grep.next()
+    assert 'class GrepExactly(object):\n' == grep.next()
