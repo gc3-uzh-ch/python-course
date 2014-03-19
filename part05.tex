@@ -48,8 +48,8 @@
   \lstinline|n| bytes from a file-like object:
 \begin{lstlisting}
 >>> s = stream.read(2)
->>> s == 'py'
-True
+>>> print(s)
+'py'
 \end{lstlisting}
   If \lstinline|n| is omitted, \texttt{read()} reads until end-of-file.
 
@@ -101,7 +101,7 @@ print ("Welcome to Python!")
   The previous example:
   \begin{lstlisting}
 data = []
-for num in open('values.dat').read().split():
+for num in open('values.dat').readlines():
     data.append(int(num))
   \end{lstlisting}
   \+
@@ -110,13 +110,6 @@ for num in open('values.dat').read().split():
 data = [ int(line) for line in open('values.dat') ]
   \end{python}
 
-  \+
-  We can also \textit{filter} the elements using an extended syntax:
-
-  \begin{python}
-data = [ int(line) for line in open('values.dat')
-         if int(line) > 3000000 ]
-  \end{python}
 \end{frame}
 
 
@@ -147,13 +140,19 @@ data = [ int(line) for line in open('values.dat')
 \begin{frame}[fragile]
   \begin{exercise}
     Write a function called \texttt{load\_data2(filename, bound)}
-    that, \textbf{using comprehensions}, reads a file containing one
+    that, \textit{using comprehensions}, reads a file containing one
     integer number per line, and return a list of the integer values
     \textit{lesser than} \texttt{bound}.
 
+    \+
     Test it with the
     \href{https://raw.github.com/gc3-uzh-ch/python-course/master/values.dat}{values.dat}
-    file.
+    file:
+    \begin{python}
+>>> load_data2('values.dat', 300000)
+[299850, 299740, 299900, 299930]
+    \end{python}
+
   \end{exercise}
 \end{frame}
 
@@ -208,22 +207,36 @@ data = [ int(line) for line in open('values.dat')
 
 \begin{frame}[fragile]
   \begin{exercise}
-    Write a program that reads the \href{https://raw.github.com/gc3-uzh-ch/python-course/master/euro.csv}{euro.csv} file, and populates a dictionary from it: currency names (first column) are the dictionary keys, conversion rates (second column) are the dictionary values.
+    Write a program that reads the
+    \href{https://raw.github.com/gc3-uzh-ch/python-course/master/euro.csv}{euro.csv}
+    file and populates a dictionary from it: currency names (first
+    column) are the dictionary keys, conversion rates (second column)
+    are the dictionary values.
   \end{exercise}
 
-  \+
-  \begin{exercise}
-    Write a function \lstinline|shout(filename)| that reads a text file and
-    returns its content with all letters converted to uppercase.
+\end{frame}
 
-    \+
-    Example usage:
-\begin{lstlisting}
->>> shout('welcome.py')
-#! /USR/BIN/ENV PYTHON
+\begin{frame}[fragile]
+\begin{exercise}
+    Write a function \lstinline|wordcount(filename)| that reads a text
+    file and returns a dictionary, mapping words into occurrences
+    (disregarding case) of that word in the text.  Test it with the
+    \href{https://raw.github.com/gc3-uzh-ch/python-course/master/lorem_ipsum.txt}{lorem\_ipsum.txt} file:
+    \begin{lstlisting}
+>>> wordcount('lorem_ipsum.txt')
+{'and': 3, 'model': 1, 'more-or-less': 1, 
+ 'letters': 1, ...
+    \end{lstlisting}
 
-PRINT ("WELCOME TO PYTHON!")
-\end{lstlisting}
+    \+ For the purposes of this
+    exercise, a ``word'' is defined as a sequence of letters and the
+    character ``-'', i.e., ``e-mail'' and ``more-or-less'' should both
+    be counted as a single word.
+
+    \+ You might want to have a look at the
+    \href{http://docs.python.org/2/library/string.html}{string}
+    module, for pre-defined sets of alphabetic and punctuation
+    characters.
   \end{exercise}
 \end{frame}
 
@@ -268,8 +281,7 @@ PRINT ("WELCOME TO PYTHON!")
   \frametitle{Filesystem operations, II}
   These functions are available from the \texttt{os.path} module.
 
-  \begin{describe}{\lstinline|os.path.exists(path)|,
-      \lstinline|os.path.isdir(path)|}, \lstinline|os.path.isfile(path)|
+  \begin{describe}{\lstinline|os.path.exists(path)|, \lstinline|os.path.isdir(path)|, \lstinline|os.path.isfile(path)|}
     Return \texttt{True} if \texttt{path} exists / is a directory / is
     a regular file.
   \end{describe}
@@ -292,28 +304,30 @@ PRINT ("WELCOME TO PYTHON!")
 
 
 \begin{frame}[fragile]
-  \frametitle{Command line argument}
+  \frametitle{Command line arguments}
   The \texttt{sys} module provides access to some variables used or
   maintained by the interpreter.
 
   One of such variables is a list containing the arguments passed on
   the command line.
 
-  \textbf{Exercise:} Create a simple script that
-  prints the command line argument used to invoke it:
+  \+
+  \textbf{Example:} This is a simple script that
+  prints the command line arguments used to invoke it:
 
   \begin{lstlisting}
-#!/usr/bin/env python
-
 import sys
-print sys.argv
+print(sys.argv)
   \end{lstlisting}
 
 \+
-Then invoke the script with:
-
+Calling the script as:
 \begin{lstlisting}
 $ python script.py foo bar
+\end{lstlisting}
+yields the following result:
+\begin{lstlisting}
+['script.py', 'foo', 'bar']
 \end{lstlisting}
 \end{frame}
 

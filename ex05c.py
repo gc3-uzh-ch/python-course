@@ -1,21 +1,16 @@
 #!/usr/bin/env python
 """
-Write a program that reads the euro.csv file, and populates a
-dictionary from it: currency names (first column) are the dictionary
-keys, conversion rates (second column) are the dictionary values.
+  Write a function called `load_data2(filename, bound)`
+  that, *using comprehensions*, reads a file containing one
+  integer number per line, and return a list of the integer values
+  *lesser than* `bond`.
+
 """
 
-def read_rates_from_file(filename):
-    currencies = {}
-    fd = open(filename)
-    for line in fd:
-        (name, rate) = line.split(',', 1)
-        rate = float(rate)
-        currencies[name] = rate
-    fd.close()
-    return currencies
-
+def load_data2(filename, bound):
+    return [int(num) for num in open(filename) if int(num) < bound]
 
 if __name__ == "__main__":
-    currencies = read_rates_from_file('euro.csv')
-    assert currencies['ITL'] == 1936.27
+    data = load_data2('values.dat', 300000)
+    assert data == [299850, 299740, 299900, 299930]
+

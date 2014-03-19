@@ -1,47 +1,39 @@
-#! /usr/bin/env python
+#!/usr/bin/env python
 
 """
-Usage: python rename.py EXT1 EXT2 DIR [DIR ...]
-
-Rename all files in DIR, that end in EXT1 to end in EXT2 instead.
-Repeat for all directory paths DIR given on the command line.
+    Write a function `wordcount(filename)` that reads a text file and
+    returns a dictionary, mapping words into occurrences (disregarding
+    case) of that word in the text.  For the purposes of this
+    exercise, a ``word'' is defined as a sequence of letters and the
+    character ``-'', i.e., ``e-mail'' and ``more-or-less'' should both
+    be counted as a single word.
 """
 
-# file name manipulation
-import os
-import os.path
+import string
 
-# command-line arguments
-import sys
+def wordcount(filename):
+    # read text from file
+    fd = open(filename, 'r')
+    rawtext = fd.read()
+    fd.close()
 
+    # split into list of words
+    count = {}
+    for word in rawtext.split():
+        # convert to lowercase
+        lcword = word.lower()
+        # remove non-alphabetic characters
+        cleanword = lcword.strip(string.punctuation)
+        # count
+        if cleanword not in count:
+            count[cleanword] = 0
+        count[cleanword] += 1
 
-# note that `sys.argv[0]` is always the script name, so actual
-# arguments start at `sys.argv[1]`
-if len(sys.argv) < 4:
-    # not enough arguments, print usage message and exit
-    print("""
-Usage: python rename.py EXT1 EXT2 DIR [DIR ...]
+    return count
 
-Rename all files in DIR, that end in EXT1 to end in EXT2 instead.
-Repeat for all directory paths DIR given on the command line.
-""")
-    sys.exit(1)
-
-# now we know that sys.argv[1] and sys.argv[2] exists
-ext1 = sys.argv[1]
-ext2 = sys.argv[2]
-
-# the DIR arguments are in `sys.argv[3]` and following elements
-for dirname in sys.argv[3:]:
-    entries = os.listdir(dirname)
-    # `os.listdir()` returns just file names; make a full path by
-    # re-adding the directory path in front
-    paths = [ (dirname + '/' + entry) for entry in entries ]
-    for path in paths:
-        if path.endswith(ext1):
-            # the new path is formed by removing the EXT1 at the end
-            # and concatenating EXT2
-            new_path = path[:-len(ext1)] + ext2
-            # we're all set for the rename
-            print ("Renaming '%s' to '%s' ..." % (path, new_path))
-            #os.rename(path, new_path)
+if __name__ == '__main__':
+    wc = wordcount('lorem_ipsum.txt')
+    assert wc['and'] == 3
+    assert wc['more-or-less'] == 1
+    assert wc['their'] == 2
+    assert wc['infancy'] == 1
