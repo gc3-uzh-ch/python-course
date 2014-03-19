@@ -1,9 +1,9 @@
 \documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
- \usetheme[informal]{gc3}
+\usetheme[informal]{gc3}
 \usepackage{gc3}
 
-\title[Part 7]{%
-  Exceptions
+\title[Testing]{%
+  Testing your code
 }
 \author[GC3]{%
   GC3: Grid Computing Competence Center, \\
@@ -17,136 +17,283 @@
 \maketitle
 
 
-\begin{frame}[fragile]
-  \frametitle{Exceptions}
-
-  Exceptions are objects that inherit from the built-in
-  \lstinline|Exception| class.
-
-  \+
-  To create a new exception just make a new class:
-\begin{lstlisting}
-class NewKindOfError(Exception):
-  """
-  Do use the docstring to document
-  what this error is about.
-  """
-  pass
-\end{lstlisting}
+\begin{frame}
+  \frametitle{Testing is \textbf{not} a waste of time.}
+  A test is a piece of code that, when executed, check if the code you
+  wrote behave as expected.
 
   \+
-  Exceptions are handled by class name, so they usually do not need
-  any new methods (although you are free to define some if needed).
+  Writing (and running often) tests\ldots
+  \begin{itemize}
+  \item helps you to easily find bugs.
+  \item forces you to slow down and think.
+  \item reduces the cost of change.
+  \item reduces fear.
+  \end{itemize}
 
-  \begin{seealso}
-    \url{http://docs.python.org/library/exceptions.html}
-  \end{seealso}
+  \+ \textbf{Test Driven Development:} writing tests \textit{before}
+  writing the code helps you to write \textbf{better code.}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Different kind of tests}
+
+  Each test will check that a component of your code behaves in a
+  specific way when you feed it with a specific input.
+
+  \+
+  There are two kind of tests:
+  \begin{itemize}
+  \item Specific functions or class methods
+    \begin{itemize}
+    \item \textbf{unit tests}
+    \end{itemize}
+  \item bigger part of the program, or maybe the whole program.
+    \begin{itemize}
+    \item \textbf{functional tests}
+    \end{itemize}
+  \end{itemize}
+
+  \+
+  \pause
+  yes, it's better to have both :-)
 \end{frame}
 
 
 \begin{frame}[fragile]
-\begin{lstlisting}
-try:
-  # code that might raise an exception
-except SomeException:
-  # handle some exception
-except AnotherException, ex:
-  # the actual Exception instance
-  # is available as variable `ex'
-else:
-  # performed on normal exit from `try'
-finally:
-  # performed on exit in any case
-\end{lstlisting}
+  \frametitle{Doctest (1/3)}
+
+  The \lstinline|doctest| module searches for text that looks like
+  interactive Python sessions in \textit{docstrings}, and then
+  executes them to verify that they work exactly as shown.
 
   \+
-  The optional \lstinline|else| clause is executed if and when control flows off the
-  \emph{end} of the \lstinline|try| clause.
+  Combines \textit{documentation} and \textit{tests}
+  \begin{lstlisting}
+  def square(self, n):
+    """
+    This function compute the square of a number.
+
+      >>> square(2)
+      4
+      >>> square(-2)
+      4
+    """
+    return n*n
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Doctest (2/3)}
+  \begin{columns}[t]
+    \begin{column}{0.6\textwidth}
+  \begin{lstlisting}
+def square(x):
+    """
+    ~\HL{This function compute}~
+    ~\HL{the square of a number.}~
+
+      >>> square(2)
+      4
+    """
+  \end{lstlisting}
+\end{column}
+\begin{column}{0.4\textwidth}
+  Line \textbf{not} starting with \texttt{>>>} and \textbf{not}
+  following any line starting with \texttt{>>>}. It's documentation.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Doctest (2/3)}
+\begin{columns}[t]
+  \begin{column}{0.6\textwidth}
+  \begin{lstlisting}
+def square(x):
+    """
+    This function compute
+    the square of a number.
+
+      ~\HL{>>> square(2)}~
+      4
+    """
+  \end{lstlisting}
+\end{column}
+\begin{column}{0.4\textwidth}
+  It starts with a \texttt{>>>}, so it's python code: the line will be
+  executed inside a python shell.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Doctest (2/3)}
+\begin{columns}[t]
+  \begin{column}{0.6\textwidth}
+  \begin{lstlisting}
+def square(x):
+    """
+    This function compute
+    the square of a number.
+
+      >>> square(2)
+      ~\HL{4}~
+    """
+  \end{lstlisting}
+\end{column}
+\begin{column}{0.4\textwidth}
+  It follows a line beginning with \texttt{>>>} \textbf{and} is
+  indented in the same way: it's the output of the previous python
+  statement.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Doctest (3/3)}
+
+  To execute all the tests of your module just run:
+\+
+\begin{lstlisting}[language=sh]
+$ python -m doctest mymodule.py
+  \end{lstlisting}
+%$
 
   \+
-  The optional \lstinline|finally| clause is executed on exit from the
-  \lstinline|try| or \lstinline|except| block in \emph{any} case.
+  The \lstinline|-m doctest| option tells python to \textit{execute} the
+  \lstinline|doctest| module using your module file as argument.
 
-  \begin{references}
-    \scriptsize
-    \url{http://docs.python.org/reference/compound_stmts.html#try}
-\end{references}
+  \+
+  By default it will only show failed tests, so if it does not print
+  anything it means that all the tests passed.
+
+  \+
+  You can add a \lstinline|-v| option to have a more verbose output
+  which includes all the tests executed.
+
+
+
+%   \+
+%   If you are writing a module and not a script you can also add to it:
+
+%   \begin{lstlisting}
+% if __name__ == "__main__":
+%     import doctest doctest.testmod()
+%   \end{lstlisting}
+
+%   and execute the file with:
+
+%   \begin{lstlisting}[language=sh]
+% $ python mymodule.py
+%   \end{lstlisting}%$
+\end{frame}
+
+\begin{frame}
+\+
+\begin{exercise}
+  The file
+  \href{https://raw.github.com/gc3-uzh-ch/python-course/master/vector6.py}{\texttt{vector6.py}}
+  has some doctest, but they are wrong. Run the tests, find the errors
+  and fix them!
+\end{exercise}
+
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Raising exceptions}
+  \frametitle{The unittest module (1/4)}
+  Allows you to create tests in a more structured way using the
+  \textit{Template method pattern}.
 
-  Use the \lstinline|raise| statement with an \texttt{Exception}
-  instance:
-\begin{lstlisting}
-if an_error_occurred:
-  raise AnError("Spider sense is tingling.")
-\end{lstlisting}
+  \begin{lstlisting}
+import unittest
+
+class MyTest(unittest.TestCase):
+  def test_square1(self):
+    assert square(1) == 1
+
+  def test_square2(self):
+    self.assertEqual(square(2), 4)
+    self.assertEqual(square(-2), 4)
+  \end{lstlisting}
+
+Any method whose name starts with \lstinline|test_| will be run.
+A test is successful iff it does \emph{not} raise an exception!
+
+\+
+Specialized ``asserts'' are defined in the \lstinline|TestCase|
+class: they provide better logging and reporting of failures.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The unittest module (2/4)}
+
+  Each \lstinline|unittest.TestCase| class defines some methods:
+  \begin{description}
+  \item [\texttt{assertEqual(x,y)}] check that \lstinline|x == y|
+  \item[\texttt{assertTrue(x)}] check that \lstinline|x is True|
+  \item[\texttt{assertGreater(x, y)}] check that \lstinline|x > y|
+  \item[\texttt{assertIsInstance(obj, cls)}] check that
+    \lstinline|obj| is an isntance of \lstinline|cls|
+  \item[\texttt{assertAlmostEqual(x, y)}]
+  \item[\ldots] a lot more, cfr. \lstinline|help(unittest)|
+  \end{description}
 
   \+
-  Within an \lstinline|except| clause, you can use \lstinline|raise|
-  with no arguments to re-raise the current exception:
-\begin{lstlisting}
-try:
-  something()
-except ItDidntWork:
-  do_cleanup()
-  # re-raise exception to caller
-  raise
-\end{lstlisting}
+\textit{Each one of these method is able to print detailed informations on
+  why the test failed, this is why you don't just use
+  \texttt{assertTrue()} for all the tests\ldots}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \begin{exercise}
-    Enhance the function \lstinline|load_data| defined in Exercise 5B:
-    if an error is found (for instance a line which cannot be converted to
-    an integer), silently ignore it.
+  \frametitle{The unittest module (3/4)}
+  Supports \textit{fixtures}, code to run before and/or after each
+  test to prepare and cleanup the testing environment
 
-    Test your code on the \texttt{test.csv} data file:
-\begin{lstlisting}
->>> load_data('test.csv')
-[1, 2, 3, 4]
-\end{lstlisting}
-  \end{exercise}
+  \+
+  \begin{lstlisting}
+import unittest
 
-  % \begin{exercise}
-  %   The \texttt{os.mkdir()} function raises a \texttt{OSError}
-  %   exception if asked to create a directory that already exists.
+class MyTest(unittest.TestCase):
+  def setUp(self):
+    """This code is run *before* each test method."""
 
-  %   \+
-  %   Write a \texttt{mkdir\_p(path)} function that creates a
-  %   directory at \texttt{path}, but does nothing if the directory
-  %   already exists.  Return \texttt{True} if the directory has been
-  %   actually created, and \texttt{False} if nothing was changed on the
-  %   file system.
-  % \end{exercise}
+  def tearDown(self):
+    """This code is run *after* each test method."""
+  \end{lstlisting}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Exception handling example}
+\frametitle{The unittest module (4/4)}
+Run your tests using
+\+
+  \begin{lstlisting}[language=sh]
+$ python -m unittest -v modulename
+test_square (modulename.MyTest) ... ok
 
-Read lines from a CSV file, ignoring those that do not have the
-required number of fields.  If other errors occur, abort.
-Close the file when done.
-\begin{lstlisting}
-job_state = { } # empty dict
-try:
-  csv_file = open('jobs.csv', 'r')
-  for line in csv_file:
-    line = line.strip() # remove trailing newline
-    try:
-      name, jobid, state = line.split(",")
-    except ValueError:
-      continue # ignore line
-    job_state[jobid] = state
-except IOError:
-  raise # up to caller
-finally:
-  csv_file.close()
+--------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
 \end{lstlisting}
+%$
+
+or, if it's a module and not a script, by adding:
+\begin{lstlisting}
+if __name__ == "__main__":
+    unittest.main()
+\end{lstlisting}
+and executing:
+
+\begin{lstlisting}[language=sh]
+$ python modulenae.py
+\end{lstlisting}%$
+
 \end{frame}
 
 
