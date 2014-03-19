@@ -19,57 +19,55 @@
 
 \begin{frame}
   \frametitle{Testing is \textbf{not} a waste of time.}
-  A test is a piece of code that, when executed, check if the code you
+  A \emph{test} is a piece of code that checks if the code you
   wrote behave as expected.
 
   \+
-  Writing (and running often) tests\ldots
+  Testing\ldots
   \begin{itemize}
-  \item helps you to easily find bugs.
-  \item forces you to slow down and think.
-  \item reduces the cost of change.
-  \item reduces fear.
+  \item[$\triangleright$] makes sure your code works properly (under given conditions).
+  \item[$\triangleright$] ensures changes to the code do not break existing functionality.
+  \item[$\triangleright$] forces you to think about unusual conditions and corner cases.
   \end{itemize}
 
   \+ \textbf{Test Driven Development:} writing tests \textit{before}
-  writing the code helps you to write \textbf{better code.}
+  writing the code helps you to write \emph{better code.}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Different kind of tests}
 
-  Each test will check that a component of your code behaves in a
-  specific way when you feed it with a specific input.
-
-  \+
   There are two kind of tests:
-  \begin{itemize}
-  \item Specific functions or class methods
-    \begin{itemize}
-    \item \textbf{unit tests}
-    \end{itemize}
-  \item bigger part of the program, or maybe the whole program.
-    \begin{itemize}
-    \item \textbf{functional tests}
-    \end{itemize}
-  \end{itemize}
 
   \+
-  \pause
-  yes, it's better to have both :-)
+  \begin{tabular}{>{\em}r>{\raggedright}p{0.75\linewidth}}
+    unit tests
+    &
+    check that a method or class, in isolation,
+    actually performs the tasks that it is supposed to do
+    \\
+    functional tests
+    &
+    check that the global behavior of an application is the expected one
+    \\
+  \end{tabular}
+
+  \+
+  It's better to have both :-) but we are only going to cover
+  only ``unit tests'' here.
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{Doctest (1/3)}
+  \frametitle{Doctest (1/7)}
 
   The \lstinline|doctest| module searches for text that looks like
   interactive Python sessions in \textit{docstrings}, and then
   executes them to verify that they work exactly as shown.
 
   \+
-  Combines \textit{documentation} and \textit{tests}
+  Combines \textit{documentation} and \textit{tests}. Example:
   \begin{lstlisting}
   def square(self, n):
     """
@@ -85,7 +83,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Doctest (2/3)}
+  \frametitle{Doctest (2/7)}
   \begin{columns}[t]
     \begin{column}{0.6\textwidth}
   \begin{lstlisting}
@@ -99,15 +97,16 @@ def square(x):
     """
   \end{lstlisting}
 \end{column}
-\begin{column}{0.4\textwidth}
-  Line \textbf{not} starting with \texttt{>>>} and \textbf{not}
-  following any line starting with \texttt{>>>}. It's documentation.
+\begin{column}{0.5\textwidth}
+  \raggedleft Line \emph{not} starting with \texttt{>>>} or \emph{not}
+  following a line starting with \texttt{>>>} are documentation lines,
+  and are thus ignored for testing purposes.
 \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Doctest (2/3)}
+  \frametitle{Doctest (3/7)}
 \begin{columns}[t]
   \begin{column}{0.6\textwidth}
   \begin{lstlisting}
@@ -122,14 +121,15 @@ def square(x):
   \end{lstlisting}
 \end{column}
 \begin{column}{0.4\textwidth}
-  It starts with a \texttt{>>>}, so it's python code: the line will be
-  executed inside a python shell.
+  \raggedleft
+  This line starts with \texttt{>>>}, so it's Python code: it will be
+  executed inside a Python shell.
 \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Doctest (2/3)}
+  \frametitle{Doctest (4/7)}
 \begin{columns}[t]
   \begin{column}{0.6\textwidth}
   \begin{lstlisting}
@@ -144,51 +144,81 @@ def square(x):
   \end{lstlisting}
 \end{column}
 \begin{column}{0.4\textwidth}
-  It follows a line beginning with \texttt{>>>} \textbf{and} is
-  indented in the same way: it's the output of the previous python
+  \raggedleft
+  This line follows a line starting with \texttt{>>>} \emph{and} is
+  indented in the same way: it's the output of the previous Python
   statement.
 \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Doctest (3/3)}
+\begin{frame}[fragile,fragile]
+  \frametitle{Doctest (5/7)}
 
-  To execute all the tests of your module just run:
-\+
+  To execute all the doctests of module \texttt{foo.py}, run:
+
+  \+
 \begin{lstlisting}[language=sh]
-$ python -m doctest mymodule.py
-  \end{lstlisting}
+$ python -m doctest foo.py
+\end{lstlisting}
 %$
-
-  \+
-  The \lstinline|-m doctest| option tells python to \textit{execute} the
-  \lstinline|doctest| module using your module file as argument.
-
-  \+
-  By default it will only show failed tests, so if it does not print
-  anything it means that all the tests passed.
-
-  \+
-  You can add a \lstinline|-v| option to have a more verbose output
-  which includes all the tests executed.
-
-
-
-%   \+
-%   If you are writing a module and not a script you can also add to it:
-
-%   \begin{lstlisting}
-% if __name__ == "__main__":
-%     import doctest doctest.testmod()
-%   \end{lstlisting}
-
-%   and execute the file with:
-
-%   \begin{lstlisting}[language=sh]
-% $ python mymodule.py
-%   \end{lstlisting}%$
 \end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Doctest (6/7)}
+
+  By default, running doctests only shows failed tests:
+\begin{lstlisting}[language=sh,basicstyle=\footnotesize\ttfamily]
+$ python -m doctest vector6.py
+**********************************************************************
+File "vector6.py", line 32, in vector6.Vector
+Failed example:
+    print v * 2
+Expected:
+    <2,1>
+Got:
+    <2,4>
+~[\ldots]~
+**********************************************************************
+1 items had failures:
+   2 of  10 in vector6.Vector
+***Test Failed*** 2 failures.
+\end{lstlisting}
+  Otherwise: no output means that all the tests passed.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Doctest (7/7)}
+
+  You can add a \lstinline|-v| option to have a more verbose output
+  which includes all the tests executed:
+\begin{lstlisting}[language=sh,basicstyle=\ttfamily\scriptsize]
+$ python -m doctest -v vector6.py
+~[\ldots]~
+Trying:
+    print v * 2
+Expecting:
+    <2,4>
+ok
+5 items had no tests:
+    vector6
+    vector6.Vector.__add__
+    vector6.Vector.__eq__
+    vector6.Vector.__init__
+    vector6.Vector.__str__
+1 items passed all tests:
+   2 tests in vector6.Vector.__mul__
+**********************************************************************
+1 items had failures:
+   2 of  10 in vector6.Vector
+12 tests in 7 items.
+10 passed and 2 failed.
+***Test Failed*** 2 failures.
+\end{lstlisting}
+%$
+\end{frame}
+
 
 \begin{frame}
 \+
@@ -231,28 +261,26 @@ class: they provide better logging and reporting of failures.
 \begin{frame}[fragile]
   \frametitle{The unittest module (2/4)}
 
-  Each \lstinline|unittest.TestCase| class defines some methods:
-  \begin{description}
-  \item [\texttt{assertEqual(x,y)}] check that \lstinline|x == y|
-  \item[\texttt{assertTrue(x)}] check that \lstinline|x is True|
-  \item[\texttt{assertGreater(x, y)}] check that \lstinline|x > y|
-  \item[\texttt{assertIsInstance(obj, cls)}] check that
-    \lstinline|obj| is an isntance of \lstinline|cls|
-  \item[\texttt{assertAlmostEqual(x, y)}]
-  \item[\ldots] a lot more, cfr. \lstinline|help(unittest)|
-  \end{description}
+  The \lstinline|unittest.TestCase| class defines some useful methods:
+  \begin{tabular}{>{\scriptsize\ttfamily}rp{0.75\linewidth}}
+  assertEqual(x,y)           & check that \texttt{x == y} \\
+  assertTrue(x)              & check that \texttt{x is True} \\
+  assertGreater(x, y)        & check that \texttt{x > y} \\
+  assertIsInstance(obj, cls) & check that \texttt{obj} is an instance of \texttt{cls} \\
+  \ldots                     & a lot more, cf. \texttt{help(unittest)}
+  \end{tabular}
 
   \+
-\textit{Each one of these method is able to print detailed informations on
+  Each one of these method is able to print detailed informations on
   why the test failed, this is why you don't just use
-  \texttt{assertTrue()} for all the tests\ldots}
+  \texttt{assertTrue()} for all the tests\ldots
 \end{frame}
 
 
 \begin{frame}[fragile]
   \frametitle{The unittest module (3/4)}
   Supports \textit{fixtures}, code to run before and/or after each
-  test to prepare and cleanup the testing environment
+  test to prepare and cleanup the testing environment.
 
   \+
   \begin{lstlisting}
@@ -270,10 +298,10 @@ class MyTest(unittest.TestCase):
 
 \begin{frame}[fragile]
 \frametitle{The unittest module (4/4)}
-Run your tests using
+Run unit tests with:
 \+
   \begin{lstlisting}[language=sh]
-$ python -m unittest -v modulename
+$ python -m unittest -v prime1
 test_square (modulename.MyTest) ... ok
 
 --------------------------------------------------
@@ -282,18 +310,22 @@ Ran 1 test in 0.000s
 OK
 \end{lstlisting}
 %$
+\end{frame}
 
-or, if it's a module and not a script, by adding:
+
+\begin{frame}[fragile]
+  \begin{exercise}
+    Write a set of unit tests for the following function:
 \begin{lstlisting}
-if __name__ == "__main__":
-    unittest.main()
+def is_prime(number):
+  """Return True if `number` is prime."""
+  for element in range(number):
+    if number % element == 0:
+      return False
+  return True
 \end{lstlisting}
-and executing:
-
-\begin{lstlisting}[language=sh]
-$ python modulenae.py
-\end{lstlisting}%$
-
+    Pay special attention to the corner cases!
+  \end{exercise}
 \end{frame}
 
 
