@@ -10,7 +10,7 @@ You can assume:
 """
 
 # first solution: build on the `invert` function from ex03a.
-from ex03a import invert
+from ex03c import invert
 def maxarg1(**kw):
     D = invert(kw)
     m = max(* D.keys())
@@ -18,7 +18,7 @@ def maxarg1(**kw):
 
 # second solution: find the max, then loop on keys and values
 # simultaneously to find the corresponding key
-def maxargs2(**kw):
+def maxarg2(**kw):
     maxval = max(* kw.values())
     for key, value in kw.items():
         if value == maxval:
@@ -26,7 +26,7 @@ def maxargs2(**kw):
 
 # 3rd solution: loop again, but with no previous knowledge of what the
 # maximum value is
-def maxargs2(**kw):
+def maxarg3(**kw):
     maxval = None
     the_key = None
     for key, value in kw.items():
