@@ -24,17 +24,17 @@ class Vector(object):
   You can add two vectors
 
     >>> v2 = Vector(2,3)
-    >>> print v + v2
+    >>> print(v + v2)
     <3,5>
   
   Multiply a vector for a scalar (the next test will fail)
 
-    >>> print v * 2
+    >>> print(v * 2)
     <2,4>
 
   please note that multiplication is NOT commutative:
 
-    >>> print 2 * v
+    >>> print(2 * v)
     Traceback (most recent call last):
     ...
     TypeError: unsupported operand type(s) for *: 'int' and 'Vector'
@@ -55,7 +55,7 @@ class Vector(object):
     Any docstring from any method will be searched for tests.
 
       >>> v = Vector(1, 2)
-      >>> print v * 2
+      >>> print(v * 2)
       <2,4>
     """
     return Vector(scalar*self.x, scalar*self.y)
