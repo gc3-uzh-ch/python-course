@@ -9,10 +9,14 @@ class Evens(object):
 
   def next(self):
       # continue drawing numbers until we get an even one
-      result = self._numbers.next()
+      result = next(self._numbers)
       while (result % 2) != 0:
-          result = self._numbers.next()
+          result = next(self._numbers)
       return result
+
+  def __next__(self):
+      """Compatibility method for Python 3"""
+      return self.next()
 
   def __iter__(self):
       return self

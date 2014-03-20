@@ -12,13 +12,17 @@ class Grep(object):
         return self
 
     def next(self):
-        line = self._file.next()
+        line = next(self._file)
         while not re.search(self._pattern, line):
-            line = self._file.next()
+            line = next(self._file)
         return line
+
+    def __next__(self):
+        """Compatibility method for Python 3"""
+        return self.next()
 
 
 if __name__ == '__main__':
     # test Grep
     grep = Grep(__file__, 'class Grep.*')
-    assert 'class Grep(object):\n' == grep.next()
+    assert 'class Grep(object):\n' == next(grep)

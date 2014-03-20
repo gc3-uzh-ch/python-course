@@ -13,6 +13,10 @@ class WordIterator(object):
         else:
             raise StopIteration
 
+    def __next__(self):
+        """Compatibility method for Python 3"""
+        return self.next()
+
     def __iter__(self):
         return self
 

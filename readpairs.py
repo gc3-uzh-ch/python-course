@@ -9,12 +9,17 @@ class ReadPairs(object):
         while True:
             # upon EOF, this also raises StopIteration so no need to
             # do it ourselves
-            line = self.fd.next()
+            line = next(self.fd)
             values = line.split(",")
             if len(values) == 2:
                 i = int(values[0])
                 j = int(values[1])
                 return (i, j)
+
+    def __next__(self):
+        """Compatibility method for Python 3"""
+        return self.next()
+
 
     # must return an iterator, i.e., an object with a next() method
     def __iter__(self):
@@ -25,5 +30,5 @@ if __name__ == '__main__':
     wt = ReadPairs('wt.csv')
 
     # first well-formed lines of the file
-    assert wt.next() == (1, 21)
-    assert wt.next() == (128, 175)
+    assert next(wt) == (1, 21)
+    assert next(wt) == (128, 175)

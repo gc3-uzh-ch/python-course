@@ -15,13 +15,16 @@ class Grep(object):
         return line
 
     def next(self):
-        line = self._file.next()
+        line = next(self._file)
         match = self.match(line)
         while not match:
-            line = self._file.next()
+            line = next(self._file)
             match = self.match(line)
         return self.result(match, line)
 
+    def __next__(self):
+        """Compatibility method for Python 3"""
+        return self.next()
 
 class GrepOnlyMatching(Grep):
 
@@ -38,17 +41,17 @@ class GrepExactly(Grep):
 if __name__ == '__main__':
     # test Grep
     grep = Grep(__file__, 'class Grep[A-Za-z]+')
-    assert 'class GrepOnlyMatching(Grep):\n' == grep.next()
-    assert 'class GrepExactly(Grep):\n' == grep.next()
+    assert 'class GrepOnlyMatching(Grep):\n' == next(grep)
+    assert 'class GrepExactly(Grep):\n' == next(grep)
 
 
     # test GrepOnlyMatching
     grep = GrepOnlyMatching(__file__, 'class Grep[A-Za-z]+')
-    assert 'class GrepOnlyMatching' == grep.next()
-    assert 'class GrepExactly' == grep.next()
+    assert 'class GrepOnlyMatching' == next(grep)
+    assert 'class GrepExactly' == next(grep)
 
     # test GrepExactly
     grep = GrepExactly(__file__, 'class Grep')
-    assert 'class Grep(object):\n' == grep.next()
-    assert 'class GrepOnlyMatching(Grep):\n' == grep.next()
-    assert 'class GrepExactly(Grep):\n' == grep.next()
+    assert 'class Grep(object):\n' == next(grep)
+    assert 'class GrepOnlyMatching(Grep):\n' == next(grep)
+    assert 'class GrepExactly(Grep):\n' == next(grep)

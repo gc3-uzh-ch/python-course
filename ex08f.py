@@ -12,15 +12,17 @@ class GrepExactly(object):
         return self
 
     def next(self):
-        line = self._file.next()
+        line = next(self._file)
         while self._pattern not in line:
-            line = self._file.next()
+            line = next(self._file)
         return line
+
+    def __next__(self):
+        """Compatibility method for Python 3"""
+        return self.next()
 
 
 if __name__ == '__main__':
     # test GrepExactly
     grep = GrepExactly(__file__, 'class Grep')
-    assert 'class Grep(object):\n' == grep.next()
-    assert 'class GrepOnlyMatching(object):\n' == grep.next()
-    assert 'class GrepExactly(object):\n' == grep.next()
+    assert 'class GrepExactly(object):\n' == next(grep)
