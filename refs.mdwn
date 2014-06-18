@@ -62,11 +62,14 @@ References and further reading on Python
   organisation and structure.  (Maybe some details are outdated now.)
 
 
-
-## Specific topics
+## Python 2 vs. Python 3
 
 * [Differences between Python 2 and Python 3](http://wiki.python.org/moin/Python2orPython3)
 
+* [An IPython notebook showing the key differences between Python 2.7 and Python 3.x](http://nbviewer.ipython.org/github/rasbt/python_reference/blob/master/tutorials/key_differences_between_python_2_and_3.ipynb)
+
+
+## Specific topics
 
 * [The Python 2.3 Method Resolution Order](http://www.python.org/download/releases/2.3/mro/)
   A detailed still very readable explanation of how Python searches
