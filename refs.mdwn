@@ -30,6 +30,7 @@ References and further reading on Python
 * [An introduction to the Zen of Python](http://www.slideshare.net/doughellmann/an-introduction-to-the-zen-of-python)
   Slides by Doug Hellmann, illustrating Python by examples.
 
+
 * [Introduction to Python](http://www.slideshare.net/amiable_indian/introduction-to-python)
   [Part 2](http://www.slideshare.net/amiable_indian/introduction-to-python-part-two),
   [Part 3](http://www.slideshare.net/amiable_indian/introduction-to-python-part-three)
@@ -70,6 +71,12 @@ References and further reading on Python
 * [The Python 2.3 Method Resolution Order](http://www.python.org/download/releases/2.3/mro/)
   A detailed still very readable explanation of how Python searches
   for methods in multiple-inheritance hierarchies.
+
+
+* [An introductory guide to what magic methods are](http://www.rafekettler.com/magicmethods.html)
+  It still lacks some material on how to _write_ magic methods, but
+  it's definitely a good start and much better than what the stdlib
+  documentation has.
 
 
 ## Learn by doing
