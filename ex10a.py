@@ -8,10 +8,12 @@ class GrepOnlyMatching(object):
         self._pattern = pattern
 
     def next(self):
-        for line in self._stream:
+        while True:
+            line = self._stream.next()
             m = re.search(self._pattern, line)
             if m is not None:
                 return m.group(0)
+
 
 if __name__ == '__main__':
     # test GrepOnlyMatching

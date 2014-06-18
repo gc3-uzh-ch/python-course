@@ -8,7 +8,8 @@ class GrepExactly(object):
         self._pattern = pattern
 
     def next(self):
-        for line in self._stream:
+        while True:
+            line = self._stream.next()
             if self._pattern in line:
                 return line
 
