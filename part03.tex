@@ -5,8 +5,8 @@
 \title[Sequences, Iteration]{%
   Sequences and iteration in Python
 }
-\author[GC3]{%
-  GC3: Grid Computing Competence Center, \\
+\author[S3IT]{%
+  S3IT: Services and Support for Science IT, \\
   University of Zurich
 }
 \date{Mar.~19--20, 2014}
@@ -82,12 +82,12 @@
   Sequence indices start at 0.
   \pause
 \begin{lstlisting}
->>> L = ['G', 'C', '3']
+>>> L = ['U', 'Z', 'H']
 >>> print L[0], L[1], L[2]
-'G' 'C' '3'
->>> S = 'GC3'
+'U' 'Z' 'H'
+>>> S = 'UZH'
 >>> print S[0], S[1], S[2]
-'G' 'C' '3'
+'U' 'Z' 'H'
 \end{lstlisting}
 
   \+\pause
@@ -204,7 +204,7 @@ Please note that the \texttt{remove()} method only removes
 >>> L = [1, 2]
 >>> L += [3, 4]
 >>> print L
-[1, 2, 3, 4]    
+[1, 2, 3, 4]
   \end{lstlisting}
 
 \+
@@ -267,11 +267,11 @@ for i in range(0, 4):
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
->>> for val in ~\HL{'GC3'}~:
+>>> for val in ~\HL{'UZH'}~:
 ...   print val
-'G'
-'C'
-'3'
+'U'
+'Z'
+'H'
 \end{lstlisting}
     \end{column}
     \begin{column}{0.4\textwidth}
@@ -323,7 +323,7 @@ and to loop over a sequence in \textit{inverted} order you can use the
     returns the concatenation of those lists. For instance:
     \begin{lstlisting}
 >>> concat([ [1,2,3], [4,5,6], [7,8,9] ])
-[1, 2, 3, 4, 5, 6, 7, 8, 9]      
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
     \end{lstlisting}
   \end{exercise}
 \end{frame}
@@ -499,8 +499,8 @@ Of course, you can also create a list from a set:
   Some objects (e.g., \texttt{tuple}, \texttt{int}, \texttt{str})
   are \emph{immutable} and cannot be modified.
 \begin{lstlisting}
->>> S = 'GC3'
->>> S[2] = '2'
+>>> S = 'UZH'
+>>> S[2] = 'G'
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'str' object does not support item assignment
@@ -513,7 +513,7 @@ TypeError: 'str' object does not support item assignment
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Dictionary, sets and mutable objects} 
+  \frametitle{Dictionary, sets and mutable objects}
 
   A dictionary is essentially an
   \href{http://en.wikipedia.org/wiki/Hash_table}{Hash Table}, therefore keys of a
@@ -529,12 +529,12 @@ TypeError: 'str' object does not support item assignment
   \pause
     \item
       \textit{Immutable} objects \textbf{can be} used as \texttt{dict} keys.
-      
+
   \pause
     \item
       \textit{Mutable} objects  \textbf{cannot be} used as \texttt{dict} keys.
     \end{itemize}
-    
+
     \+\pause
   But custom types can define an \verb|__hash__| method to compute their
   hash.
@@ -584,9 +584,9 @@ You can assing multiple variables at the same time
 It works with any sequence:
 
 \begin{lstlisting}
->>> a, b, c = 'GC3'
+>>> a, b, c = 'UZH'
 >>> print a
-G
+U
 \end{lstlisting}
 
 \pause
@@ -624,7 +624,7 @@ Multiple assignment can be used in \texttt{for} statements as well.
 
     \begin{lstlisting}
 >>> zip2( [('a', 1), ('b', 2), ('c', 3)] )
-(['a', 'b', 'c'], [1, 2, 3])      
+(['a', 'b', 'c'], [1, 2, 3])
     \end{lstlisting}
   \end{exercise}
 
@@ -805,7 +805,7 @@ Found!
 
 
 \begin{frame}[fragile]
-  \frametitle{How to copy an object?}  
+  \frametitle{How to copy an object?}
   \begin{lstlisting}
 >>> import copy
 >>> a = [1, 2]
@@ -820,7 +820,7 @@ Found!
 
 
 \begin{frame}[fragile]
-  \frametitle{How to copy an object? (2)}  
+  \frametitle{How to copy an object? (2)}
 Note that \texttt{copy.copy} makes a \emph{shallow} copy:
   \begin{lstlisting}
 >>> D = { 'a':[1,2], 'b':3 }
@@ -831,13 +831,13 @@ Note that \texttt{copy.copy} makes a \emph{shallow} copy:
 { 'a':[1, 2], 'b':3 }
 >>> E['a'].remove(1)
 >>> print(D['a'])
-[2]    
+[2]
   \end{lstlisting}
 \end{frame}
 
 
 \begin{frame}[fragile]
-  \frametitle{How to copy an object? (3)}  
+  \frametitle{How to copy an object? (3)}
 To make a copy of nested data structures, you need \texttt{copy.deepcopy}:
   \begin{lstlisting}
 >>> D = { 'a':[1,2], 'b':3 }
@@ -848,9 +848,9 @@ To make a copy of nested data structures, you need \texttt{copy.deepcopy}:
 { 'a':[1, 2], 'b':3 }
 >>> E['a'].remove(1)
 >>> print(D['a'])
-[1, 2]    
+[1, 2]
 >>> print(E['a'])
-[2]    
+[2]
   \end{lstlisting}
 \end{frame}
 
