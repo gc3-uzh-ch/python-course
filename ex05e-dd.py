@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! /usr/bin/env python
 
 """
 Write a function `wordcount(filename)` that reads a text file and
@@ -16,25 +16,35 @@ def wordcount(filename):
     Read `filename` and return a dictionary mapping each word into the
     corresponding count of occurrences within the contents of
     `filename`.
+
+    This solution was contributed by Desislava Dimitrova
+    at the Python course on March 19--20, 2014.
     """
-    # read text from file
-    fd = open(filename, 'r')
-    rawtext = fd.read()
-    fd.close()
+    wc = {}
 
-    # split into list of words
-    count = {}
-    for word in rawtext.split():
-        # convert to lowercase
-        lcword = word.lower()
-        # remove non-alphabetic characters
-        cleanword = lcword.strip(string.punctuation)
-        # count
-        if cleanword not in count:
-            count[cleanword] = 0
-        count[cleanword] += 1
+    # read file contents
+    file_handle = open(filename,'r')
+    contents = file_handle.read()
+    contents = contents.lower()
 
-    return count
+    # replace punctuation with spaces
+    for item in string.punctuation:
+        if item == '-':
+            continue
+        contents = contents.replace(item,' ')
+
+    # take unique words
+    words = contents.split()
+    words = set(words)
+
+    # word counting
+    for item in words:
+        count = contents.count(item)
+        wc[str(item)] = int(count)
+
+    file_handle.close()
+
+    return wc
 
 
 if __name__ == '__main__':
