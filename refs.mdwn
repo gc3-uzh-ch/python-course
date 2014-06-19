@@ -89,6 +89,11 @@ References and further reading on Python
   documentation has.
 
 
+* [The Light and Dark Side of Python Name Binding](http://excess.org/article/2014/04/bar-foo/)
+  A deep-dive into Python assignment and attribute lookup semantics,
+  including advanced topics like the "descriptor protocol" for classes.
+
+
 ## Learn by doing
 
 * [The Python challenge](http://www.pythonchallenge.com/)
