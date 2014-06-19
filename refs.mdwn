@@ -69,6 +69,13 @@ References and further reading on Python
 * [An IPython notebook showing the key differences between Python 2.7 and Python 3.x](http://nbviewer.ipython.org/github/rasbt/python_reference/blob/master/tutorials/key_differences_between_python_2_and_3.ipynb)
 
 
+## Object-oriented Programming in Python
+
+* [OOP Concepts in Python 2.x](http://lgiordani.com/blog/2014/03/05/oop-concepts-in-python-2-dot-x-part-1/)
+  A complete and detailed series of blog posts, introducing both
+  Object-Oriented Programming and how it is done in Python 2.
+
+
 ## Specific topics
 
 * [The Python 2.3 Method Resolution Order](http://www.python.org/download/releases/2.3/mro/)
