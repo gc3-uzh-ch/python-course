@@ -110,7 +110,7 @@ True
 \begin{frame}[fragile]
   \frametitle{String literals, II}
   Multi-line strings are delimited by three quote characters.
-\begin{lstlisting}
+\begin{lstlisting}[showstringspaces=false]
 >>> a = """This is a string,
 ... that extends over more
 ... than one line.
@@ -204,7 +204,7 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
   \frametitle{Operators, IV}
   The ``\texttt{\%}'' operator is also used for \emph{string
     formatting}:
-\begin{lstlisting}[showstringspaces=false]
+\begin{lstlisting}
 >>> "This is slide ~\alt<2>{\HL{\%d}}{\%d}~ of %d" % (~\alt<2>{\HL{11}}{11}~, 32)
 'This is slide 11 of 32.'
 >>> "We are ~\alt<3>{\HL{\%.1f}}{\%.1f}~%% done." % (~\alt<3>{\HL{100.0 * 11/32}}{100.0 * 11/32}~)
@@ -227,27 +227,27 @@ TypeError: unsupported operand type(s) for /: 'str' and 'int'
 \end{frame}
 
 
-\begin{frame}[fragile]
-  \frametitle{Expressions}
+% \begin{frame}[fragile]
+%   \frametitle{Expressions}
 
-  Expressions are combinations of operations that manipulate values
-  and return some other values.  (Function calls are operations, too.)
+%   Expressions are combinations of operations that manipulate values
+%   and return some other values.  (Function calls are operations, too.)
 
-  \+
-  For instance, \texttt{2+2} is an expression, as are
-  \texttt{abs(-2)}, \texttt{os.path.exists('/tmp')},
-  \texttt{1 + (1.0/2) + 2**(-2)}
+%   \+
+%   For instance, \texttt{2+2} is an expression, as are
+%   \texttt{abs(-2)}, \texttt{os.path.exists('/tmp')},
+%   \texttt{1 + (1.0/2) + 2**(-2)}
 
-  \+
-  \emph{Not all Python constructs return a value.}
-  (Assignment, for example, does not.)
+%   \+
+%   \emph{Not all Python constructs return a value.}
+%   (Assignment, for example, does not.)
 
-  \+\scriptsize
-  References:
-  \url{http://lambda-the-ultimate.org/node/1044#comment-10878}
-  \url{http://docs.python.org/reference/expressions.html}
+%   \+\scriptsize
+%   References:
+%   \url{http://lambda-the-ultimate.org/node/1044#comment-10878}
+%   \url{http://docs.python.org/reference/expressions.html}
 
-\end{frame}
+% \end{frame}
 
 
 \begin{frame}[fragile]
@@ -519,7 +519,13 @@ greet("world")
   \begin{exercise}
     Type the same code in a file named \texttt{hello.py}, then type
     \texttt{import hello} at the interactive prompt.
-    What happens?
+    What happens?  Type \texttt{import hello} again; what happens?
+  \end{exercise}
+
+  \+
+  \begin{exercise}
+    At the terminal, type \texttt{python hello.py}.  What happens?
+    Type it again; what happens?
   \end{exercise}
 \end{frame}
 
@@ -536,6 +542,13 @@ Hello, world!
   \+
   \textbf{Modules are only read once}, no matter how many times an
   \texttt{import} statement is issued.
+\begin{lstlisting}
+>>> import hello
+Hello, world!
+>>> import hello
+>>> import hello
+\end{lstlisting}
+
 \end{frame}
 
 
@@ -553,7 +566,9 @@ Hello, Bob!
   To import definitions into the current namespace, use the
   `\texttt{from $x$ import $y$}' form:
 \begin{lstlisting}
->>> from fractions import Fraction
+>>> from hello import greet
+>>> greet("Bob")
+Hello, Bob!
 \end{lstlisting}
 \end{frame}
 
@@ -643,8 +658,12 @@ while ~\it expr~:
   statement.
 
   \+
-  If a loop is exited via a \texttt{break} statement, the
-  \texttt{else} clause is \emph{not} executed.
+  Use the \texttt{continue} statement anywhere in the indented
+  block to jump back to the \texttt{while} statement.
+
+  % \+
+  % If a loop is exited via a \texttt{break} statement, the
+  % \texttt{else} clause is \emph{not} executed.
 
   % \+
   % The \texttt{else} clause is optional.
@@ -653,8 +672,15 @@ while ~\it expr~:
 
 \begin{frame}
   \begin{exercise}
-    Modify the \texttt{greet()} function to print ``Welcome back!'' if
-    the argument \texttt{name} is your name.
+    In the \texttt{hello.py} file, modify the \texttt{greet()}
+    function to print ``Welcome back!'' if the argument \texttt{name}
+    is your name.
+
+    \+
+    Insert at least two distinct invocations of the function with
+    different names at the end of the file.  Check that everything
+    works by running \texttt{python hello.py} at the terminal prompt.
+    (Or \emph{Ctrl+Shift+F10} in PyCharm.)
   \end{exercise}
 \end{frame}
 
