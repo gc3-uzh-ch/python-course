@@ -2,8 +2,8 @@
 \usetheme[informal]{gc3}
 \usepackage{gc3}
 
-\title[Sequences, Iteration]{%
-  Sequences and iteration in Python
+\title[Containers and Loops]{%
+  Containers and looping \\ in Python
 }
 \author[S3IT]{%
   S3IT: Services and Support for Science IT, \\
@@ -47,23 +47,23 @@
   Lists are created and initialized by enclosing values into
   `\texttt{[}' and `\texttt{]}':
 \begin{lstlisting}
->>> L = [ 'G', 'C' ]
+>>> L = [ 'U', 'Z' ]
 \end{lstlisting}
 
   \+\pause
   You can append and remove items from a list:
 \begin{lstlisting}
->>> L.append('3')
+>>> L.append('H')
 >>> print (L)
-['G', 'C', '3']
+['U', 'Z', 'H']
 \end{lstlisting}
 
   \+\pause
-  You can append \textbf{any} object to it:
+  You can append \textbf{any} object to a list:
 \begin{lstlisting}
 >>> L.append([1, 2])
 >>> print(L)
-['G', 'C', '3', [1, 2]]
+['U', 'Z', 'H', [1, 2]]
 \end{lstlisting}
 
   % % \+
@@ -83,10 +83,10 @@
   \pause
 \begin{lstlisting}
 >>> L = ['U', 'Z', 'H']
->>> print L[0], L[1], L[2]
+>>> print(L[0], L[1], L[2])
 'U' 'Z' 'H'
 >>> S = 'UZH'
->>> print S[0], S[1], S[2]
+>>> print(S[0], S[1], S[2])
 'U' 'Z' 'H'
 \end{lstlisting}
 
@@ -107,7 +107,7 @@
 \pause
 \begin{lstlisting}
 >>> # list numbers from 0 to 9
->>> R = range(0,10)
+>>> R = list(range(0,10))
 >>> R[1:4]
 [1, 2, 3]
 \end{lstlisting}
@@ -131,25 +131,26 @@
   You can replace items in a \emph{mutable} sequence by assigning them
   a new value:
 \begin{lstlisting}
->>> L[2] = 'Z'
->>> print L
-['G', 'C', 'Z']
+>>> L = ['U', 'Z', 'H']
+>>> L[2] = 'G'
+>>> print(L)
+['U', 'Z', 'G']
 \end{lstlisting}
 
 \pause
 You can also replace an entire slice of a mutable sequence:
 \begin{lstlisting}
 >>> L[1:3] = ['a', 'b']
->>> print L
-['G', 'a', 'b']
+>>> print(L)
+['U', 'a', 'b']
 \end{lstlisting}
 
 \pause
 The new slice does not need to have the same length:
 \begin{lstlisting}
 >>> L[2:] = range(5)
->>> print L
-['G', 'a', 0, 1, 2, 3, 4]
+>>> print(L)
+['U', 'a', 0, 1, 2, 3, 4]
 \end{lstlisting}
 \end{frame}
 
@@ -159,7 +160,7 @@ The new slice does not need to have the same length:
   You can remove individual items from a list either by specifying
   the item:
 \begin{lstlisting}
->>> L.remove('G')
+>>> L.remove('U')
 >>> L
 ['a', 0, 1, 2, 3, 4]
 \end{lstlisting}
@@ -203,7 +204,7 @@ Please note that the \texttt{remove()} method only removes
   \begin{lstlisting}
 >>> L = [1, 2]
 >>> L += [3, 4]
->>> print L
+>>> print(L)
 [1, 2, 3, 4]
   \end{lstlisting}
 
@@ -211,7 +212,7 @@ Please note that the \texttt{remove()} method only removes
 The \texttt{*} operator also works on lists:
   \begin{lstlisting}
 >>> L = [1, 2]
->>> print L*3
+>>> print(L*3)
 [1, 2, 1, 2, 1, 2 ]
   \end{lstlisting}
 \end{frame}
@@ -220,8 +221,8 @@ The \texttt{*} operator also works on lists:
 
 \begin{frame}[fragile]
   \frametitle{\texttt{for}-loops}
-    With the  \texttt{for} statement, you can loop over the values in
-    a list:
+    With the  \texttt{for} statement, you can loop over the items of
+    a sequence:
 \begin{lstlisting}
 for i in range(0, 4):
   # loop block
@@ -246,7 +247,7 @@ for i in range(0, 4):
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
 >>> for val in ~\HL{[1,2,3]}~:
-...   print val
+...   print(val)
 1
 2
 3
@@ -268,7 +269,7 @@ for i in range(0, 4):
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
 >>> for val in ~\HL{'UZH'}~:
-...   print val
+...   print(val)
 'U'
 'Z'
 'H'
@@ -288,7 +289,7 @@ for i in range(0, 4):
 
   \begin{lstlisting}
 >>> for val in sorted([1,3,4,2]):
-...  print val
+...  print(val)
 1
 2
 3
@@ -300,7 +301,7 @@ and to loop over a sequence in \textit{inverted} order you can use the
 
 \begin{lstlisting}
 >>> for val in reversed([1,3,4,2]):
-...     print val
+...     print(val)
 2
 4
 3
@@ -312,13 +313,13 @@ and to loop over a sequence in \textit{inverted} order you can use the
 %%% Exercise on for loops and lists
 
 \begin{frame}[fragile]
-  \begin{exercise}
+  \begin{exercise}\emph{(5 minutes)}
     Write a function \texttt{odd} that takes a list of integers and
     returns a list of all the odd ones.
   \end{exercise}
 
   \+
-  \begin{exercise}
+  \begin{exercise}\emph{(5 minutes)}
     Write a function \texttt{concat} that takes a list of lists and
     returns the concatenation of those lists. For instance:
     \begin{lstlisting}
@@ -443,9 +444,9 @@ Of course, you can also create a list from a set:
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
 \begin{lstlisting}
->>> D = dict(a=1, b=2)
+>>> D = { 'a':1, 'b':2 }
 >>> for val in ~\HL{D.keys()}~:
-...   print val
+...   print(val)
 'a'
 'b'
 \end{lstlisting}
@@ -470,7 +471,7 @@ Of course, you can also create a list from a set:
 \begin{lstlisting}
 >>> D = dict(a=1, b=2)
 >>> for val in ~\HL{D.values()}~:
-...   print val
+...   print(val)
 1
 2
 \end{lstlisting}
@@ -484,13 +485,23 @@ Of course, you can also create a list from a set:
   \end{columns}
 \end{frame}
 
-\begin{frame}
-    \begin{exercise}
+\begin{frame}[fragile]
+    \begin{exercise}\emph{(10 minutes)}
     Write a function \texttt{invert(D)} that takes a dictionary
     \texttt{D} and returns a dictionary \texttt{Dinv} with keys and
     values swapped. (We assume that \texttt{D} is 1-1.)
+
+    \+
+    Example correct output:
+\begin{lstlisting}[basicstyle=\footnotesize\tt]
+>>> D = { 'CH':'Switzerland', 'I':'Italy', 'F':'France' }
+>>> E = invert(D)
+>>> print(E)
+{ 'Switzerland':'CH', 'France':'F', 'Italy':'I' }
+\end{lstlisting}
   \end{exercise}
 \end{frame}
+
 
 %%% Mutable vs immutable
 
@@ -515,29 +526,24 @@ TypeError: 'str' object does not support item assignment
 \begin{frame}[fragile]
   \frametitle{Dictionary, sets and mutable objects}
 
-  A dictionary is essentially an
-  \href{http://en.wikipedia.org/wiki/Hash_table}{Hash Table}, therefore keys of a
-  dictionary must be \textit{hashable} objects.
-
-  \+
-  Similarly, elements of a \texttt{set} must be hashable too.
-
-  \+\pause
-  The hash of an object must not change over time, so:
-
+  Not all objects can be used as dictionary \emph{keys} or items in a
+  set:
   \begin{itemize}
-  \pause
     \item
-      \textit{Immutable} objects \textbf{can be} used as \texttt{dict} keys.
-
-  \pause
+      \textit{Immutable} objects \textbf{can be} used as \texttt{dict} keys or set items.
     \item
-      \textit{Mutable} objects  \textbf{cannot be} used as \texttt{dict} keys.
+      \textit{Mutable} objects  \textbf{cannot be} used as \texttt{dict} keys or set items.
     \end{itemize}
 
-    \+\pause
-  But custom types can define an \verb|__hash__| method to compute their
-  hash.
+    \pause
+
+    \+
+    {\small
+      (Explanation for the technically savvy: a dictionary is
+      essentially a \href{http://en.wikipedia.org/wiki/Hash_table}{Hash
+        Table}, therefore keys of a dictionary must be \textit{hashable}
+      objects.  If objects were allowed to mutate, their hash value
+      would change too and we would lose the mapping.)}
 \end{frame}
 
 
@@ -573,9 +579,9 @@ TypeError: 'tuple' object does not support item assignment
 You can assing multiple variables at the same time
 \begin{lstlisting}
 >>> a, b, c = (1, 2, 3)
->>> print a
+>>> print(a)
 1
->>> print b
+>>> print(b)
 2
 \end{lstlisting}
 
@@ -585,7 +591,7 @@ It works with any sequence:
 
 \begin{lstlisting}
 >>> a, b, c = 'UZH'
->>> print a
+>>> print(a)
 U
 \end{lstlisting}
 
@@ -604,9 +610,9 @@ U
 Multiple assignment can be used in \texttt{for} statements as well.
 \begin{lstlisting}
 >>> L = [(1,'a'), (2,'b'), (3, 'c')]
->>> for num, char in L:
-...     print ("num is " + str(num)
-...            + ' and char is ' + char)
+>>> for x, y in L:
+...     print ("first is " + str(x)
+...            + ' and second is ' + y)
 \end{lstlisting}
 
   \+
@@ -639,7 +645,7 @@ Multiple assignment can be used in \texttt{for} statements as well.
 %%% the `in` operator
 
 \begin{frame}[fragile]
-  \frametitle{The `{\ttfamily\bfseries in}' operator}
+  \frametitle{The `{\ttfamily\bfseries in}' operator (1)}
 
   Use the \lstinline|in| operator to test for presence of an item in a
   collection.
@@ -649,17 +655,32 @@ Multiple assignment can be used in \texttt{for} statements as well.
     contained in the \lstinline|S| sequence (list, tuple, set).
   \end{describe}
 
-  \begin{describe}{\lstinline|x in D|}
-    Evaluates to \texttt{True} if \lstinline|x| is equal to a \emph{key}
-    in the \lstinline|D| dictionary.
-  \end{describe}
-
   \begin{describe}{\lstinline|x in T|}
     Evaluates to \texttt{True} if \lstinline|x| is a substring of
     string \lstinline|T|.
   \end{describe}
 
 \end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{The `{\ttfamily\bfseries in}' operator (2)}
+
+  Use the \lstinline|in| operator to test for presence of an item in a
+  collection.
+
+  \begin{describe}{\lstinline|x in D| \\ \lstinline|x in D.keys()|}
+    Evaluates to \texttt{True} if \lstinline|x| is equal to a \emph{key}
+    in the \lstinline|D| dictionary.
+  \end{describe}
+
+  \begin{describe}{\lstinline|x in D.values()|}
+    Evaluates to \texttt{True} if \lstinline|x| is equal to a \emph{value}
+    in the \lstinline|D| dictionary.
+  \end{describe}
+
+\end{frame}
+
 
 \begin{frame}[fragile,fragile]
   \frametitle{The \texttt{in} operator and the \texttt{if} conditional
@@ -672,7 +693,7 @@ Multiple assignment can be used in \texttt{for} statements as well.
 \begin{lstlisting}
 >>> L = [1, 2, 3, 4]
 >>> if 1 in L:
-...   print "Found!"
+...   print("Found!")
 ...
 Found!
 \end{lstlisting}
@@ -683,7 +704,7 @@ Found!
 % >>> L = [1, 2, 3, 4]
 % >>> for item in L:
 % ...     if item == 1:
-% ...         print "Found!"
+% ...         print("Found!")
 % ...         break
 % \end{lstlisting}
 \end{frame}
@@ -736,9 +757,22 @@ Found!
 >>> a = [1,2,3]
 >>> b = a
 >>> b.remove(2)
->>> print a
-[1, 3]
+>>> print(a)
 \end{lstlisting}
+  \only<1>{%
+\vspace{-1.5em}
+\begin{semiverbatim}
+\emph{???}
+\end{semiverbatim}
+    \begin{center}
+      \textbf{Q}: How many items are in the \texttt{a} list now?
+    \end{center}
+  }%
+  \only<2>{%
+\vspace{-1.5em}
+\begin{semiverbatim}
+[1, 3]
+\end{semiverbatim}
 
    \+
    \href{http://tinyurl.com/cq3tcab}{Run this example} in the
@@ -749,7 +783,7 @@ Found!
    {\small \em
      This applies particularly for variables that capture the arguments
      to a function call!}
-
+}%
 \end{frame}
 
 
@@ -870,55 +904,6 @@ To make a copy of nested data structures, you need \texttt{copy.deepcopy}:
 
 
 \begin{frame}[fragile]
-  \frametitle{Variadic functions, I}
-  Functions like \texttt{max} and \texttt{min} take a variable number of arguments.
-
-  \+
-  That is possible with user-defined functions too.
-
-  \+
-  If the last argument is prefixed with a \texttt{*} character,
-  Python will make that argument into a \emph{tuple} of arguments
-  passed to the function. (Except for the ones that have already been
-  assigned names.)
-\end{frame}
-
-
-\begin{frame}[fragile,fragile]
-  \frametitle{Variadic functions, II}
-\begin{lstlisting}
->>> def varfn1(*args):
-...   print args
->>> varfn1(1,2,3)
-(1, 2, 3)
-\end{lstlisting}
-
-\begin{lstlisting}
->>> def varfn2(a, b, *rest):
-...   print rest
->>> varfn1(1,2,3)
-(3,)
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Variadic functions, III}
-  You can call a function with an argument list that is only
-  determined at run time.
-
-  \+
-  The unary \texttt{*} operator takes any sequence and makes it
-  into a function argument list:
-\begin{lstlisting}
->>> L = [1, 2, 3]
->>> max(*L)
-3
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
   \frametitle{Named arguments}
 Python allows calling a function with named arguments:
 \begin{lstlisting}
@@ -934,77 +919,6 @@ Fraction(1, 2)
 \end{lstlisting}
 \end{frame}
 
-
-\begin{frame}[fragile]
-  \frametitle{Keyword arguments, I}
-  Python lets you catch arbitrary named arguments.
-
-  \+
-  Prefix the very last argument name with \texttt{**}, and Python
-  will make it into a dictionary: keys are actual argument names and
-  dictionary values are actual argument values.
-
-  \+
-\begin{lstlisting}
->>> def kwfn1(**kwargs):
-...   print kwargs
->>> kwfn1(a=1, b=2)
-{'a':1, 'b':2}
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile,fragile]
-  \frametitle{Keyword arguments, II}
-  Keyword argument can be combined with positional arguments:
-\begin{lstlisting}
->>> def kwfn1(x, y, **kwargs):
-...   print "x=%s y=%s kwargs=%s" % (x, y, kwargs)
->>> kwfn1(0, 42, a=1, b=2)
-x=0 y=42 kwargs={'a':1, 'b':2}
-\end{lstlisting}
-
-  \+
-  \ldots and also with variadic arguments:
-\begin{lstlisting}
->>> def kwfn2(x, *rest, **kwargs):
-...   print ("x=%s rest=%s kwargs=%s"
-...          % (x, rest, kwargs))
->>> kwfn2(0, 1, 2, 3, a=1, b=2)
-x=0 rest=(1, 2, 3) kwargs={'a':1, 'b':2}
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile,fragile]
-  \frametitle{Keyword arguments, III}
-  You can pass to a function a set of keyword arguments that is
-  determined only at run time.
-
-  The \texttt{**} operator takes any \emph{dictionary} and turns it
-  into the bundle of keyword arguments for a function:
-\begin{lstlisting}
->>> D = { 'c':4, 'd':2 }
->>> kwfn2(x=1, **D)
-x=1 rest=() kwargs={ 'c':4, 'd':2 }
-\end{lstlisting}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \begin{exercise}
-    Write a \texttt{maxarg} function, that takes arbitrary keyword
-    arguments (but assume the values are all numbers), and returns the
-    name of the argument with the largest value.
-
-    \+
-    Example:
-\begin{lstlisting}
->>> maxarg(a=1, b=2)
-'b'
-\end{lstlisting}
-  \end{exercise}
-\end{frame}
 
 \end{document}
 
