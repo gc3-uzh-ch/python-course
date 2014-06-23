@@ -18,7 +18,7 @@ all: $(patsubst %.tex,%.pdf,$(wildcard part*.tex))
 
 
 # the default wildcard rule for generating PDFs from `.tex` files
-%.pdf: %.tex gc3.sty
+%.pdf: %.tex s3it.sty
 	pdflatex $<
 	pdflatex $<
 
