@@ -1,0 +1,86 @@
+\documentclass[english,serif,mathserif,xcolor=pdftex,dvipsnames,table]{beamer}
+\usetheme[informal]{s3it}
+\usepackage{s3it}
+
+\title[Warm-up]{%
+  Warm-up exercise: \\
+  analysis of ``response time'' data
+}
+\author[S3IT]{%
+  S3IT: Services and Support for Science IT, \\
+  University of Zurich
+}
+\date{June~23--24, 2014}
+
+\begin{document}
+
+% title frame
+\maketitle
+
+
+\begin{frame}[fragile]
+  Suppose you are given a
+  \href{https://raw.github.com/gc3-uzh-ch/python-course/master/rt.tsv}{file
+    like this}:\footnote{%
+  Many thanks to Franz Liem for providing the data.
+}%
+\begin{semiverbatim}
+easy	0	2.161176607
+medium	0	3.277300931
+hard	0	3.662894132
+hard	1	3.599218055
+\end{semiverbatim}
+
+\+
+Each line is a ``trial'' and shows condition, if it was answered
+correctly and the reaction time.
+\end{frame}
+
+
+\begin{frame}
+  \begin{exercise}
+    Read the
+    \href{https://raw.github.com/gc3-uzh-ch/python-course/master/rt.tsv}{rt.tsv}
+    file and output the average response time for condition
+    \texttt{easy}.  Records relating to non-correct answers (i.e.,
+    those for which the middle value is \texttt{0}) should be
+    discarded.
+  \end{exercise}
+
+  \+
+  \begin{exercise}
+    Modify the solution to the previous exercise to be
+    \emph{parametric}: i.e., it should be possible to specify what
+    condition to look for (\texttt{easy}, \texttt{medium},
+    \texttt{hard}), and if one wants records for which the answer is
+    correct or not.
+  \end{exercise}
+\end{frame}
+
+
+\begin{frame}
+  \begin{exercise}
+    \begin{enumerate}
+    \item
+      Write a function \texttt{parse\_data} that reads a given file (by default, file
+      \href{https://raw.github.com/gc3-uzh-ch/python-course/master/rt.tsv}{\texttt{rt.tsv}})
+      and returns a dictionary, mapping each condition name into a list
+      of pairs \emph{(correct, reponse time)}.
+
+    \item
+      Write a function \texttt{analyze\_data} that takes three
+      arguments: \texttt{data}, \texttt{condition}, and
+      \texttt{max\_rt}, and returns the number of correct answers for
+      the given condition whose response time is less than
+      \texttt{max\_rt}.  The \texttt{data} argument is a dictionary
+      like the one returned by the \texttt{parse\_data} function.
+    \end{enumerate}
+  \end{exercise}
+\end{frame}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
