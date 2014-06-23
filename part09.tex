@@ -2,7 +2,7 @@
  \usetheme[informal]{s3it}
 \usepackage{s3it}
 
-\title[Part 7]{%
+\title[Part 9]{%
   Exceptions
 }
 \author[S3IT]{%
@@ -20,27 +20,73 @@
 \begin{frame}[fragile]
   \frametitle{Exceptions}
 
-  Exceptions are objects that inherit from the built-in
-  \lstinline|Exception| class.
+  ``Exceptions'' is the name given in Python to error conditions.
 
   \+
-  To create a new exception just make a new class:
-\begin{lstlisting}
-class NewKindOfError(Exception):
-  """
-  Do use the docstring to document
-  what this error is about.
-  """
-  pass
-\end{lstlisting}
+  You can write code that intercepts some error conditions and
+  reacts.
 
-  \+
-  Exceptions are handled by class name, so they usually do not need
-  any new methods (although you are free to define some if needed).
+%   Exceptions are objects that inherit from the built-in
+%   \lstinline|Exception| class.
+
+%   \+
+%   To create a new exception just make a new class:
+% \begin{lstlisting}
+% class NewKindOfError(Exception):
+%   """
+%   Do use the docstring to document
+%   what this error is about.
+%   """
+%   pass
+% \end{lstlisting}
+
+%   \+
+%   Exceptions are handled by class name, so they usually do not need
+%   any new methods (although you are free to define some if needed).
 
   \begin{seealso}
     \url{http://docs.python.org/library/exceptions.html}
   \end{seealso}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{What does an exception look like?}
+\begin{lstlisting}
+>>> stream.write('foo')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IOError: File not open for writing
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{What does an exception look like?}
+\begin{lstlisting}
+>>> stream.write('foo')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IOError: ~\HL{File not open for writing}~
+\end{lstlisting}
+
+  \+
+  This is the exception \emph{message}: it is supposed to be read
+  by the (human) user.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{What does an exception look like?}
+\begin{lstlisting}
+>>> stream.write('foo')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+~\HL{IOError}~: File not open for writing
+\end{lstlisting}
+
+  \+ This is the exception \emph{class name}; it is used for catching
+  exceptions (syntax in the next slide).
 \end{frame}
 
 
@@ -53,15 +99,9 @@ except SomeException:
 except AnotherException, ex:
   # the actual Exception instance
   # is available as variable `ex'
-else:
-  # performed on normal exit from `try'
 finally:
   # performed on exit in any case
 \end{lstlisting}
-
-  \+
-  The optional \lstinline|else| clause is executed if and when control flows off the
-  \emph{end} of the \lstinline|try| clause.
 
   \+
   The optional \lstinline|finally| clause is executed on exit from the
@@ -76,15 +116,53 @@ finally:
 
 \begin{frame}[fragile]
   \frametitle{Raising exceptions}
-
   Use the \lstinline|raise| statement with an \texttt{Exception}
   instance:
 \begin{lstlisting}
 if an_error_occurred:
   raise AnError("Spider sense is tingling.")
 \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Raising exceptions}
+
+  Use the \lstinline|raise| statement with an \texttt{Exception}
+  instance:
+\begin{lstlisting}
+if an_error_occurred:
+  raise ~\HL{AnError}~("Spider sense is tingling.")
+\end{lstlisting}
 
   \+
+  The exception class name specifies what kind of exception to raise.
+
+  \+
+  You must use an \emph{existing} exception class; we shall learn
+  how to define new exceptions in the object-orientation lectures.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Raising exceptions}
+
+  Use the \lstinline|raise| statement with an \texttt{Exception}
+  instance:
+\begin{lstlisting}
+if an_error_occurred:
+  raise AnError(~\HL{"Spider sense is tingling."}~)
+\end{lstlisting}
+
+  \+
+  The exception message is an arbitrary string.  It is meant for
+  humans to read, so try to describe the error condition clearly and
+  concisely.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Raising exceptions}
   Within an \lstinline|except| clause, you can use \lstinline|raise|
   with no arguments to re-raise the current exception:
 \begin{lstlisting}
@@ -100,53 +178,15 @@ except ItDidntWork:
 
 \begin{frame}[fragile]
   \begin{exercise}
-    Enhance the function \lstinline|load_data| defined in Exercise 5B:
-    if an error is found (for instance a line which cannot be converted to
-    an integer), silently ignore it.
+    Enhance the function \lstinline|parse_data| defined in the ``Warm-up''
+    Exercise: if an error is found in the data read from file,
+    silently ignore it and drop the line.
 
-    Test your code on the \texttt{test.csv} data file:
-\begin{lstlisting}
->>> load_data('test.csv')
-[1, 2, 3, 4]
-\end{lstlisting}
+    Test your code on the
+    \href{https://raw.github.com/gc3-uzh-ch/python-course/master/rt.tsv}{\texttt{rt.dirty.csv}}
+    data file: your code should detect and ignore the 4 malformed
+    lines in the file.
   \end{exercise}
-
-  % \begin{exercise}
-  %   The \texttt{os.mkdir()} function raises a \texttt{OSError}
-  %   exception if asked to create a directory that already exists.
-
-  %   \+
-  %   Write a \texttt{mkdir\_p(path)} function that creates a
-  %   directory at \texttt{path}, but does nothing if the directory
-  %   already exists.  Return \texttt{True} if the directory has been
-  %   actually created, and \texttt{False} if nothing was changed on the
-  %   file system.
-  % \end{exercise}
-\end{frame}
-
-
-\begin{frame}[fragile]
-  \frametitle{Exception handling example}
-
-Read lines from a CSV file, ignoring those that do not have the
-required number of fields.  If other errors occur, abort.
-Close the file when done.
-\begin{lstlisting}
-job_state = { } # empty dict
-try:
-  csv_file = open('jobs.csv', 'r')
-  for line in csv_file:
-    line = line.strip() # remove trailing newline
-    try:
-      name, jobid, state = line.split(",")
-    except ValueError:
-      continue # ignore line
-    job_state[jobid] = state
-except IOError:
-  raise # up to caller
-finally:
-  csv_file.close()
-\end{lstlisting}
 \end{frame}
 
 
