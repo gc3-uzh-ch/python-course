@@ -81,4 +81,13 @@ def analyze_data(data, condition='easy', max_rt=1e100):
 if __name__ == "__main__":
     fname = 'rt.tsv'
     maxrt = 1e100
-    print("Nr. of correct answer for file %s: %d" % (fname, analyze_data(parse_data(fname), max_rt=maxrt)))
+    cond='easy'
+    data = parse_data(fname)
+    print("Nr. of correct answer for condition %s: %d" % (cond, analyze_data(data, condition=cond, max_rt=maxrt)))
+
+    cond='hard'
+    print("Nr. of correct answer for condition %s: %d" % (cond, analyze_data(data, condition=cond, max_rt=maxrt)))
+
+    maxrt = 3.5
+    cond='hard'
+    print("Nr. of correct answer for condition %s with RT lesser than %.1f: %d" % (cond, maxrt, analyze_data(data, condition=cond, max_rt=maxrt)))
