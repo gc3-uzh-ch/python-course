@@ -79,9 +79,6 @@ def analyze_data(data, condition='easy', max_rt=1e100):
 
 
 if __name__ == "__main__":
-    import sys
-
-    if len(sys.argv) == 1:
-        print("Usage: %s filename [filename2]" % sys.argv[0])
-    for fname in sys.argv[1:]:
-        print("Correct answer for file %s: %d" % (fname, analyze_data(parse_data(fname))))
+    fname = 'rt.tsv'
+    maxrt = 1e100
+    print("Nr. of correct answer for file %s: %d" % (fname, analyze_data(parse_data(fname), max_rt=maxrt)))
