@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-# 
-# @(#)rt02.py
+# @(#)rt2.py
 # 
 # 
 # Copyright (C) 2014, GC3, University of Zurich. All rights reserved.
@@ -46,18 +46,16 @@ def avg_rt_parametric(fname, condition='easy', correct=1):
     stream.close()
     return sum(values)/len(values)
 
-avgrt = avg_rt_parametric('rt.tsv')
-avgrt2 = avg_rt_parametric('rt.tsv', correct=0)
-avgrt3 = avg_rt_parametric('rt.tsv', condition='hard', correct=1)
+if __name__ == "__main__":
+    avgrt = avg_rt_parametric('rt.tsv')
+    avgrt2 = avg_rt_parametric('rt.tsv', correct=0)
+    avgrt3 = avg_rt_parametric('rt.tsv', condition='hard', correct=1)
 
-assert avgrt - 1.555927 < 1e-6
-print("Average RT for 'easy', 'correct' is: %f" % avgrt)
+    assert avgrt - 1.555927 < 1e-6
+    print("Average RT for 'easy', 'correct' is: %f" % avgrt)
 
-assert avgrt2 - 2.10418064333 < 1e-6
-print("Average RT for 'easy', 'incorrect' is: %f" % avgrt2)
+    assert avgrt2 - 2.10418064333 < 1e-6
+    print("Average RT for 'easy', 'incorrect' is: %f" % avgrt2)
 
-assert avgrt3 - 3.5831878768 < 1e-6
-print("Average RT for 'hard', 'correct' is: %f" % avgrt3)
-
-
-
+    assert avgrt3 - 3.5831878768 < 1e-6
+    print("Average RT for 'hard', 'correct' is: %f" % avgrt3)

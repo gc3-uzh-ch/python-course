@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-# 
-# @(#)rt03.py
+# @(#)rt3.py
 # 
 # 
 # Copyright (C) 2014, GC3, University of Zurich. All rights reserved.
@@ -64,7 +64,7 @@ def avg_rt(data, condition='easy', correct=1):
             values.append(rt)
     return sum(values)/len(values)
 
-def analyze_data(data, condition='easy', max_rt=-1):
+def analyze_data(data, condition='easy', max_rt=1e100):
     """Returns the number of correct answer in the dataset `data`, where
     condition is `condition` and the maximum response time is lesser
     than `max_rt`
@@ -76,3 +76,12 @@ def analyze_data(data, condition='easy', max_rt=-1):
             continue
         correct += 1
     return correct
+
+
+if __name__ == "__main__":
+    import sys
+
+    if len(sys.argv) == 1:
+        print("Usage: %s filename [filename2]" % sys.argv[0])
+    for fname in sys.argv[1:]:
+        print("Correct answer for file %s: %d" % (fname, analyze_data(parse_data(fname))))

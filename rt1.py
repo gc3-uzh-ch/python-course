@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-# 
-# @(#)rt01.py
+# @(#)rt1.py
 # 
 # 
 # Copyright (C) 2014, GC3, University of Zurich. All rights reserved.
@@ -42,7 +42,8 @@ def avg_rt_for_easy_correct(fname):
     stream.close()
     return sum(values)/len(values)
 
-avgrt = avg_rt_for_easy_correct('rt.tsv')
-assert avgrt - 1.555927 < 1e-6
+if __name__ == "__main__":
+    avgrt = avg_rt_for_easy_correct('rt.tsv')
+    assert avgrt - 1.555927 < 1e-6
 
-print("Average RT for 'easy', 'correct' is: %f" % avgrt)
+    print("Average RT for 'easy', 'correct' is: %f" % avgrt)
